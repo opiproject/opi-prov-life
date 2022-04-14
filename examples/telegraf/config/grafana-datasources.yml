@@ -1,0 +1,15 @@
+# config file version
+apiVersion: 1
+
+datasources:
+  - name: InfluxDB
+    type: influxdb
+    access: proxy
+    url: http://influxdb:8086
+    secureJsonData:
+      token: YourInfluxDBAuthToken
+    jsonData:
+      version: Flux
+      organization: my-org
+      defaultBucket: my-bucket
+      tlsSkipVerify: true

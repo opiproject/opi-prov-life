@@ -11,6 +11,13 @@
     * https://hub.docker.com/_/telegraf
     * https://hub.docker.com/_/influxdb
     * https://hub.docker.com/r/grafana/grafana
+    * https://github.com/spdk/spdk-csi/blob/master/deploy/spdk/Dockerfile
+
+
+## Getting started:
+
+1. Run `docker-compose up -d`
+2. Open `http://localhost:3000/explore` for querying InfluxDB
 
 ## SPDK RPC proxy
 

@@ -1,0 +1,18 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright (c) Arm Limited and Contributors
+# Copyright (c) Intel Corporation
+FROM fedora:33
+
+ARG TAG=master
+# Due to missing https://github.com/spdk/spdk/commit/637f1a101ce7e0611c6c93d379b1f67bf7e05d26
+#ARG TAG=v21.04
+ARG ARCH=native
+
+WORKDIR /root
+RUN dnf install -y git diffutils procps-ng
+RUN git clone https://github.com/spdk/spdk --branch ${TAG} --depth 1 && \
+    cd spdk && git submodule update --init --depth 1 && scripts/pkgdep.sh --rdma
+RUN cd spdk && \
+    ./configure --disable-tests --without-vhost --without-virtio \
+                --with-rdma --target-arch=${ARCH} && \
+    make

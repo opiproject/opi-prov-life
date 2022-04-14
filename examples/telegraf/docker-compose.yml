@@ -1,0 +1,71 @@
+version: "3.7"
+
+services:
+
+  spdk:
+    build:
+      context: .
+      dockerfile: Dockerfile.spdk
+    volumes:
+      - /dev/hugepages:/dev/hugepages
+      - /dev/shm:/dev/shm
+      - /proc:/proc
+    ports:
+      - "9009:9009"
+    privileged: true
+    networks:
+      - opi
+    command: |
+      sh -c 'echo 2048 > /proc/sys/vm/nr_hugepages && \
+            /root/spdk/build/bin/spdk_tgt -m 0xff -s 1024 > /tmp/spdk-tgt.log 2>&1 & \
+            echo wait 5s... && sleep 5s && cd /root/spdk/scripts && \
+            ./rpc.py bdev_malloc_create -b Malloc0 64 512 && \
+            ./rpc.py bdev_malloc_create -b Malloc1 64 512 && \
+            ./rpc_http_proxy.py 0.0.0.0 9009 spdkuser spdkpass'
+
+  telegraf:
+    image: telegraf:1.22
+    volumes:
+      - ./config/telegraf-spdk.conf:/etc/telegraf/telegraf.conf:ro
+    depends_on:
+      - spdk
+      - influxdb
+    networks:
+      - opi
+
+  grafana:
+    image: grafana/grafana:8.4.6
+    depends_on:
+      - influxdb
+    volumes:
+      - ./config/grafana.ini:/etc/grafana/grafana.ini
+      - ./config/grafana-datasources.yml:/etc/grafana/provisioning/datasources/datasource.yaml
+      - ./config/grafana-dashboards.yaml:/etc/grafana/provisioning/dashboards/default.yaml
+      - ./config/grafana-dashboard.json:/var/lib/grafana/dashboards/myexample.json
+    ports:
+      - "3000:3000"
+    networks:
+      - opi
+
+  influxdb:
+    image: influxdb:2.1-alpine
+    ports:
+      - "8086:8086"
+    volumes:
+      - influxdb-storage:/var/lib/influxdb
+    environment:
+      - DOCKER_INFLUXDB_INIT_MODE=setup
+      - DOCKER_INFLUXDB_INIT_USERNAME=my-user
+      - DOCKER_INFLUXDB_INIT_PASSWORD=my-password
+      - DOCKER_INFLUXDB_INIT_ORG=my-org
+      - DOCKER_INFLUXDB_INIT_BUCKET=my-bucket
+      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=YourInfluxDBAuthToken
+    networks:
+      - opi
+
+volumes:
+  influxdb-storage:
+
+networks:
+  opi:
+
