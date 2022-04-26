@@ -6,6 +6,8 @@
     * https://github.com/influxdata/telegraf/tree/master/plugins/inputs/http
     * https://github.com/influxdata/telegraf/tree/master/plugins/inputs/cpu
     * https://github.com/influxdata/telegraf/tree/master/plugins/inputs/mem
+    * https://github.com/influxdata/telegraf/tree/master/plugins/inputs/net
+    * https://github.com/influxdata/telegraf/tree/master/plugins/inputs/dpdk
     * https://github.com/influxdata/telegraf/tree/master/plugins/outputs/file
     * https://github.com/influxdata/telegraf/tree/master/plugins/outputs/influxdb_v2
 
@@ -36,7 +38,7 @@ Test Proxy is running correctly
 curl -k --user spdkuser:spdkpass -X POST -H "Content-Type: application/json" -d '{"id": 1, "method": "bdev_get_bdevs", "params": {"name": "Malloc0"}}' http://127.0.0.1:9009/
 ```
 
-## InfluxDB
+## Run InfluxDB
 
 Use [docker-compose](docker-compose.yml) or manually
 
@@ -51,11 +53,11 @@ $ docker run --rm --name influxdb -p 8086:8086 \
       influxdb:2.1-alpine
 ```
 
-## HTTP Input Plugin
+## Run Telegraf
 
 Configuration file [telegraf-spdk.conf](config/telegraf-spdk.conf)
 
-Run telegraf using [docker-compose](docker-compose.yml)
+Run telegraf using [docker-compose](docker-compose.yml) or manually
 
 Example:
 ```
@@ -85,9 +87,11 @@ cpu,cpu=cpu5,host=52ee5c75df01 usage_nice=0,usage_iowait=0,usage_irq=0.299700299
 ...
 ```
 
-## Grafana
+## Run Grafana
 
 see https://docs.influxdata.com/influxdb/v2.1/tools/grafana/
+
+Use [docker-compose](docker-compose.yml) or manually
 
 ```
 docker run --rm --net=host --name=grafana -p 3000:3000 grafana/grafana

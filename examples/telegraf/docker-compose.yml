@@ -22,6 +22,12 @@ services:
             ./rpc.py bdev_malloc_create -b Malloc0 64 512 && \
             ./rpc.py bdev_malloc_create -b Malloc1 64 512 && \
             ./rpc_http_proxy.py 0.0.0.0 9009 spdkuser spdkpass'
+    healthcheck:
+      test: curl --fail --insecure --user spdkuser:spdkpass -X POST http://localhost:9009 || exit 1
+      interval: 6s
+      retries: 5
+      start_period: 20s
+      timeout: 10s
 
   telegraf:
     image: telegraf:1.22
@@ -62,6 +68,11 @@ services:
       - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=YourInfluxDBAuthToken
     networks:
       - opi
+healthcheck:
+      test: curl -f http://localhost:8086/ping
+      interval: 6s
+      timeout: 10s
+      retries: 5
 
 volumes:
   influxdb-storage:
