@@ -51,5 +51,5 @@
 ## Action items:
 - Kyle: please invite Dan.D to discuss how can we integrate OTEL and IPDK doscussion
 - RedHat: please start participate in provisioning subgroup
-- Ann: please ask around and present how Marvel Octeon does provisioning today
+- Anh Thu: please ask around and present how Marvel Octeon does provisioning today
 - Andy: please look into FDO as well in addition to sZTP if it can complement sZTP
