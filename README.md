@@ -1,5 +1,7 @@
 # Provisioning and Platform Management Group
 
+[![Docker](https://github.com/opiproject/opi-prov-life/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/opiproject/opi-prov-life/actions/workflows/docker-publish.yml)
+
 OPI subgroup dealing with provisioning and lifecycle management.
 
 * Description & Responsibilities
