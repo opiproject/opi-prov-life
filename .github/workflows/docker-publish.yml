@@ -38,6 +38,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
       # Login against a Docker registry except on PR
       # https://github.com/docker/login-action
       - name: Log into registry ${{ env.REGISTRY }}
@@ -66,3 +72,25 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+
+      - name: Build & Start containers
+        run: docker-compose -f "docker-compose.yml" up --detach --build
+        working-directory: examples/telegraf
+
+      - name: Run tests
+        run: |
+          docker-compose ps
+          docker-compose logs
+        working-directory: examples/telegraf
+
+      - name: Logs
+        if: failure()
+        run: |
+          docker-compose ps || true
+          docker-compose logs || true
+        working-directory: examples/telegraf
+
+      - name: Stop containers
+        if: always()
+        run: docker-compose -f "docker-compose.yml" down
+        working-directory: examples/telegraf

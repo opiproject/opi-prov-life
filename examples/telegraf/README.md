@@ -7,6 +7,7 @@
     * https://github.com/influxdata/telegraf/tree/master/plugins/inputs/cpu
     * https://github.com/influxdata/telegraf/tree/master/plugins/inputs/mem
     * https://github.com/influxdata/telegraf/tree/master/plugins/inputs/net
+    * https://github.com/influxdata/telegraf/tree/master/plugins/inputs/gnmi
     * https://github.com/influxdata/telegraf/tree/master/plugins/inputs/dpdk
     * https://github.com/influxdata/telegraf/tree/master/plugins/outputs/file
     * https://github.com/influxdata/telegraf/tree/master/plugins/outputs/influxdb_v2

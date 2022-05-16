@@ -68,7 +68,7 @@ services:
       - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=YourInfluxDBAuthToken
     networks:
       - opi
-healthcheck:
+    healthcheck:
       test: curl -f http://localhost:8086/ping
       interval: 6s
       timeout: 10s
