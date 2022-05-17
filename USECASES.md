@@ -1,8 +1,11 @@
 # Deployment scenarios
 
 - Private network/cloud – (DHCP/DNS trusted)
-               Telco
+               Telco Core
+               Telco Near Edge
+               Telco Far Edge
                Enterprise
+               Industrial Edge (DPUs not currently prevalent)
 - Colo – DHCP not trusted
 - Other multitenant
 
@@ -12,6 +15,17 @@
 - Different org owns host and DPU, or uses host and DPU
 - What are the needs/usages of third party OS and Apps on DPU?
 - Pre-installed OS works in some scenarios, bare metal in others
+- Pre-installed certificates
+  - Signed by OEM, initially
+
+# Discussion of sZTP branching into DHCP discovery and authentication of bootstrap server
+
+- Openshift – installs on bare metal
+- Scenarios for deployment
+- UEFI has dhclient
+- Linux has dhclient
+- Some other entity handles discovery, like a BMC
+- Call for Watsen SZTPD prototyping – no takers in this group; Intel may have agreed in Slack
 
 # SKUs
 - BMC vs no BMC on DPU; need to cover both scenarios
