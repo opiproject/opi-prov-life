@@ -23,7 +23,7 @@
 
 ## Collector deploy options
 
-- TODO: create a diagram for our deployment examples on OTEL colector
+![](/architecture/OPITelemetryArchitecture.drawio.png)
 
 - OpenTemetry collector supports several deployments:
   - Deploy as side car inside every pod
@@ -38,7 +38,7 @@
   - Batching
   - Sanitization
 
-- Recomndation (reference)
+- Recommendation (reference)
   - micro-aggregator inside each DPU/IPU
   - macro-aggregator between DPUs
     - macro-aggregator can run on the host with DPU/IPU or on a separate host
