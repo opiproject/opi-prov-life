@@ -7,6 +7,11 @@
 - please look at https://www.rfc-editor.org/rfc/pdfrfc/rfc8572.txt.pdf (Secure Zero Touch Provisioning (SZTP))
 - please look at https://pypi.org/project/sztpd/
 - please look at https://watsen.net/docs/sztpd/0.0.11/admin-guide/
+- please look at https://nvlpubs.nist.gov/nistpubs/CSWP/NIST.CSWP.09082020-draft.pdf (NIST)
+- please look at https://www.rfc-editor.org/rfc/rfc8995.html (BRSKI)
+- please look at https://access.redhat.com/articles/6804281#install-assisted-installer-on-the-installer-node-using-podman-5
+- please look at https://github.com/jparrill/ztp-the-hard-way (RHEL)
+- please look at https://access.redhat.com/documentation/en-us/openshift_container_platform/4.9/html/scalability_and_performance/ztp-deploying-disconnected
 
 ## Re-Provisioning
 
@@ -58,14 +63,8 @@ Use case: large scale deployments (where automation and security are major drive
 
 ## Progress / Monitoring
 
-- Inventory Query or Broadcast... 
-  - So the provisioning server can present the xPUs and their limited
-  - Which DPUs in Which Host
-  - Virtual location in the host (mother board slot or PCIe BDF?)
-  - Credentials
-  - Vendor, SN/PN, ...
-  - What protocols available
-  - Capabilities
+- Inventory Query or Broadcast
+  - see [Inventory](INVENTORY.md)
 
 - Monitoring/Status of provisioning itelf...
   - like bad certificates, other problems, ...
