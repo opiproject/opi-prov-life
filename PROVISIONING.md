@@ -13,6 +13,7 @@
 - please look at https://access.redhat.com/articles/6804281#install-assisted-installer-on-the-installer-node-using-podman-5
 - please look at https://github.com/jparrill/ztp-the-hard-way (RHEL)
 - please look at https://access.redhat.com/documentation/en-us/openshift_container_platform/4.9/html/scalability_and_performance/ztp-deploying-disconnected
+- please look at https://edk2-docs.gitbook.io/getting-started-with-uefi-https-boot-on-edk-ii/introduction
 
 ## Re-Provisioning
 
@@ -21,11 +22,10 @@ tbd... re-celling, faults...
 ## Manual Provisioning
 
 tbd...
+Do we need to cover manual methods in our scope? Many, many methods. 
 
-## USB/Virtual media Provisioning
-
+### USB/Virtual media Provisioning (this is typically a manual method, enabled by a one-to-one interaction with a BMC)
 Use case: small scale, unique, specialized deployments ?
-
 - Provisioning server contacts xPUs BMC (i.e. via redfish)
   - Question: how can we get list of IPs / MACs and credentials ? Manual ?
   - Question: can we also do the DHCP discovery of the BMC and initiate the provisioning from the BMC itself ?
@@ -68,6 +68,11 @@ Use case: large scale deployments (where automation and security are major drive
 - Device reboots into newly installed software
   - Question: if the version is the same, can the entire process skip ? where this happens?
 
+Do we want to favor UEFI methods (like HTTPS boot) over others that require a client running in an OS, or a BMC (like sZTP)?
+Two overarching scenarios: 
+1) private network; security provided by physical isolation
+2) multi-tenant environment; mutual authentication with device and provisioning server will be essential
+
 ## Progress / Monitoring
 
 - Inventory Query or Broadcast
@@ -87,6 +92,8 @@ Question: OPI can produce an agent (container) that runs on DPU for example and 
 - Provisioning companies/customers will use API defined to the secure provisioning server/vm/container to integrate in their existing provisioning methods
 
 - OPI can also produce an agent (container/service) for Standard Inventory Query that everybody (existing provisioning systems) can query
+
+what is the adoption rate of UEFI on DPUs? Should it be relied upon?
 
 ## TBD
 
