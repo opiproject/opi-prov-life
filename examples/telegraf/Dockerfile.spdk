@@ -1,11 +1,9 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) Arm Limited and Contributors
 # Copyright (c) Intel Corporation
-FROM fedora:33
+FROM fedora:36
 
-ARG TAG=master
-# Due to missing https://github.com/spdk/spdk/commit/637f1a101ce7e0611c6c93d379b1f67bf7e05d26
-#ARG TAG=v21.04
+ARG TAG=v22.05
 ARG ARCH=native
 
 WORKDIR /root

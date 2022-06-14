@@ -52,6 +52,11 @@ services:
       - "3000:3000"
     networks:
       - opi
+    healthcheck:
+      test: curl --fail -s http://localhost:3000/ || exit 1
+      interval: 6s
+      timeout: 10s
+      retries: 3
 
   influxdb:
     image: influxdb:2.1-alpine
