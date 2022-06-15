@@ -23,7 +23,7 @@ services:
             ./rpc.py bdev_malloc_create -b Malloc1 64 512 && \
             ./rpc_http_proxy.py 0.0.0.0 9009 spdkuser spdkpass'
     healthcheck:
-      test: curl --fail --insecure --user spdkuser:spdkpass -X POST http://localhost:9009 || exit 1
+      test: ["CMD-SHELL", "curl --fail --insecure --user spdkuser:spdkpass -X POST -H 'Content-Type: application/json' -d '{\"id\": 1, \"method\": \"bdev_get_bdevs\"}' http://localhost:9009 || exit 1"]
       interval: 6s
       retries: 5
       start_period: 20s
@@ -38,6 +38,12 @@ services:
       - influxdb
     networks:
       - opi
+    healthcheck:
+      test: cat /proc/1/status || exit 1
+      interval: 6s
+      retries: 5
+      start_period: 20s
+      timeout: 10s
 
   grafana:
     image: grafana/grafana:8.4.6
@@ -53,7 +59,7 @@ services:
     networks:
       - opi
     healthcheck:
-      test: curl --fail -s http://localhost:3000/ || exit 1
+      test: wget --no-verbose --tries=1 --spider http://localhost:3000/ || exit 1
       interval: 6s
       timeout: 10s
       retries: 3
@@ -74,7 +80,7 @@ services:
     networks:
       - opi
     healthcheck:
-      test: curl -f http://localhost:8086/ping
+      test: wget --no-verbose --tries=1 --spider http://localhost:8086/ping || exit 1
       interval: 6s
       timeout: 10s
       retries: 5

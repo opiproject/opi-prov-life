@@ -79,12 +79,10 @@ jobs:
 
       - name: Run tests
         run: |
-          docker-compose ps
-          docker-compose logs
           echo wait 5s for SPDK to start... && sleep 5s
-          docker-compose ps
           docker-compose logs
-          echo docker inspect --format='{{json .State.Health.Status}}' $(docker-compose ps -q)
+          docker-compose ps
+          docker inspect --format='{{json .Name}} - {{json .State.Health.Status}}' $(docker-compose ps -q)
         working-directory: examples/telegraf
 
       - name: Logs
