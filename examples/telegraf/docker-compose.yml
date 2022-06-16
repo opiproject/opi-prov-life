@@ -5,7 +5,6 @@ services:
   spdk:
     build:
       context: .
-      dockerfile: Dockerfile.spdk
     volumes:
       - /dev/hugepages:/dev/hugepages
       - /dev/shm:/dev/shm
@@ -16,11 +15,19 @@ services:
     networks:
       - opi
     command: |
-      sh -c 'echo 2048 > /proc/sys/vm/nr_hugepages && \
-            /root/spdk/build/bin/spdk_tgt -m 0xff -s 1024 > /tmp/spdk-tgt.log 2>&1 & \
-            echo wait 5s... && sleep 5s && cd /root/spdk/scripts && \
+      sh -x -c 'sync; echo 1 > /proc/sys/vm/drop_caches  && \
+            echo 1024 > /proc/sys/vm/nr_hugepages && \
+            grep "" /sys/kernel/mm/hugepages/hugepages-*/nr_hugepages && \
+            /usr/local/bin/spdk_tgt -m 0x1 -s 512 --no-pci 2>&1 & \
+            echo wait 5s... && sleep 5s && cd /usr/libexec/spdk/scripts && \
+            for i in `seq 1 10`; do ./rpc.py spdk_get_version && break || sleep 1; done  && \
             ./rpc.py bdev_malloc_create -b Malloc0 64 512 && \
             ./rpc.py bdev_malloc_create -b Malloc1 64 512 && \
+            ./rpc.py nvmf_create_transport -t TCP -u 8192 -m 4 -c 0  && \
+            ./rpc.py nvmf_create_subsystem nqn.2016-06.io.spdk:cnode1 -a -s SPDK00000000000001 -d SPDK_Controller1  && \
+            ./rpc.py nvmf_subsystem_add_listener nqn.2016-06.io.spdk:cnode1 -t tcp -a 127.0.0.1 -s 4420  && \
+            ./rpc.py nvmf_subsystem_add_ns nqn.2016-06.io.spdk:cnode1 Malloc0 -n 1  && \
+            ./rpc.py nvmf_subsystem_add_ns nqn.2016-06.io.spdk:cnode1 Malloc1 -n 2  && \
             ./rpc_http_proxy.py 0.0.0.0 9009 spdkuser spdkpass'
     healthcheck:
       test: ["CMD-SHELL", "curl --fail --insecure --user spdkuser:spdkpass -X POST -H 'Content-Type: application/json' -d '{\"id\": 1, \"method\": \"bdev_get_bdevs\"}' http://localhost:9009 || exit 1"]

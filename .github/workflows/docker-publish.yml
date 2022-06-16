@@ -68,7 +68,7 @@ jobs:
         uses: docker/build-push-action@e551b19e49efd4e98792db7592c17c09b89db8d8
         with:
           context: examples/telegraf
-          file: examples/telegraf/Dockerfile.spdk
+          file: examples/telegraf/Dockerfile
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
@@ -83,6 +83,8 @@ jobs:
           docker-compose logs
           docker-compose ps
           docker inspect --format='{{json .Name}} - {{json .State.Health.Status}}' $(docker-compose ps -q)
+          uniq -c <<< $(docker inspect --format='{{json .State.Health.Status}}' $(docker-compose ps -q)) | grep -q '4 "healthy"' || true
+          docker-compose exec -T spdk /usr/local/bin/perf -r 'traddr:127.0.0.1 trtype:TCP adrfam:IPv4 trsvcid:4420' -c 0x1 -q 1 -o 4096 -w randread -t 10 || true
         working-directory: examples/telegraf
 
       - name: Logs
