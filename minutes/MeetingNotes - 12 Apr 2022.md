@@ -21,7 +21,7 @@
 - Gene presented compare table betwwen PXE / sZTP / FDO
 - Tedd raised a good point whether Host BMC and DPU BMC have to talk or not
   - some feedback was received that they do
-- Ann raised a good point if we can come up with single provisioning method
+- Anh Thu raised a good point if we can come up with single provisioning method
   - Maybe for different use cases we will need different methods?
 
 ## Lifecycle & Updates
@@ -36,4 +36,4 @@
 - Gene: please upload compare table to github
 - Elad+Eyal: please upload presentation to github
 - Andy+Lee: please present how provisioning works today in Dell
-- Tedd: please start working on security models, Gene and Ann - please join
+- Tedd: please start working on security models, Gene and Anh Thu - please join

@@ -1,4 +1,4 @@
-# Notes from today meeting April 19
+# Notes from today meeting April 26
 
 ## Housekeeping
 - Please use our repo https://github.com/opiproject/opi-prov-life
@@ -14,12 +14,13 @@
 
 ## Monitoring & Telemetry
 - We are still proceeding with adoption idea of https://opentelemetry.io/ for OPI
-- We having active OTEL discussions in SLACK, please join
-- Tomorrow on the core call, https://github.com/gramidt will join to discuss OTEL and answer questions
-- We have 2 levels of OTEL we are discussing:
-  - System monitoring (cpu,mem,nic,...) see https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/receiver/hostmetricsreceiver
-  - Tracing inside DPU/IPU (more tight SDK integration into our service and IPDK), streaming to zipkin/jaeger
-  - Am I missing another levels ?
+- Is there integration of OTEL with kvm or esx ?
+- Example for OTEL collector with SPDK (json-rpc) and System monitoring on github
+- Is it possible to produce the same example without DPU ? for example using KVM ?
+- Use case of standalone DPU, not attached to server. Still runs OTEL collector
+- For BMC, otel collector will use redfish input to get BMC specific metrics (like temp, power,...)
+- We need to create a diagram for our examples on OTEL colector
+- Tracing inside DPU/IPU (more tight SDK integration into our service and IPDK), streaming to zipkin/jaeger
 - We are discussing OTEL collector deployment models:
   - Deploy as side car inside every pod
   - Deploy another one as aggregator per Node
@@ -33,14 +34,13 @@
   - Sanitization
 
 ## Initial DPU/IPU discovery and Provisioning
-- Andy presented Dell Servers provisioning mechanism (uploading to githuib...)
+- Lee presented FDO high level mechanism and challanges (uploading to githuib...)
+- Where the ZTP/FDO is running ? Suggestion not to run on BMC, but on the ARM cores
 - Certificates and Authentication
   - What is assumed comes from factory ?
   - Can we fall into some defaults ?
   - Storage space limitations in DPU/IPU for CA
-- What exactly can we standardize?
-  - Is there a single method that fits all use cases? 
-  - Should we enable different for different customers and use cases, depending on their existing provisioning method?
+- Need to start working on use cases and deployments to move forward with ZTP
 
 ## Lifecycle & Updates
 - nothing
@@ -49,7 +49,7 @@
 - nothing
 
 ## Action items:
-- Kyle: please invite Dan.D to discuss how can we integrate OTEL and IPDK doscussion
+- Dan: please drive SPDK tracing discussion with OTEL SDK
+- Kyle & Dan - please find contact from MEV provisioning team
+- Prasun - please see if Marvel can present something in provisioning space
 - RedHat: please start participate in provisioning subgroup
-- Anh Thu: please ask around and present how Marvel Octeon does provisioning today
-- Andy: please look into FDO as well in addition to sZTP if it can complement sZTP

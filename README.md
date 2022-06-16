@@ -1,14 +1,15 @@
 # Provisioning and Platform Management Group
 
+[![Docker](https://github.com/opiproject/opi-prov-life/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/opiproject/opi-prov-life/actions/workflows/docker-publish.yml)
+
 OPI subgroup dealing with provisioning and lifecycle management.
 
 * Description & Responsibilities
-    * Discovery
-    * Inventory
-    * Provisioning
+    * [Discovery & Provisioning](PROVISIONING.md)
+    * [Inventory](INVENTORY.md)
     * Boot sequencing
     * Lifecycle & Updates
-    * Monitoring & Telemetry
+    * [Monitoring & Telemetry](MONITORING.md)
 * Leader
     * [Boris Glimcher](https://github.com/glimchb)
 * Meeting Time & Date
