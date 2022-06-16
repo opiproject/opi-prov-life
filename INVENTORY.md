@@ -23,6 +23,7 @@ this page talks about common inventory information information provided by DPU v
   - What protocol and what format is used?
     - GraphQL? Rest ? gRPC?
     - JSON/XML/Protobuf?
+    - in FW we can't use TCP probably, so look into ICMP
   - Can we simplify the approach?
     - If we break this into a data collector application and a data store/query service as two separate entities:
       - Their actual run times can be non contemporaneous (e.g. first one runs periodically, or when things change, or remotely, ...).

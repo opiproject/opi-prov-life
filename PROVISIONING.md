@@ -5,6 +5,7 @@
 - please look at https://opencomputeproject.github.io/onie/overview/
 - please look at https://fidoalliance.org/intro-to-fido-device-onboard/
 - please look at https://www.rfc-editor.org/rfc/pdfrfc/rfc8572.txt.pdf (Secure Zero Touch Provisioning (SZTP))
+- please look at https://www.rfc-editor.org/rfc/pdfrfc/rfc8366.txt.pdf (A Voucher Artifact for Bootstrapping Protocols)
 - please look at https://pypi.org/project/sztpd/
 - please look at https://watsen.net/docs/sztpd/0.0.11/admin-guide/
 - please look at https://nvlpubs.nist.gov/nistpubs/CSWP/NIST.CSWP.09082020-draft.pdf (NIST)
@@ -47,11 +48,17 @@ Use case: large scale deployments (where automation and security are major drive
 - DHCP server assigns an IP address, a default gateway, and the IP address or domain name of the "bootstrap server" to the device.
   - Question: is "bootstrap server" in the cloud ? local in datacenter ? remote ? vm/container ?
   - Comment: probably need to support multiple preferences by operators. some facilities have to be actually local, other can be proxied to a centralized location, others yet can be completely centralized without a local presence.
-- Device performs two-way authentication with the bootstrap server and establishes an HTTPS connection with the bootstrap server
+- Device contacts the bootstrap server to get the certificate, bootstrap server will facilitate the request towards CA
+  - Take a look at SCEP (Simple Certificate Enrollment Protocol) 
+  - The communication with bootstrap server doesn't have to be secure at this point
   - Question: preconfigured certificates? how they distributed? what is alternative to certificates? PKI based crypto ?
+- If we want to protect stolen/mistaken shiipment (device needs to authenticate network) we have to use Vouchers
+  - Take a look at RFC 8366 - A Voucher Artifact for Bootstrapping Protocols
+  - More info is here https://github.com/opiproject/opi-prov-life/blob/main/architecture/Zero-Touch-Provisioning%E2%80%94Approaches-to-Network-Layer-Onboarding.pdf
+- Device can now establish an HTTPS connection with the bootstrap server using certificates from above
   - Question: one way or mutual (two-way) authentication is required ?
   - Question: three-way trust established here, between device identity, manufacturer, and operator ???
-- Bootstrap server can point to deployment file server
+- Bootstrap server can/should point to deployment file server
   - for operational and scaling purposes they should probably be separate. 
   - There are some scaling requirements on the deployment file server where the implementation details can really drive the pattern of redirection between boot and deployment file servers (for instance, you can avoid having to deploy a load balancer in front of deployment file servers by the boot server spreading the load over multiple DNS names).
 - Device performs one-two-three-way authentication with the deployment file server and establishes an HTTPS connection with the deployment file server
