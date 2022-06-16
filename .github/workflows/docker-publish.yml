@@ -79,10 +79,12 @@ jobs:
 
       - name: Run tests
         run: |
+          docker-compose logs spdk
           echo wait 5s for SPDK to start... && sleep 5s
-          docker-compose logs
+          docker-compose logs spdk
           docker-compose ps
           docker inspect --format='{{json .Name}} - {{json .State.Health.Status}}' $(docker-compose ps -q)
+          uniq -c <<< $(docker inspect --format='{{json .State.Health.Status}}' $(docker-compose ps -q)) | grep -q '4 "healthy"'
         working-directory: examples/telegraf
 
       - name: Logs
