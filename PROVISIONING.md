@@ -40,7 +40,7 @@ Another option involves using platform BMC to talk to DPU, via e.g. (RBT interfa
 
 ## Automatic Provisioning
 
-![Chain Loader Provisioning opiton](architecture/OPI_2_Stage_Deploy.vsdx)
+![Chain Loader Provisioning opiton](architecture/Provisioning_TwoStage.png)
 
 Question: how to call it PXE ? iPXE ? HTTPs?
 Use case: large scale deployments (where automation and security are major drivers) ?
