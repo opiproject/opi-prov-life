@@ -22,18 +22,24 @@ tbd... re-celling, faults...
 
 ## Manual Provisioning
 
+### RSHIM custom Provisioning
+
 NVIDIA has a manual provisioning process based on a virtual *-over-PCIe device set, called [RSHIM](https://github.com/Mellanox/rshim). RSHIM creates, among other things, a virtual point-to-point ethernet device, and a virtual console device, between host and DPU. See also [usage](https://docs.nvidia.com/networking/display/BlueFieldDPUOSLatest/Deploying+DPU+OS+Using+BFB+from+Host) of RSHIM.
 Many customers are using this process to deploy their own OS image and initialize system configuration, since they trust the OS running on the x86 host.
 
 Andy: Do we need to cover manual methods in our scope? Many, many methods. 
 
-### USB/Virtual media Provisioning (this is typically a manual method, enabled by a one-to-one interaction with a BMC)
+### USB/Virtual media Provisioning
+
+Note: This is typically a manual method, enabled by a one-to-one interaction with a BMC.
+
 Use case: small scale, unique, specialized deployments ?
 - Provisioning server contacts xPUs BMC (i.e. via redfish)
   - Question: how can we get list of IPs / MACs and credentials ? Manual ?
   - Question: can we also do the DHCP discovery of the BMC and initiate the provisioning from the BMC itself ?
 - Provisioning server changes boot order of the xPU
-- Provisioning server maps Virtual Media with ISO image to provision
+- Provisioning server maps Virtual Media with ISO image to provision, see https://github.com/openbmc/docs/blob/master/designs/virtual-media.md
+- Missing step : what script to call to start ? like Anaconda ?
 - Provisioning server causes reboot after or xPU reboots itself
 
 Another option involves using platform BMC to talk to DPU, via e.g. (RBT interface defined by DMTF protocol)[https://en.wikipedia.org/wiki/NC-SI].
