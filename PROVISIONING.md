@@ -44,7 +44,33 @@ Use case: small scale, unique, specialized deployments ?
 
 Another option involves using platform BMC to talk to DPU, via e.g. (RBT interface defined by DMTF protocol)[https://en.wikipedia.org/wiki/NC-SI].
 
-## Automatic Provisioning
+## Automatic Provisioning (ZTP)
+
+### What is ZTP
+
+Zero Touch Provisioning (ZTP) allows you to provision new DPU/IPU devices in your network automatically, with minimal manual intervention. This includes system software, operating system, patch files, and configuration files.
+
+ZTP solves deploy at scale and reduce labor cost of manual intervention.
+
+### What is sZTP
+
+see https://www.rfc-editor.org/rfc/pdfrfc/rfc8572.txt.pdf
+
+Secure Zero Touch Provisioning (SZTP) adds a bootstrap server to DHCP-based ZTP deployment scenarios and uses two-way authentication and data encryption to secure ZTP data.
+
+### Components of ZTP deployment
+
+![sZTP components](architecture/sZTP-components.png)
+
+- DPU/IPU device: new shipped device that is physically connected and powered but missing config and needs provisioning. Runs sZTP agent/client and uses DHCP client for deployment.
+- DHCP server: allocates a temporary IP address, default gateway, DNS server address, and bootstrap server IP or URL to the device to be deployed using sZTP.
+- DHCP relay agent (optional): needed only when device and DHCP server are located on different network segments.
+- Bootstrap server: Main server in sZTP deploy process. Responsible for mutual validation/trust first. Then sends File Server IP and Image URLs to the device to download in a secure way.
+- Deployment file server (optional): can be co-located with bootsrap server, but for scalability (maybe with load balancer) should be separate. Holds deploy image files and config files that devices can download securely (HTTPS) after redirection from Bootsrap Server.
+- DNS server (optional): maps domain names to IP addresses (for example bootstrap server and Deployment file server IPs).
+- Syslog server (optional): holds/collects logs during the sZTP process.
+
+### sZTP process
 
 ![Chain Loader Provisioning opiton](architecture/Provisioning_TwoStage.png)
 
