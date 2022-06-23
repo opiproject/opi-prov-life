@@ -16,18 +16,22 @@
 - please look at https://edk2-docs.gitbook.io/getting-started-with-uefi-https-boot-on-edk-ii/introduction
 - please look at https://github.com/sonic-net/SONiC/blob/master/doc/ztp/ztp.md
 
+## Inventory Query or Broadcast
+
+see [Inventory](INVENTORY.md)
+
 ## Re-Provisioning
 
 tbd... re-celling, faults...
 
 ## Manual Provisioning
 
+Andy: Do we need to cover manual methods in our scope? Many, many methods...
+
 ### RSHIM custom Provisioning
 
 NVIDIA has a manual provisioning process based on a virtual *-over-PCIe device set, called [RSHIM](https://github.com/Mellanox/rshim). RSHIM creates, among other things, a virtual point-to-point ethernet device, and a virtual console device, between host and DPU. See also [usage](https://docs.nvidia.com/networking/display/BlueFieldDPUOSLatest/Deploying+DPU+OS+Using+BFB+from+Host) of RSHIM.
 Many customers are using this process to deploy their own OS image and initialize system configuration, since they trust the OS running on the x86 host.
-
-Andy: Do we need to cover manual methods in our scope? Many, many methods. 
 
 ### USB/Virtual media Provisioning
 
@@ -50,6 +54,8 @@ Another option involves using platform BMC to talk to DPU, via e.g. (RBT interfa
 
 Zero Touch Provisioning (ZTP) allows you to provision new DPU/IPU devices in your network automatically, with minimal manual intervention. This includes system software, operating system, patch files, and configuration files.
 
+You can use either management ports or network ports, depending on your device, to connect to the network.
+
 ZTP solves deploy at scale and reduce labor cost of manual intervention.
 
 ### What is sZTP
@@ -63,7 +69,7 @@ Secure Zero Touch Provisioning (SZTP) adds a bootstrap server to DHCP-based ZTP 
 ![sZTP components](architecture/sZTP-components.png)
 
 - DPU/IPU device: new shipped device that is physically connected and powered but missing config and needs provisioning. Runs sZTP agent/client and uses DHCP client for deployment.
-- DHCP server: allocates a temporary IP address, default gateway, DNS server address, and bootstrap server IP or URL to the device to be deployed using sZTP.
+- DHCP server (optional): allocates a temporary IP address, default gateway, DNS server address, and bootstrap server IP or URL to the device to be deployed using sZTP. Some customers don't use DHCP, so either mDNS or static IP address allocation is applied.
 - DHCP relay agent (optional): needed only when device and DHCP server are located on different network segments.
 - Bootstrap server: Main server in sZTP deploy process. Responsible for mutual validation/trust first. Then sends File Server IP and Image URLs to the device to download in a secure way.
 - Deployment file server (optional): can be co-located with bootsrap server, but for scalability (maybe with load balancer) should be separate. Holds deploy image files and config files that devices can download securely (HTTPS) after redirection from Bootsrap Server.
@@ -111,13 +117,47 @@ Two overarching scenarios:
 1) private network; security provided by physical isolation
 2) multi-tenant environment; mutual authentication with device and provisioning server will be essential
 
-## Progress / Monitoring
+### sZTP Configuration
 
-- Inventory Query or Broadcast
-  - see [Inventory](INVENTORY.md)
+This section shows what ZTP commands are supported on DPUs:
 
-- Monitoring/Status of provisioning itelf...
-  - like bad certificates, other problems, ...
+- `ztp status --verbose`
+  - Use the verbose option to display more detailed information.
+  - Agent/Service run status
+  - Agent/Service run version
+  - Completion status / failures
+  - DHCP interfaces and options
+  - times (start and run)
+  - File downloads status
+  - Mutual trust verification status (i.e iDevID and Vouchers)
+
+- `ztp enable`
+  - By default ZTP is on, use this comamnd if you disabled the service manually.
+
+- `ztp disable`
+  - Stop and Disable the ZTP service. If the ZTP service is in progress, it is aborted (SIGTERM)
+
+- `ztp run`
+  - Use this command to manually restart a new ZTP session
+
+## Progress / Monitoring / Debugging
+
+- sZTP should have an option to be started in advanced debug mode to produce more verbose information on steps being performed.
+
+- Monitoring/Status of provisioning incliudes for each device:
+  - Starting and ending times of ZTP process.
+  - Lists of bound and unbound DHCP client interfaces.
+  - DHCP options that DHCP servers send to DHCP clients.
+  - Logs indicating which interfaces are used for ZTP.
+  - ZTP parameters that DHCP clients obtain from DHCP servers.
+  - Filenames of configuration and image files, names of file servers, protocols used to fetch files, and times when DHCP servers fetch configuration and image files.
+  - Complettion of both Mutual Trust Authentications (i.e iDevID and Vouchers) and resons for failure.
+  - Failure states caused by files not being on servers, or unreachable servers, and time outs.
+  - Number of attempts made, and number of attempts remaining, for retry in current ZTP cycle.
+  - Completion of file transfers.
+  - Installation, reboot, and state of ZTP process.
+  - Internal state errors and termination of ZTP process.
+  - Logs for when default routes were added or deleted.
 
 Question: how this is implemented and integrated with existing provisioning services?
 Question: OPI can produce an agent (container) that runs on DPU for example and collects all this information via redfish, ipmi, lspci, and other specialized tools... And then exposes single common endpoint API so everybody can query it... like MAAS, JESP, RHEL SAAS and so on...
