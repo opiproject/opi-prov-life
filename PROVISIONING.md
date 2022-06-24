@@ -13,8 +13,10 @@
 - please look at https://access.redhat.com/articles/6804281#install-assisted-installer-on-the-installer-node-using-podman-5
 - please look at https://github.com/jparrill/ztp-the-hard-way (RHEL)
 - please look at https://access.redhat.com/documentation/en-us/openshift_container_platform/4.9/html/scalability_and_performance/ztp-deploying-disconnected
+- please look at https://cloud.redhat.com/blog/telco-5g-zero-touch-provisioning-ztp
 - please look at https://edk2-docs.gitbook.io/getting-started-with-uefi-https-boot-on-edk-ii/introduction
 - please look at https://github.com/sonic-net/SONiC/blob/master/doc/ztp/ztp.md
+- please look at https://docs.openstack.org/ironic/latest/index.html
 
 ## Inventory Query or Broadcast
 
@@ -30,7 +32,7 @@ Andy: Do we need to cover manual methods in our scope? Many, many methods...
 
 ### RSHIM custom Provisioning
 
-NVIDIA has a manual provisioning process based on a virtual *-over-PCIe device set, called [RSHIM](https://github.com/Mellanox/rshim). RSHIM creates, among other things, a virtual point-to-point ethernet device, and a virtual console device, between host and DPU. See also [usage](https://docs.nvidia.com/networking/display/BlueFieldDPUOSLatest/Deploying+DPU+OS+Using+BFB+from+Host) of RSHIM.
+NVIDIA has a manual provisioning process based on a virtual *-over-PCIe device set, called [RSHIM](https://github.com/Mellanox/rshim). RSHIM creates, among other things, a virtual point-to-point ethernet device, and a virtual console device, between host and DPU/IPU. See also [usage](https://docs.nvidia.com/networking/display/BlueFieldDPUOSLatest/Deploying+DPU+OS+Using+BFB+from+Host) of RSHIM.
 Many customers are using this process to deploy their own OS image and initialize system configuration, since they trust the OS running on the x86 host.
 
 ### USB/Virtual media Provisioning
@@ -38,15 +40,48 @@ Many customers are using this process to deploy their own OS image and initializ
 Note: This is typically a manual method, enabled by a one-to-one interaction with a BMC.
 
 Use case: small scale, unique, specialized deployments ?
+
+![Virtual Media Provisioning](architecture/VirtualMediaProvisioning.png)
+
 - Provisioning server contacts xPUs BMC (i.e. via redfish)
   - Question: how can we get list of IPs / MACs and credentials ? Manual ?
+  - Question: Where to get credentials for redfish https ?
   - Question: can we also do the DHCP discovery of the BMC and initiate the provisioning from the BMC itself ?
 - Provisioning server changes boot order of the xPU
+```
+PATCH https://<bmc_ip_address>/redfish/v1/Systems/1
+{
+   "Boot" : {
+      "BootSourceOverrideMode" : "Legacy",
+      "BootSourceOverrideTarget" : "Hdd",
+      "BootSourceOverrideEnabled" : "Once",
+      "UefiTargetBootSourceOverride" : null
+   },
+   "HostWatchdogTimer" : {
+      "FunctionEnabled" : true
+   },
+   "AssetTag": "asset tag",
+   "IndicatorLED": "Lit"
+}
+```
 - Provisioning server maps Virtual Media with ISO image to provision, see https://github.com/openbmc/docs/blob/master/designs/virtual-media.md
-- Missing step : what script to call to start ? like Anaconda ?
+```
+POST https://<bmc_ip_address>/redfish/v1/Managers/bmc/VirtualMedia/CD/Actions/VirtualMedia.InsertMedia
+{
+"Image": "http://<web_server>/<image_name>.iso"
+}
+```
+- Call script to start installation from mounted image
+  - Question: how do we know what is the script name ? probably different for each Image...
 - Provisioning server causes reboot after or xPU reboots itself
+```
+POST https://<bmc_ip_address>/redfish/v1/Systems/1/Actions/ComputerSystem.Reset
+{
+    "ResetType" : "ForceRestart"
+}
+```
 
-Another option involves using platform BMC to talk to DPU, via e.g. (RBT interface defined by DMTF protocol)[https://en.wikipedia.org/wiki/NC-SI].
+Another option involves using platform BMC to talk to DPU/IPU, via e.g. (RBT interface defined by DMTF protocol)[https://en.wikipedia.org/wiki/NC-SI].
 
 ## Automatic Provisioning (ZTP)
 
@@ -119,7 +154,7 @@ Two overarching scenarios:
 
 ### sZTP Configuration
 
-This section shows what ZTP commands are supported on DPUs:
+This section shows what ZTP commands are supported on DPU/IPUs:
 
 - `ztp status --verbose`
   - Use the verbose option to display more detailed information.
@@ -160,7 +195,7 @@ This section shows what ZTP commands are supported on DPUs:
   - Logs for when default routes were added or deleted.
 
 Question: how this is implemented and integrated with existing provisioning services?
-Question: OPI can produce an agent (container) that runs on DPU for example and collects all this information via redfish, ipmi, lspci, and other specialized tools... And then exposes single common endpoint API so everybody can query it... like MAAS, JESP, RHEL SAAS and so on...
+Question: OPI can produce an agent (container) that runs on DPU/IPU for example and collects all this information via redfish, ipmi, lspci, and other specialized tools... And then exposes single common endpoint API so everybody can query it... like MAAS, JESP, RHEL SAAS and so on...
 
 ## What OPI produces?
 
@@ -172,7 +207,7 @@ Question: OPI can produce an agent (container) that runs on DPU for example and 
 
 - OPI can also produce an agent (container/service) for Standard Inventory Query that everybody (existing provisioning systems) can query
 
-what is the adoption rate of UEFI on DPUs? Should it be relied upon?
+what is the adoption rate of UEFI on DPU/IPUs? Should it be relied upon?
 
 ## TBD
 
