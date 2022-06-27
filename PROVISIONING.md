@@ -18,6 +18,10 @@
 - please look at https://github.com/sonic-net/SONiC/blob/master/doc/ztp/ztp.md
 - please look at https://docs.openstack.org/ironic/latest/index.html
 
+## DPU HW Components
+
+![DPU HW Components](architecture/DPU-HW-Components.png)
+
 ## Inventory Query or Broadcast
 
 see [Inventory](INVENTORY.md)
