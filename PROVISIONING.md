@@ -85,7 +85,7 @@ POST https://<bmc_ip_address>/redfish/v1/Systems/1/Actions/ComputerSystem.Reset
 }
 ```
 
-Another option involves using platform BMC to talk to DPU/IPU, via e.g. (RBT interface defined by DMTF protocol)[https://en.wikipedia.org/wiki/NC-SI].
+Another option involves using a trusted network connection between platform BMC and NIC BMC (using [NCSI](https://en.wikipedia.org/wiki/NC-SI)). In this scenario,  the platform BMC is able to interact with the NIC BMC without any involvement of, or placing trust in, an OS running on the host. One could send custom OEM commands over NC-SI to the BMC, or have a RedFish client on DPU receive commands from RedFish server on the platform BMC.
 
 ## Automatic Provisioning (ZTP)
 
