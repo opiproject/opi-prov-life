@@ -18,6 +18,19 @@
 - please look at https://github.com/sonic-net/SONiC/blob/master/doc/ztp/ztp.md
 - please look at https://docs.openstack.org/ironic/latest/index.html
 
+## Definitions
+
+| Name                | Details                                                                                             |
+|---------------------|-----------------------------------------------------------------------------------------------------|
+| Server platform     | The main computer unit (a.k.a. server), x86-based. Interconnects and controls the PCIe peripherals. |
+| Server BMC          | Independent controller embedded in the server platform. Controls the server’s HW/FW configuration, initialization, health, lifecycle, and more. |
+| Host OS             | The general-purpose operating system running on the server platform. |
+| Host BIOS/UEFI      | Low-level software that starts after power on before booting your operating system. |
+| DPU/IPU             | A PCIe performance NIC with a programmable CPU complex. |
+| DPU/IPU firmware    | Low-level control drivers provided by the DPU/IPU vendor. Runs underneath the DPU/IPU OS (e.g. NIC firmware, microcode, UEFI) |
+| DPU/IPU OS          | The operating system running on the DPU/IPU's programmable CPUs. |
+| DPU/IPU BMC         | Independent controller embedded in the DPU/IPU. Controls the DPU/IPU's HW/FW configuration, initialization, health, lifecycle, and more. |
+
 ## DPU HW Components
 
 ![DPU HW Components](architecture/DPU-HW-Components.png)
