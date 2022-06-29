@@ -1,6 +1,6 @@
 # Monitoring & Telemetry
 
-- OPI adoped https://opentelemetry.io/ for DPUs
+- OPI adoped <https://opentelemetry.io/> for DPUs
 - OPI goal is to pick 1 standard protocol that
   - all vendors can implement (both linux and non-linux based)
   - DPU consumers can integrate once in their existing monitoring systems and tools
@@ -13,9 +13,9 @@
 ## What is mandated by OPI
 
 - OpenTemetry is made up of several main components:
-  - Specification https://github.com/open-telemetry/opentelemetry-specification
-  - Collector https://github.com/open-telemetry/opentelemetry-collector
-  - SDKs (different programming languages), for example https://github.com/open-telemetry/opentelemetry-java)
+  - Specification <https://github.com/open-telemetry/opentelemetry-specification>
+  - Collector <https://github.com/open-telemetry/opentelemetry-collector>
+  - SDKs (different programming languages), for example <https://github.com/open-telemetry/opentelemetry-java>)
 
 - OPI is only mandating OTEL `Specification`
 - SDK and Collector specific implementation are left to the users
@@ -23,7 +23,7 @@
 
 ## Collector deploy options
 
-![](/architecture/OPITelemetryArchitecture.drawio.png)
+![OPI Telemetry Architecture](/architecture/OPITelemetryArchitecture.drawio.png)
 
 - OpenTemetry collector supports several deployments:
   - Deploy as side car inside every pod
@@ -45,8 +45,8 @@
 
 ## System Monitoring
 
-- System monitoring (cpu,mem,nic,...) 
-  - see as example https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/receiver/hostmetricsreceiver
+- System monitoring (cpu,mem,nic,...)
+  - see as example <https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/receiver/hostmetricsreceiver>
 
 - BMC monitoring (temp, power)
   - Redfish extention for OTEL collector can be used to collect HW/BMC related metrics like temperature, power and others...
@@ -61,16 +61,16 @@
 
 ## Logging
 
-- For example https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/receiver/syslogreceiver
+- For example <https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/receiver/syslogreceiver>
 - TODO: need more details and examples
 
 ## Examples
 
-- see https://github.com/opiproject/opi-prov-life/tree/main/examples
+- see <https://github.com/opiproject/opi-prov-life/tree/main/examples>
 - Example for OTEL collector with SPDK (json-rpc) and System monitoring on github
 - Same example without HW DPU, for example using KVM
 - Example using eBPF
-  - https://www.splunk.com/en_us/blog/devops/announcing-the-donation-of-the-opentelemetry-ebpf-collector.html
+  - <https://www.splunk.com/en_us/blog/devops/announcing-the-donation-of-the-opentelemetry-ebpf-collector.html>
 - TODO: Example with IPDK as well
 
 ## questions to  (eventually remove this section)

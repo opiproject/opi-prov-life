@@ -1,22 +1,23 @@
 # Discovery and Provisioning
 
 ## Docs
-- please look at https://github.com/silicom-ltd/uBMC
-- please look at https://opencomputeproject.github.io/onie/overview/
-- please look at https://fidoalliance.org/intro-to-fido-device-onboard/
-- please look at https://www.rfc-editor.org/rfc/pdfrfc/rfc8572.txt.pdf (Secure Zero Touch Provisioning (SZTP))
-- please look at https://www.rfc-editor.org/rfc/pdfrfc/rfc8366.txt.pdf (A Voucher Artifact for Bootstrapping Protocols)
-- please look at https://pypi.org/project/sztpd/
-- please look at https://watsen.net/docs/sztpd/0.0.11/admin-guide/
-- please look at https://nvlpubs.nist.gov/nistpubs/CSWP/NIST.CSWP.09082020-draft.pdf (NIST)
-- please look at https://www.rfc-editor.org/rfc/rfc8995.html (BRSKI)
-- please look at https://access.redhat.com/articles/6804281#install-assisted-installer-on-the-installer-node-using-podman-5
-- please look at https://github.com/jparrill/ztp-the-hard-way (RHEL)
-- please look at https://access.redhat.com/documentation/en-us/openshift_container_platform/4.9/html/scalability_and_performance/ztp-deploying-disconnected
-- please look at https://cloud.redhat.com/blog/telco-5g-zero-touch-provisioning-ztp
-- please look at https://edk2-docs.gitbook.io/getting-started-with-uefi-https-boot-on-edk-ii/introduction
-- please look at https://github.com/sonic-net/SONiC/blob/master/doc/ztp/ztp.md
-- please look at https://docs.openstack.org/ironic/latest/index.html
+
+- please look at <https://github.com/silicom-ltd/uBMC>
+- please look at <https://opencomputeproject.github.io/onie/overview/>
+- please look at <https://fidoalliance.org/intro-to-fido-device-onboard/>
+- please look at <https://www.rfc-editor.org/rfc/pdfrfc/rfc8572.txt.pdf> (Secure Zero Touch Provisioning (SZTP))
+- please look at <https://www.rfc-editor.org/rfc/pdfrfc/rfc8366.txt.pdf> (A Voucher Artifact for Bootstrapping Protocols)
+- please look at <https://pypi.org/project/sztpd/>
+- please look at <https://watsen.net/docs/sztpd/0.0.11/admin-guide/>
+- please look at <https://nvlpubs.nist.gov/nistpubs/CSWP/NIST.CSWP.09082020-draft.pdf> (NIST)
+- please look at <https://www.rfc-editor.org/rfc/rfc8995.html> (BRSKI)
+- please look at <https://access.redhat.com/articles/6804281#install-assisted-installer-on-the-installer-node-using-podman-5>
+- please look at <https://github.com/jparrill/ztp-the-hard-way> (RHEL)
+- please look at <https://access.redhat.com/documentation/en-us/openshift_container_platform/4.9/html/scalability_and_performance/ztp-deploying-disconnected>
+- please look at <https://cloud.redhat.com/blog/telco-5g-zero-touch-provisioning-ztp>
+- please look at <https://edk2-docs.gitbook.io/getting-started-with-uefi-https-boot-on-edk-ii/introduction>
+- please look at <https://github.com/sonic-net/SONiC/blob/master/doc/ztp/ztp.md>
+- please look at <https://docs.openstack.org/ironic/latest/index.html>
 
 ## Definitions
 
@@ -65,7 +66,8 @@ Use case: small scale, unique, specialized deployments ?
   - Question: Where to get credentials for redfish https ?
   - Question: can we also do the DHCP discovery of the BMC and initiate the provisioning from the BMC itself ?
 - Provisioning server changes boot order of the xPU
-```
+
+```text
 PATCH https://<bmc_ip_address>/redfish/v1/Systems/1
 {
    "Boot" : {
@@ -81,24 +83,28 @@ PATCH https://<bmc_ip_address>/redfish/v1/Systems/1
    "IndicatorLED": "Lit"
 }
 ```
-- Provisioning server maps Virtual Media with ISO image to provision, see https://github.com/openbmc/docs/blob/master/designs/virtual-media.md
-```
+
+- Provisioning server maps Virtual Media with ISO image to provision, see <https://github.com/openbmc/docs/blob/master/designs/virtual-media.md>
+
+```text
 POST https://<bmc_ip_address>/redfish/v1/Managers/bmc/VirtualMedia/CD/Actions/VirtualMedia.InsertMedia
 {
 "Image": "http://<web_server>/<image_name>.iso"
 }
 ```
+
 - Call script to start installation from mounted image
   - Question: how do we know what is the script name ? probably different for each Image...
 - Provisioning server causes reboot after or xPU reboots itself
-```
+
+```text
 POST https://<bmc_ip_address>/redfish/v1/Systems/1/Actions/ComputerSystem.Reset
 {
     "ResetType" : "ForceRestart"
 }
 ```
 
-Another option involves using platform BMC to talk to DPU/IPU, via e.g. (RBT interface defined by DMTF protocol)[https://en.wikipedia.org/wiki/NC-SI].
+Another option involves using platform BMC to talk to DPU/IPU, via e.g. [RBT interface defined by DMTF protocol](https://en.wikipedia.org/wiki/NC-SI).
 
 ## Automatic Provisioning (ZTP)
 
@@ -112,7 +118,7 @@ ZTP solves deploy at scale and reduce labor cost of manual intervention.
 
 ### What is sZTP
 
-see https://www.rfc-editor.org/rfc/pdfrfc/rfc8572.txt.pdf
+see <https://www.rfc-editor.org/rfc/pdfrfc/rfc8572.txt.pdf>
 
 Secure Zero Touch Provisioning (SZTP) adds a bootstrap server to DHCP-based ZTP deployment scenarios and uses two-way authentication and data encryption to secure ZTP data.
 
@@ -145,17 +151,17 @@ Use case: large scale deployments (where automation and security are major drive
   - Question: is "bootstrap server" in the cloud ? local in datacenter ? remote ? vm/container ?
   - Comment: probably need to support multiple preferences by operators. some facilities have to be actually local, other can be proxied to a centralized location, others yet can be completely centralized without a local presence.
 - Device contacts the bootstrap server to get the certificate, bootstrap server will facilitate the request towards CA
-  - Take a look at SCEP (Simple Certificate Enrollment Protocol) 
+  - Take a look at SCEP (Simple Certificate Enrollment Protocol)
   - The communication with bootstrap server doesn't have to be secure at this point
   - Question: preconfigured certificates? how they distributed? what is alternative to certificates? PKI based crypto ?
 - If we want to protect stolen/mistaken shiipment (device needs to authenticate network) we have to use Vouchers
   - Take a look at RFC 8366 - A Voucher Artifact for Bootstrapping Protocols
-  - More info is here https://github.com/opiproject/opi-prov-life/blob/main/architecture/Zero-Touch-Provisioning%E2%80%94Approaches-to-Network-Layer-Onboarding.pdf
+  - More info is here <https://github.com/opiproject/opi-prov-life/blob/main/architecture/Zero-Touch-Provisioning%E2%80%94Approaches-to-Network-Layer-Onboarding.pdf>
 - Device can now establish an HTTPS connection with the bootstrap server using certificates from above
   - Question: one way or mutual (two-way) authentication is required ?
   - Question: three-way trust established here, between device identity, manufacturer, and operator ???
 - Bootstrap server can/should point to deployment file server
-  - for operational and scaling purposes they should probably be separate. 
+  - for operational and scaling purposes they should probably be separate.
   - There are some scaling requirements on the deployment file server where the implementation details can really drive the pattern of redirection between boot and deployment file servers (for instance, you can avoid having to deploy a load balancer in front of deployment file servers by the boot server spreading the load over multiple DNS names).
 - Device performs one-two-three-way authentication with the deployment file server and establishes an HTTPS connection with the deployment file server
   - Question: same as above
@@ -165,7 +171,8 @@ Use case: large scale deployments (where automation and security are major drive
   - Question: if the version is the same, can the entire process skip ? where this happens?
 
 Do we want to favor UEFI methods (like HTTPS boot) over others that require a client running in an OS, or a BMC (like sZTP)?
-Two overarching scenarios: 
+Two overarching scenarios:
+
 1) private network; security provided by physical isolation
 2) multi-tenant environment; mutual authentication with device and provisioning server will be essential
 

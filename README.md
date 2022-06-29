@@ -3,24 +3,26 @@
 [![Docker](https://github.com/opiproject/opi-prov-life/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/opiproject/opi-prov-life/actions/workflows/docker-publish.yml)
 [![MarkdownLint](https://github.com/opiproject/opi-prov-life/actions/workflows/markdown.yml/badge.svg)](https://github.com/opiproject/opi-prov-life/actions/workflows/markdown.yml)
 
+## Description
+
 OPI subgroup dealing with provisioning and lifecycle management.
 
 * Description & Responsibilities
-    * [Discovery & Provisioning](PROVISIONING.md)
-    * [Inventory](INVENTORY.md)
-    * Boot sequencing
-    * Lifecycle & Updates
-    * [Monitoring & Telemetry](MONITORING.md)
+  * [Discovery & Provisioning](PROVISIONING.md)
+  * [Inventory](INVENTORY.md)
+  * Boot sequencing
+  * Lifecycle & Updates
+  * [Monitoring & Telemetry](MONITORING.md)
 * Leader
-    * [Boris Glimcher](https://github.com/glimchb)
+  * [Boris Glimcher](https://github.com/glimchb)
 * Meeting Time & Date
-    * Tuesdays 13:00-13:45 ET
+  * Tuesdays 13:00-13:45 ET
 * Slack Channel
-    * [lifecycle-subgroup](https://opi-project.slack.com/archives/C0342L6T7EC)
+  * [lifecycle-subgroup](https://opi-project.slack.com/archives/C0342L6T7EC)
 * Status
-    * Active
+  * Active
 
-# I Want To Contribute!
+## I Want To Contribute
 
 This project welcomes contributions and suggestions.  We are happy to have the Community involved via submission of **Issues and Pull Requests** (with substantive content or even just fixes). We are hoping for the documents, test framework, etc. to become a community process with active engagement.  PRs can be reviewed by by any number of people, and a maintainer may accept.
 

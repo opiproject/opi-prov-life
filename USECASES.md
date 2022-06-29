@@ -1,4 +1,6 @@
-# Deployment scenarios
+# Use Cases
+
+## Deployment scenarios
 
 - Private network/cloud – (DHCP/DNS trusted)
                Telco Core
@@ -9,7 +11,7 @@
 - Colo – DHCP not trusted
 - Other multitenant
 
-# Usage scenarios
+## Usage scenarios
 
 - Same org owns host and DPU
 - Different org owns host and DPU, or uses host and DPU
@@ -18,7 +20,7 @@
 - Pre-installed certificates
   - Signed by OEM, initially
 
-# Discussion of sZTP branching into DHCP discovery and authentication of bootstrap server
+## Discussion of sZTP branching into DHCP discovery and authentication of bootstrap server
 
 - Openshift – installs on bare metal
 - Scenarios for deployment
@@ -27,13 +29,14 @@
 - Some other entity handles discovery, like a BMC
 - Call for Watsen SZTPD prototyping – no takers in this group; Intel may have agreed in Slack
 
-# SKUs
+## SKUs
+
 - BMC vs no BMC on DPU; need to cover both scenarios
 - Availability of ports – some will have management port, others not
 
 = = = =
 
-# Usages
+## Usages
 
 - Distributed firewall
 - Virtual switch offloading
@@ -42,15 +45,15 @@
 - NVMEoF
 - …
 
-# Derived requirements
+## Derived requirements
 
 - ZTP
                Agent running on DPU/CPU cores
-               Installed by default – what are the mandatory default agents/apps/OS 
+               Installed by default – what are the mandatory default agents/apps/OS
                sZTP – when used?
-               FDO – when used? 
+               FDO – when used?
 - Telemetry for service deployment
-- Secure wipe? (reprovisioning) 
+- Secure wipe? (reprovisioning)
                What does it erase
                               What memory devices
                Leave UEFI
@@ -66,11 +69,11 @@
                Telco (could be end owner)
 - One method: first touch claims ownership (default credentials?)
 
-# Notes
+## Notes
+
 - Sonic community (there is precedent) – ZTP – the initial password is provisioned rather than default
 - 802.1AR – device identity reference
 - ONIE (precedent for provisioning/default OS) – small OS(linux) with ZTP client
 - Other precedents – clients define installation
                PXE
                Boot from host (noted as less preferred)
-
