@@ -3,39 +3,39 @@
 ## Docs
 
 * Plugins used
-    * https://github.com/influxdata/telegraf/tree/master/plugins/inputs/http
-    * https://github.com/influxdata/telegraf/tree/master/plugins/inputs/cpu
-    * https://github.com/influxdata/telegraf/tree/master/plugins/inputs/mem
-    * https://github.com/influxdata/telegraf/tree/master/plugins/inputs/net
-    * https://github.com/influxdata/telegraf/tree/master/plugins/inputs/gnmi
-    * https://github.com/influxdata/telegraf/tree/master/plugins/inputs/dpdk
-    * https://github.com/influxdata/telegraf/tree/master/plugins/outputs/file
-    * https://github.com/influxdata/telegraf/tree/master/plugins/outputs/influxdb_v2
+  * <https://github.com/influxdata/telegraf/tree/master/plugins/inputs/http>
+  * <https://github.com/influxdata/telegraf/tree/master/plugins/inputs/cpu>
+  * <https://github.com/influxdata/telegraf/tree/master/plugins/inputs/mem>
+  * <https://github.com/influxdata/telegraf/tree/master/plugins/inputs/net>
+  * <https://github.com/influxdata/telegraf/tree/master/plugins/inputs/gnmi>
+  * <https://github.com/influxdata/telegraf/tree/master/plugins/inputs/dpdk>
+  * <https://github.com/influxdata/telegraf/tree/master/plugins/outputs/file>
+  * <https://github.com/influxdata/telegraf/tree/master/plugins/outputs/influxdb_v2>
 
 * Dockers used
-    * https://hub.docker.com/_/telegraf
-    * https://hub.docker.com/_/influxdb
-    * https://hub.docker.com/r/grafana/grafana
-    * https://github.com/spdk/spdk-csi/blob/master/deploy/spdk/Dockerfile
+  * <https://hub.docker.com/_/telegraf>
+  * <https://hub.docker.com/_/influxdb>
+  * <https://hub.docker.com/r/grafana/grafana>
+  * <https://github.com/spdk/spdk-csi/blob/master/deploy/spdk/Dockerfile>
 
-
-## Getting started:
+## Getting started
 
 1. Run `docker-compose up -d`
 2. Open `http://localhost:3000/explore` for querying InfluxDB
 
 ## SPDK RPC proxy
 
-see https://spdk.io/doc/jsonrpc_proxy.html
+see <https://spdk.io/doc/jsonrpc_proxy.html>
 
-Use this patch to handle chunked data https://review.spdk.io/gerrit/c/spdk/spdk/+/12082
+Use this patch to handle chunked data <https://review.spdk.io/gerrit/c/spdk/spdk/+/12082>
 
-```
+```text
 sudo ./spdk/scripts/rpc_http_proxy.py 127.0.0.1 9009 spdkuser spdkpass
 ```
 
 Test Proxy is running correctly
-```
+
+```text
 curl -k --user spdkuser:spdkpass -X POST -H "Content-Type: application/json" -d '{"id": 1, "method": "bdev_get_bdevs", "params": {"name": "Malloc0"}}' http://127.0.0.1:9009/
 ```
 
@@ -43,7 +43,7 @@ curl -k --user spdkuser:spdkpass -X POST -H "Content-Type: application/json" -d 
 
 Use [docker-compose](docker-compose.yml) or manually
 
-```
+```text
 $ docker run --rm --name influxdb -p 8086:8086 \
       -e DOCKER_INFLUXDB_INIT_MODE=setup \
       -e DOCKER_INFLUXDB_INIT_USERNAME=my-user \
@@ -61,7 +61,8 @@ Configuration file [telegraf-spdk.conf](config/telegraf-spdk.conf)
 Run telegraf using [docker-compose](docker-compose.yml) or manually
 
 Example:
-```
+
+```text
 $ docker run --rm --net=host -v $(pwd)/telegraf-spdk.conf:/etc/telegraf/telegraf.conf:ro telegraf:1.22
 2022-03-29T18:47:11Z I! Using config file: /etc/telegraf/telegraf.conf
 2022-03-29T18:47:11Z I! Starting Telegraf 1.22.0
@@ -90,14 +91,14 @@ cpu,cpu=cpu5,host=52ee5c75df01 usage_nice=0,usage_iowait=0,usage_irq=0.299700299
 
 ## Run Grafana
 
-see https://docs.influxdata.com/influxdb/v2.1/tools/grafana/
+see <https://docs.influxdata.com/influxdb/v2.1/tools/grafana/>
 
 Use [docker-compose](docker-compose.yml) or manually
 
-```
+```text
 docker run --rm --net=host --name=grafana -p 3000:3000 grafana/grafana
 ```
 
-Loging to http://127.0.0.1:3000/login using default (admin/admin)
+Loging to <http://127.0.0.1:3000/login> using default (admin/admin)
 
 Add new datasource InfluxDB with all the parameters above
