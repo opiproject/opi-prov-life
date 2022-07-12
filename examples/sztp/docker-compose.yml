@@ -1,0 +1,22 @@
+version: '3.7'
+
+services:
+
+  sztp:
+    build:
+      context: .
+    environment:
+      SZTPD_INIT_PORT: 1080
+      SZTPD_INIT_MODE: 1
+      SZTPD_ACCEPT_CONTRACT: "Yes"
+    networks:
+      - opi
+    command: ['sztpd', 'sqlite:///:memory:']
+    healthcheck:
+      test: curl --silent --fail -H Accept:application/yang-data+json http://localhost:1080/.well-known/host-meta || exit 1
+      interval: 6s
+      timeout: 10s
+      retries: 5
+
+networks:
+  opi:
