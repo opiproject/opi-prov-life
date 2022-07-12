@@ -3,21 +3,13 @@
 ## Provisioning Models
 
 **Network Peripheral**: Peripheral to the CPU exposing a network interface to the CPU OS, provisioned directly by the CPU OS.
-<br>
 ![Network Peripheral](NetworkPeripheral.svg)
-<br>
 **Data Processor Peripheral**: Peripheral to the CPU exposing a data processor (DPU) interface to the CPU OS, provisioned by the platform BMC.
-<br>
 ![Data Processing Peripheral](DataProcessingPeripheral.svg)
-<br>
 **Infrastructure Device**: Independent device from the CPU exposing virtual devices to the CPU OS, provisioned by a trusted software entity over the network.
-<br>
 ![Infrastructure Device](InfrastructureDevice.svg)
-<br>
 **Network Device**: Independent device provisioned by a trusted software entity over the network.
-<br>
 ![Network Device](NetworkDevice.svg)
-<br>
 
 ## Deployment scenarios
 
