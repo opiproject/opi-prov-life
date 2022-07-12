@@ -18,6 +18,7 @@
 <br>
 ![Network Device](NetworkDevice.svg)
 <br>
+
 ## Deployment scenarios
 
 - Private network/cloud – (DHCP/DNS trusted)
