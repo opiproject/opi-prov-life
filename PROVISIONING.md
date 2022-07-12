@@ -34,9 +34,9 @@
 
 ## DPU HW Components
 
-| ![DPU HW Components Full](architecture/DPU-HW-Components.png)                  | ![DPU HW Components no BMC](architecture/DPU-HW-Components-noBMC.png)   |
+| ![DPU HW Components Full](architecture/DPU-HW-Components-Full.svg)             | ![DPU HW Components no BMC](architecture/DPU-HW-Components-noBMC.png)   |
 |--------------------------------------------------------------------------------|-------------------------------------------------------------------------|
-| ![DPU HW Components Standalone](architecture/DPU-HW-Components-Standalone.png) | ![Platform BMC untrusted](architecture/DPU-HW-Components-notrust.png) |
+| ![DPU HW Components Standalone](architecture/DPU-HW-Components-Standalone.png) |
 
 ## Inventory Query or Broadcast
 
