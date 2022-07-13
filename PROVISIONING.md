@@ -159,6 +159,8 @@ Secure Zero Touch Provisioning (SZTP) adds a bootstrap server to DHCP-based ZTP 
 Question: how to call it PXE ? iPXE ? HTTPs?
 Use case: large scale deployments (where automation and security are major drivers) ?
 
+![Provisioning Sequence](architecture/sZTP-sequence.png)
+
 - Device is powered on
   - Question: how? BMC ? Always on?
 - Device runs DHCP client to send a DHCP request packet to the DHCP server.
