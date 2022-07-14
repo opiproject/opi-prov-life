@@ -1,0 +1,58 @@
+receivers:
+  tcplog:
+    listen_address: "0.0.0.0:54525"
+  hostmetrics:
+    collection_interval: 1m
+    scrapers:
+      cpu:
+      load:
+      memory:
+      disk:
+      filesystem:
+      network:
+      paging:
+      processes:
+
+processors:
+  batch:
+    send_batch_size: 50
+    timeout: 5s
+
+exporters:
+  influxdb:
+    endpoint: http://influxdb:8086
+    timeout: 500ms
+    org: opi
+    bucket: opi
+    token: 1d223ca15b2e42e1b1659662ef455b93
+    metrics_schema: telegraf-prometheus-v1
+
+    sending_queue:
+      enabled: true
+      num_consumers: 3
+      queue_size: 10
+
+    retry_on_failure:
+      enabled: true
+      initial_interval: 1s
+      max_interval: 3s
+      max_elapsed_time: 10s
+
+extensions:
+  health_check:
+  pprof:
+    endpoint: :1888
+  zpages:
+    endpoint: :55679
+
+service:
+  extensions: [pprof, zpages, health_check]
+  pipelines:
+    metrics:
+      receivers: [hostmetrics]
+      processors: [batch]
+      exporters: [influxdb]
+    logs:
+      receivers: [tcplog]
+      processors: [batch]
+      exporters: [influxdb]
