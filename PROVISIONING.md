@@ -161,25 +161,53 @@ Use case: large scale deployments (where automation and security are major drive
 
 ![Provisioning Sequence](architecture/sZTP-sequence.png)
 
+##### Discovery
+
 - Device is powered on
   - Question: how? BMC ? Always on?
 - Device runs DHCP client to send a DHCP request packet to the DHCP server.
   - Question: DHCP client runs from Linux or from UEFI ?
   - Question: Is DHCP can be assumed ? What else mDNS? Static IP ? Mac ?
   - Question: Is DHCP relay required ? in case we are on the different network ?
-- DHCP server assigns an IP address, a default gateway, and the IP address or domain name of the "bootstrap server" to the device.
-  - Question: is "bootstrap server" in the cloud ? local in datacenter ? remote ? vm/container ?
+- DHCP server assigns an IP address, a default gateway, and the IP address or domain name of the "Bootstrap Server" to the device.
+  - Need new custom DHCP option for OPI (similar to SONiC)
+  - Question: is "Bootstrap Server" in the cloud ? local in datacenter ? remote ? vm/container ?
   - Comment: probably need to support multiple preferences by operators. some facilities have to be actually local, other can be proxied to a centralized location, others yet can be completely centralized without a local presence.
-- Device contacts the bootstrap server to get the certificate, bootstrap server will facilitate the request towards CA
-  - Take a look at SCEP (Simple Certificate Enrollment Protocol)
-  - The communication with bootstrap server doesn't have to be secure at this point
-  - Question: preconfigured certificates? how they distributed? what is alternative to certificates? PKI based crypto ?
-- If we want to protect stolen/mistaken shiipment (device needs to authenticate network) we have to use Vouchers
-  - Take a look at RFC 8366 - A Voucher Artifact for Bootstrapping Protocols
+- Need to consider mDNS as another option if DHCP is absent.
+- Need to consider LLDP/SSDP as well.
+
+##### Network trusts DPU
+
+- Device establishes an HTTPS connection with the "Bootstrap Server"
+  - Question: using what certificates?
   - More info is here <https://github.com/opiproject/opi-prov-life/blob/main/architecture/Zero-Touch-Provisioning%E2%80%94Approaches-to-Network-Layer-Onboarding.pdf>
-- Device can now establish an HTTPS connection with the bootstrap server using certificates from above
-  - Question: one way or mutual (two-way) authentication is required ?
-  - Question: three-way trust established here, between device identity, manufacturer, and operator ???
+- Device sends a request to a "Bootstrap Server" to join the network by providing its IDevID.
+- "Bootstrap Server" decides to accept debvice to the network or reject
+  - Needs trust anchor of IDevID
+  - Takes "Voucher Server" URL from IDevID
+    - <https://www.rfc-editor.org/rfc/pdfrfc/rfc8366.txt.pdf> (A Voucher Artifact for Bootstrapping)
+  - Fetches Voucher with trust anchor of IDevID inside the voucher
+  - Verifies IDevID and accepts Device to the network
+
+##### DPU trusts network
+
+- Device has to decide to trust/join the network now
+  - Device asks "Bootstrap Server" to give a Voucher
+  - Device starts Voucher verification
+    - Device verifies the signature of the voucher
+    - Device verifies IDevID from the Voucher belongs to the device
+    - Device verifies the correctness of the network by comparing Voucher network root certificate to TLS certificate from the initial connection to the "Bootstrap Server"
+  - Device trusts the network now
+- Device needs LDevID (crypto identity in the local domain)
+  - Device asks "Bootstrap Server" to get "CA Server" address
+  - Device generates keypair and CSR
+  - Device sends CSR to "CA Server" (SCEP -Simple Certificate Enrollment Protocol)
+  - "CA Server" returns certificate to the Device
+  - Device has now cryptograhic identity in the lcoal domain
+- Question: three-way trust established here, between device identity, manufacturer, and operator ???
+
+##### FW and Config and OS images
+
 - Bootstrap server can/should point to deployment file server
   - for operational and scaling purposes they should probably be separate.
   - There are some scaling requirements on the deployment file server where the implementation details can really drive the pattern of redirection between boot and deployment file servers (for instance, you can avoid having to deploy a load balancer in front of deployment file servers by the boot server spreading the load over multiple DNS names).
@@ -191,6 +219,7 @@ Use case: large scale deployments (where automation and security are major drive
   - Question: if the version is the same, can the entire process skip ? where this happens?
 
 Do we want to favor UEFI methods (like HTTPS boot) over others that require a client running in an OS, or a BMC (like sZTP)?
+
 Two overarching scenarios:
 
 1) private network; security provided by physical isolation
