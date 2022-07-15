@@ -176,10 +176,12 @@ Use case: large scale deployments (where automation and security are major drive
 - Need to consider mDNS as another option if DHCP is absent.
 - Need to consider LLDP/SSDP as well.
 
-##### Network trusts DPU
+##### Network trusts xPU
 
 - Device establishes an HTTPS connection with the "Bootstrap Server"
   - Question: using what certificates?
+  - Question: what about QUIC?
+  - For environments that are predominately IPv6 based, we'll need a solution that suppots SLAAC.
   - More info is here <https://github.com/opiproject/opi-prov-life/blob/main/architecture/Zero-Touch-Provisioning%E2%80%94Approaches-to-Network-Layer-Onboarding.pdf>
 - Device sends a request to a "Bootstrap Server" to join the network by providing its IDevID.
 - "Bootstrap Server" decides to accept debvice to the network or reject
@@ -189,7 +191,7 @@ Use case: large scale deployments (where automation and security are major drive
   - Fetches Voucher with trust anchor of IDevID inside the voucher
   - Verifies IDevID and accepts Device to the network
 
-##### DPU trusts network
+##### xPU trusts network
 
 - Device has to decide to trust/join the network now
   - Device asks "Bootstrap Server" to give a Voucher
@@ -203,8 +205,7 @@ Use case: large scale deployments (where automation and security are major drive
   - Device generates keypair and CSR
   - Device sends CSR to "CA Server" (SCEP -Simple Certificate Enrollment Protocol)
   - "CA Server" returns certificate to the Device
-  - Device has now cryptograhic identity in the lcoal domain
-- Question: three-way trust established here, between device identity, manufacturer, and operator ???
+  - Device has now cryptograhic identity in the local domain
 
 ##### FW and Config and OS images
 
