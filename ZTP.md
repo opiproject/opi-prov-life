@@ -1,4 +1,4 @@
-# ZTP/SZTP
+# Secure Zero Touch Provisioning (sZTP)
 
 Passive reprovisioning is a process where DPUs start up and detect that they need to be re-provisioned. One such example might ostensibly be a DPU being fresh out of the factory and lacks an initial OS.
 
@@ -28,6 +28,13 @@ Secure Zero Touch Provisioning (SZTP) adds a bootstrap server to DHCP-based ZTP 
 - DNS server (optional): maps domain names to IP addresses (for example bootstrap server and Deployment file server IPs).
 - Syslog server (optional): holds/collects logs during the sZTP process.
 
+## Requirements
+
+- Both IPv4 and IPv6 DHCP discovery and ZTP provisioning should be supported.
+- For environments that are predominately IPv6 based, we'll need a solution that supports SLAAC.
+- ZTP process and results, both success and failures, must be logged.
+- TBD
+
 ## sZTP process
 
 ![Chain Loader Provisioning opiton](architecture/Provisioning_TwoStage.png)
@@ -52,12 +59,41 @@ Use case: large scale deployments (where automation and security are major drive
 - Need to consider mDNS as another option if DHCP is absent.
 - Need to consider LLDP/SSDP as well.
 
+#### Re-Provisioning
+
+Should there be a ztp setting that automatically goes back into ZTP mode if the network changes? So if you do an initial ZTP and are on 192.168.1.0/24 but then you are unplugged and plugged back in and your DHCP shows you 10.0.0.0/24, ZTP automatically assumes the DPU has been either sold, moved datacenters, reprovisioned, etc and retriggers ZTP?
+
+#### DHCP Options
+
+TODO: we need to change this from SONiC top OPI
+
+The following are the DHCP options used by the SONiC switch to receive input provisioning data for ZTP service and graphservice.
+
+| DHCP Option | Name         | Description                                       |
+|:-----------:|:-------------------|:-------------------------------------------------|
+| 61 | dhcp-client-identifier | Used to uniquely identify the switch initiating DHCP request. SONiC switches set this value to "SONiC##*product-name*##*serial-no*". |
+| 66 | tftp-server | TFTP-Server address |
+|    67      | ztp_json_url    | URL to download the ZTP JSON file. It can also specify the ZTP JSON file path on tftp server. |
+| 77 | user-class | Used to optionally identify the type or category of user or    applications it represents. SONiC switches set this value to "SONiC-ZTP". |
+|     224     | snmp_community              | snmpcommunity DHCP hook updates /etc/sonic/snmp.yml file with  provided value |
+|     225     | minigraph_url               | graphserviceurl DHCP hook updates the file /tmp/dhcp_graph_url with the provided url. updategraph service processes uses it for further processing. |
+|     226     | acl_url                     | graphserviceurl DHCP hook updates the file /tmp/dhcp_acl_url with the provided url. updategraph service processes uses it for further processing. |
+|    239      | ztp_provisioning_script_url    | URL for a script which needs to be downloaded and executed by ZTP service on the switch. |
+
+The following are the DHCPv6 options used by the SONiC switch to receive input provisioning data for ZTP service.
+
+| DHCPv6 Option | Name         | Description                                       |
+|:-----------:|:-------------------|:-------------------------------------------------|
+| 15 | user-class | Used to optionally identify the type or category of user or    applications it represents. SONiC switches set this value to  "SONiC-ZTP". |
+|    59    | boot-file-url | URL to download the ZTP JSON file. |
+|    239      | ztp_provisioning_script_url    | URL for a script which needs to be downloaded and executed by ZTP service on the switch. |
+
 ### Network trusts xPU
 
 - Device establishes an HTTPS connection with the "Bootstrap Server"
   - Question: using what certificates?
   - Question: what about QUIC?
-  - For environments that are predominately IPv6 based, we'll need a solution that suppots SLAAC.
+  - For environments that are predominately IPv6 based, we'll need a solution that supports SLAAC.
   - More info is here <https://github.com/opiproject/opi-prov-life/blob/main/architecture/Zero-Touch-Provisioning%E2%80%94Approaches-to-Network-Layer-Onboarding.pdf>
 - Device sends a request to a "Bootstrap Server" to join the network by providing its IDevID.
 - "Bootstrap Server" decides to accept debvice to the network or reject
@@ -146,6 +182,10 @@ This section shows what ZTP commands are supported on DPU/IPUs:
 
 Question: how this is implemented and integrated with existing provisioning services?
 Question: OPI can produce an agent (container) that runs on DPU/IPU for example and collects all this information via redfish, ipmi, lspci, and other specialized tools... And then exposes single common endpoint API so everybody can query it... like MAAS, JESP, RHEL SAAS and so on...
+
+## Testing
+
+will be tested part of [POC](https://github.com/opiproject/opi-poc/tree/main/integration/pxe)
 
 ## What OPI produces?
 
