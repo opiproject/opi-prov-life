@@ -1,10 +1,10 @@
 # Secure Zero Touch Provisioning (sZTP)
 
-Passive reprovisioning is a process where DPUs start up and detect that they need to be re-provisioned. One such example might ostensibly be a DPU being fresh out of the factory and lacks an initial OS.
+Passive reprovisioning is a process where DPU or IPU devices  start up and detect that they need to be re-provisioned. One such example might ostensibly be a DPU or IPU being fresh out of the factory and lacks an initial OS.
 
 ## What is ZTP
 
-Zero Touch Provisioning (ZTP) allows you to provision new DPU/IPU devices in your network automatically, with minimal manual intervention. This includes system software, operating system, patch files, and configuration files.
+Zero Touch Provisioning (ZTP) allows you to provision new DPU or IPU devices in your network automatically, with minimal manual intervention. This includes system software, operating system, patch files, and configuration files.
 
 You can use either management ports or network ports, depending on your device, to connect to the network.
 
@@ -20,7 +20,7 @@ Secure Zero Touch Provisioning (SZTP) adds a bootstrap server to DHCP-based ZTP 
 
 ![sZTP components](architecture/sZTP-components.png)
 
-- DPU/IPU device: new shipped device that is physically connected and powered but missing config and needs provisioning. Runs sZTP agent/client and uses DHCP client for deployment.
+- DPU or IPU device: new shipped device that is physically connected and powered but missing config and needs provisioning. Runs sZTP agent/client and uses DHCP client for deployment.
 - DHCP server (optional): allocates a temporary IP address, default gateway, DNS server address, and bootstrap server IP or URL to the device to be deployed using sZTP. Some customers don't use DHCP, so either mDNS or static IP address allocation is applied.
 - DHCP relay agent (optional): needed only when device and DHCP server are located on different network segments.
 - Bootstrap server: Main server in sZTP deploy process. Responsible for mutual validation/trust first. Then sends File Server IP and Image URLs to the device to download in a secure way.
@@ -61,7 +61,7 @@ Use case: large scale deployments (where automation and security are major drive
 
 #### Re-Provisioning
 
-Should there be a ztp setting that automatically goes back into ZTP mode if the network changes? So if you do an initial ZTP and are on 192.168.1.0/24 but then you are unplugged and plugged back in and your DHCP shows you 10.0.0.0/24, ZTP automatically assumes the DPU has been either sold, moved datacenters, reprovisioned, etc and retriggers ZTP?
+Should there be a ztp setting that automatically goes back into ZTP mode if the network changes? So if you do an initial ZTP and are on 192.168.1.0/24 but then you are unplugged and plugged back in and your DHCP shows you 10.0.0.0/24, ZTP automatically assumes the DPU or IPU  has been either sold, moved datacenters, reprovisioned, etc and retriggers ZTP?
 
 #### DHCP Options
 
@@ -140,7 +140,7 @@ Two overarching scenarios:
 
 ## sZTP Configuration
 
-This section shows what ZTP commands are supported on DPU/IPUs:
+This section shows what ZTP commands are supported on DPUs or IPUs:
 
 - `ztp status --verbose`
   - Use the verbose option to display more detailed information.
@@ -181,7 +181,7 @@ This section shows what ZTP commands are supported on DPU/IPUs:
   - Logs for when default routes were added or deleted.
 
 Question: how this is implemented and integrated with existing provisioning services?
-Question: OPI can produce an agent (container) that runs on DPU/IPU for example and collects all this information via redfish, ipmi, lspci, and other specialized tools... And then exposes single common endpoint API so everybody can query it... like MAAS, JESP, RHEL SAAS and so on...
+Question: OPI can produce an agent (container) that runs on DPU or IPU for example and collects all this information via redfish, ipmi, lspci, and other specialized tools... And then exposes single common endpoint API so everybody can query it... like MAAS, JESP, RHEL SAAS and so on...
 
 ## Testing
 
@@ -197,7 +197,7 @@ will be tested part of [POC](https://github.com/opiproject/opi-poc/tree/main/int
 
 - OPI can also produce an agent (container/service) for Standard Inventory Query that everybody (existing provisioning systems) can query
 
-what is the adoption rate of UEFI on DPU/IPUs? Should it be relied upon?
+what is the adoption rate of UEFI on DPUs or IPUs? Should it be relied upon?
 
 ## TBD
 
