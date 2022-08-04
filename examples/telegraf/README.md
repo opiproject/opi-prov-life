@@ -3,6 +3,7 @@
 ## Docs
 
 * Plugins used
+  * <https://github.com/influxdata/telegraf/tree/master/plugins/inputs/redfish>
   * <https://github.com/influxdata/telegraf/tree/master/plugins/inputs/http>
   * <https://github.com/influxdata/telegraf/tree/master/plugins/inputs/cpu>
   * <https://github.com/influxdata/telegraf/tree/master/plugins/inputs/mem>
@@ -16,6 +17,7 @@
   * <https://hub.docker.com/_/telegraf>
   * <https://hub.docker.com/_/influxdb>
   * <https://hub.docker.com/r/grafana/grafana>
+  * <https://hub.docker.com/r/dmtf/redfish-mockup-server>
   * <https://github.com/spdk/spdk-csi/blob/master/deploy/spdk/Dockerfile>
 
 ## Getting started
@@ -37,6 +39,14 @@ Test Proxy is running correctly
 
 ```text
 curl -k --user spdkuser:spdkpass -X POST -H "Content-Type: application/json" -d '{"id": 1, "method": "bdev_get_bdevs", "params": {"name": "Malloc0"}}' http://127.0.0.1:9009/
+```
+
+## Run Redfish mockup server
+
+Use [docker-compose](docker-compose.yml) or manually
+
+```text
+docker run --rm dmtf/redfish-mockup-server:1.1.8
 ```
 
 ## Run InfluxDB
@@ -85,6 +95,18 @@ cpu,cpu=cpu2,host=52ee5c75df01 usage_system=0,usage_idle=0,usage_iowait=0,usage_
 cpu,cpu=cpu3,host=52ee5c75df01 usage_guest_nice=0,usage_user=99.79999999981374,usage_idle=0,usage_nice=0,usage_iowait=0,usage_guest=0,usage_system=0,usage_irq=0.20000000000436557,usage_softirq=0,usage_steal=0 1650954170000000000
 cpu,cpu=cpu4,host=52ee5c75df01 usage_user=99.70029970233988,usage_guest=0,usage_steal=0,usage_guest_nice=0,usage_system=0.09990009990223975,usage_idle=0,usage_nice=0,usage_iowait=0,usage_irq=0.19980019979993657,usage_softirq=0 1650954170000000000
 cpu,cpu=cpu5,host=52ee5c75df01 usage_nice=0,usage_iowait=0,usage_irq=0.2997002997044478,usage_softirq=0,usage_steal=0,usage_guest_nice=0,usage_user=99.70029970233988,usage_idle=0,usage_guest=0,usage_system=0 1650954170000000000
+
+redfish_thermal_temperatures,address=bmc,health=OK,host=fd287855dfb3,member_id=0,name=CPU1\ Temp,rack=WEB43,row=North,source=web483,state=Enabled reading_celsius=41,upper_threshold_critical=45,upper_threshold_fatal=48 1659628400000000000
+redfish_thermal_temperatures,address=bmc,host=fd287855dfb3,member_id=1,name=CPU2\ Temp,rack=WEB43,row=North,source=web483,state=Disabled upper_threshold_critical=45,upper_threshold_fatal=48 1659628400000000000
+redfish_thermal_temperatures,address=bmc,health=OK,host=fd287855dfb3,member_id=2,name=Chassis\ Intake\ Temp,rack=WEB43,row=North,source=web483,state=Enabled reading_celsius=25,upper_threshold_critical=40,upper_threshold_fatal=50,lower_threshold_critical=5,lower_threshold_fatal=0 1659628400000000000
+
+redfish_thermal_fans,address=bmc,health=OK,host=fd287855dfb3,member_id=0,name=BaseBoard\ System\ Fan,rack=WEB43,row=North,source=web483,state=Enabled lower_threshold_fatal=0i,reading_rpm=2100i 1659628400000000000
+redfish_thermal_fans,address=bmc,health=OK,host=fd287855dfb3,member_id=1,name=BaseBoard\ System\ Fan\ Backup,rack=WEB43,row=North,source=web483,state=Enabled lower_threshold_fatal=0i,reading_rpm=2050i 1659628400000000000
+
+redfish_power_powersupplies,address=bmc,health=Warning,host=fd287855dfb3,member_id=0,name=Power\ Supply\ Bay,rack=WEB43,row=North,source=web483,state=Enabled line_input_voltage=120,last_power_output_watts=325,power_capacity_watts=800 1659628400000000000
+
+redfish_power_voltages,address=bmc,health=OK,host=fd287855dfb3,member_id=0,name=VRM1\ Voltage,rack=WEB43,row=North,source=web483,state=Enabled lower_threshold_critical=11,lower_threshold_fatal=10,reading_volts=12,upper_threshold_critical=13,upper_threshold_fatal=15 1659628400000000000
+redfish_power_voltages,address=bmc,health=OK,host=fd287855dfb3,member_id=1,name=VRM2\ Voltage,rack=WEB43,row=North,source=web483,state=Enabled reading_volts=5,upper_threshold_critical=7,lower_threshold_critical=4.5 1659628400000000000
 
 ...
 ```
