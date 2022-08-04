@@ -52,6 +52,11 @@ services:
       start_period: 20s
       timeout: 10s
 
+  bmc:
+    image: dmtf/redfish-mockup-server:1.1.8
+    networks:
+      - opi
+
   grafana:
     image: grafana/grafana:8.4.6
     depends_on:
