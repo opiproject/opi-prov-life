@@ -65,28 +65,30 @@ Should there be a ztp setting that automatically goes back into ZTP mode if the 
 
 #### DHCP Options
 
-TODO: we need to change this from SONiC top OPI
+The following are the DHCPv4 options used for Network Boot and Secure ZTP
 
-The following are the DHCP options used by the SONiC switch to receive input provisioning data for ZTP service and graphservice.
+|   DHCP Option | Name                 | Description                                                                                                                |
+| :-----------: | :------------------- | :-------------------------------------------------                                                                         |
+|            60 | class-identifier     | Class Identifier (RFC 2132) (PXE) (HTTP(s)) (i.e. "PXEClient:Arch:xxxxx:UNDI:yyyzzz", "HTTPClient:Arch:xxxxx:UNDI:yyyzzz") |
+|            61 | client-identifier    | unique identifier (RFC 2132, RFC 4578) (PXE) (HTTP(s))                                                                     |
+|            66 | Server-Name          | TFTP Server Name (RFC 2132) (PXE)                                                                                          |
+|            67 | Bootfile-Name        | Boot File Name (RFC 2132) (PXE) or Boot URI (HTTP(s))                                                                      |
+|            77 | user-class           | User Class Information (RFC 3004)(i.e. "iPXE", "SONiC-ZTP")                                                                |
+|            93 | Client-System        | Client System Architecture (RFC 4578) (PXE) (IA x86 PC, x86 EFI boot, x64 EFI boot)                                        |
+|            93 | Client-NDI           | Client Network Device Interface (RFC 4578) (PXE)                                                                           |
+|            97 | GUID                 | Globally Unique Identifier (RFC 4578) (PXE)                                                                                |
+|           143 | SZTP-Redirect        | (optional) Bootstrap server list (RFC 8572)                                                                                |
 
-| DHCP Option | Name         | Description                                       |
-|:-----------:|:-------------------|:-------------------------------------------------|
-| 61 | dhcp-client-identifier | Used to uniquely identify the switch initiating DHCP request. SONiC switches set this value to "SONiC##*product-name*##*serial-no*". |
-| 66 | tftp-server | TFTP-Server address |
-|    67      | ztp_json_url    | URL to download the ZTP JSON file. It can also specify the ZTP JSON file path on tftp server. |
-| 77 | user-class | Used to optionally identify the type or category of user or    applications it represents. SONiC switches set this value to "SONiC-ZTP". |
-|     224     | snmp_community              | snmpcommunity DHCP hook updates /etc/sonic/snmp.yml file with  provided value |
-|     225     | minigraph_url               | graphserviceurl DHCP hook updates the file /tmp/dhcp_graph_url with the provided url. updategraph service processes uses it for further processing. |
-|     226     | acl_url                     | graphserviceurl DHCP hook updates the file /tmp/dhcp_acl_url with the provided url. updategraph service processes uses it for further processing. |
-|    239      | ztp_provisioning_script_url    | URL for a script which needs to be downloaded and executed by ZTP service on the switch. |
+The following are the DHCPv6 options are used Network Boot and Secure ZTP
 
-The following are the DHCPv6 options used by the SONiC switch to receive input provisioning data for ZTP service.
-
-| DHCPv6 Option | Name         | Description                                       |
-|:-----------:|:-------------------|:-------------------------------------------------|
-| 15 | user-class | Used to optionally identify the type or category of user or    applications it represents. SONiC switches set this value to  "SONiC-ZTP". |
-|    59    | boot-file-url | URL to download the ZTP JSON file. |
-|    239      | ztp_provisioning_script_url    | URL for a script which needs to be downloaded and executed by ZTP service on the switch. |
+| DHCPv6 Option | Name                 | Description                                                                                  |
+| :-----------: | :------------------- | :-------------------------------------------------                                           |
+|            15 | user-class           | User Class Information (RFC 3004, RFC 8415) (i.e. "iPXE", "SONiC-ZTP")                       |
+|            16 | vendor-class         | Vendor Class Option (RFC 8415) (i.e. 343:"HTTPClient:Arch:xxxxx:UNDI:yyyzzz")                |
+|            59 | boot-file-url        | The URL for the boot file (RFC 5970)                                                         |
+|            61 | Client-System        | Client System Architecture (RFC 5790,RFC 4578) (PXE) (IA x86 PC, x86 EFI boot, x64 EFI boot) |
+|            62 | Client-NDI           | Client Network Device Interface (RFC 5790,RFC 4578) (PXE)                                    |
+|           136 | SZTP-Redirect        | (optional) Bootstrap server list (RFC 8572)                                                  |
 
 ### Network trusts xPU
 
