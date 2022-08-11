@@ -75,7 +75,7 @@ The following are the DHCPv4 options used for Network Boot and Secure ZTP
 |            67 | Bootfile-Name        | Boot File Name (RFC 2132) (PXE) or Boot URI (HTTP(s))                                                                      |
 |            77 | user-class           | User Class Information (RFC 3004)(i.e. "iPXE", "SONiC-ZTP")                                                                |
 |            93 | Client-System        | Client System Architecture (RFC 4578) (PXE) (IA x86 PC, x86 EFI boot, x64 EFI boot)                                        |
-|            93 | Client-NDI           | Client Network Device Interface (RFC 4578) (PXE)                                                                           |
+|            94 | Client-NDI           | Client Network Device Interface (RFC 4578) (PXE)                                                                           |
 |            97 | GUID                 | Globally Unique Identifier (RFC 4578) (PXE)                                                                                |
 |           143 | SZTP-Redirect        | (optional) Bootstrap server list (RFC 8572)                                                                                |
 
