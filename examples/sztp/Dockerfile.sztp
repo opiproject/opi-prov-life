@@ -1,0 +1,3 @@
+FROM docker.io/library/python:3.10.6
+RUN pip install --no-cache-dir sztpd==0.0.11
+CMD ["sztpd", "sqlite:///:memory:"]
