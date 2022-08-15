@@ -5,6 +5,7 @@ services:
   sztp:
     build:
       context: .
+      dockerfile: Dockerfile.sztp
     environment:
       SZTPD_INIT_PORT: 1080
       SZTPD_INIT_MODE: 1
@@ -12,11 +13,44 @@ services:
     networks:
       - opi
     command: ['sztpd', 'sqlite:///:memory:']
-    healthcheck:
-      test: curl --silent --fail -H Accept:application/yang-data+json http://localhost:1080/.well-known/host-meta || exit 1
-      interval: 6s
-      timeout: 10s
-      retries: 5
+
+  dhcp:
+    build:
+      context: .
+      dockerfile: Dockerfile.dhcp
+    environment:
+      NODE_IP_SUBNET: 10.127.127.0
+      NODE_IP_NETMASK: 255.255.255.0
+      NODE_IP_RANGE_MIN: 10.127.127.100
+      NODE_IP_RANGE_MAX: 10.127.127.253
+      NODE_IP_ADDRESS: 10.127.127.3
+    networks:
+      - opi
+    command: sh -e -u -x -c 'envsubst < /etc/dhcp/dhcpd.conf.template > /etc/dhcp/dhcpd.conf && dhcpd -d'
+
+  nmap:
+    image: instrumentisto/nmap:7.92
+    networks:
+      - opi
+    command: --script broadcast-dhcp-discover
+
+  web:
+    image: python:3.10.6-slim
+    networks:
+      - opi
+    command: python3 -m http.server 8082
+
+  client:
+    build:
+      context: .
+      dockerfile: Dockerfile.client
+    networks:
+      - opi
+    command: dhclient -d -v
 
 networks:
   opi:
+    ipam:
+      config:
+        - subnet: "10.127.127.0/24"
+          gateway: "10.127.127.1"

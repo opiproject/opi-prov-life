@@ -5,3 +5,11 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
+  - package-ecosystem: "docker"
+    directory: "/examples/telegraf"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "docker"
+    directory: "/examples/sztp"
+    schedule:
+      interval: "weekly"
