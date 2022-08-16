@@ -10,6 +10,7 @@ services:
       SZTPD_INIT_PORT: 1080
       SZTPD_INIT_MODE: 1
       SZTPD_ACCEPT_CONTRACT: "Yes"
+      SZTPD_INIT_ADDR: 0.0.0.0
     networks:
       - opi
     command: ['sztpd', 'sqlite:///:memory:']
@@ -47,6 +48,14 @@ services:
     networks:
       - opi
     command: dhclient -d -v
+
+  agent:
+    build:
+      context: .
+      dockerfile: Dockerfile.agent
+    networks:
+      - opi
+    command: ['/bin/sh', '-c', 'sleep infinity']
 
 networks:
   opi:

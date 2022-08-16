@@ -1,0 +1,12 @@
+FROM docker.io/library/python:3.10.6
+
+RUN apt update && apt install -y libyang-tools libxml2-utils
+
+# FIXME: why ADD is not working here?
+RUN curl -kL https://watsen.net/support/sztpd-simulator-0.0.11.tgz | tar -zxvf - -C /tmp/
+WORKDIR /tmp/sztpd-simulator
+RUN cd pki; make pki; cd -
+
+CMD ['/bin/sh', '-c', 'sleep infinity']
+#CMD ["bash", "./run-sztpd-test.sh"]
+# ./rfc8572-agent.sh "$CLIENT_SERIAL_NUMBER" "$CLIENT_PASSWORD" "$CLIENT_CERT_KEY" "$CLIENT_CERT_EE" "$BOOTSVR_ADDRESS" "$BOOTSVR_PORT" "$BOOTSVR_TA_CERT"
