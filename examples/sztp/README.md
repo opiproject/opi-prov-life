@@ -16,19 +16,19 @@
 ## Run sZTP
 
 ```text
-docker-compose up --build sztp
+docker-compose up --build bootstrap
 ```
 
 ## Test sZTP
 
 ```text
-$ docker-compose exec sztp curl --silent --fail -H Accept:application/yang-data+json http://localhost:1080/.well-known/host-meta
+$ docker-compose exec bootstrap curl --silent --fail -H Accept:application/yang-data+json http://localhost:1080/.well-known/host-meta
 <XRD xmlns="http://docs.oasis-open.org/ns/xri/xrd-1.0">
   <Link rel="restconf" href="/restconf"/>
 </XRD>
 ```
 
-## More sZTP tresting with simulator
+## More sZTP testing with simulator
 
 See <https://watsen.net/support/sztpd-simulator-0.0.11.tgz>
 
