@@ -1,3 +1,8 @@
 FROM docker.io/library/python:3.10.6
 RUN pip install --no-cache-dir sztpd==0.0.11
+
+# certificates
+RUN curl -kL https://watsen.net/support/sztpd-simulator-0.0.11.tgz | tar -zxvf - -C /tmp/
+RUN cd /tmp/sztpd-simulator/pki && make pki
+
 CMD ["sztpd", "sqlite:///:memory:"]
