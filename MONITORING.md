@@ -77,3 +77,11 @@
 
 - Is there integration of OTEL with kvm or esx ?
 - Use case of standalone DPU, not attached to server. Still runs OTEL collector
+
+## Working items
+
+- [#92](/../../issues/92) Starting new workstream to find out set of common metrics across vendors that OPI will mandate
+  - Action items on Marvell, Nvidia, Intell to come up with the list and present on the next meeting
+- [#93](/../../issues/93) Starting new POC with OTEL SDK and hello world app
+  - Action items on Nvidia to help compiling DOCA with OTEL SDK (i.e. <https://github.com/open-telemetry/opentelemetry-cpp> ) and hello world app to show metrics/traces streaming to standard ecosystem (zipkin/grafana/elastic/...)
+- [#94](/../../issues/94) Continue working on existing telegraf example and enhance with more metrics
