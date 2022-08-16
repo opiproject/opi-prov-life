@@ -8,5 +8,3 @@ WORKDIR /tmp/sztpd-simulator
 RUN cd pki; make pki; cd -
 
 CMD ['/bin/sh', '-c', 'sleep infinity']
-#CMD ["bash", "./run-sztpd-test.sh"]
-# ./rfc8572-agent.sh "$CLIENT_SERIAL_NUMBER" "$CLIENT_PASSWORD" "$CLIENT_CERT_KEY" "$CLIENT_CERT_EE" "$BOOTSVR_ADDRESS" "$BOOTSVR_PORT" "$BOOTSVR_TA_CERT"
