@@ -1,8 +1,14 @@
 FROM docker.io/library/python:3.10.6
 RUN pip install --no-cache-dir sztpd==0.0.11
 
+# need gettext for envsubst command
+RUN apt-get update && apt-get install -y gettext && rm -rf /var/lib/apt/lists/*
+
 # certificates
 RUN curl -kL https://watsen.net/support/sztpd-simulator-0.0.11.tgz | tar -zxvf - -C /tmp/
 RUN cd /tmp/sztpd-simulator/pki && make pki
+
+# configurations, images, templates
+COPY config/ /tmp/
 
 CMD ["sztpd", "sqlite:///:memory:"]

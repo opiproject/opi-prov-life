@@ -84,6 +84,41 @@ Server: <redacted>
 }
 ```
 
+## Device Getting Onboarding Information
+
+For now showing how to run from the same `bootstrap` container, there is a room for improvement, for sure
+
+```text
+ $  docker-compose exec bootstrap bash
+root@e2e8a91b855b:/#
+```
+
+run inside the container:
+
+```text
+# transform the template into config
+export BOOT_IMG_HASH_VAL=`openssl dgst -sha256 -c /tmp/my-boot-image.img | awk '{print $2}'`
+export PRE_SCRIPT_B64=`openssl enc -base64 -A -in /tmp/my-pre-configuration-script.sh`
+export POST_SCRIPT_B64=`openssl enc -base64 -A -in /tmp/my-post-configuration-script.sh`
+export CONFIG_B64=`openssl enc -base64 -A -in /tmp/my-configuration.xml`
+envsubst '$SZTPD_INIT_PORT,$SZTPD_SBI_PORT,$SZTPD_INIT_ADDR,$BOOT_IMG_HASH_VAL,$PRE_SCRIPT_B64,$POST_SCRIPT_B64,$CONFIG_B64' < /tmp/sztpd.running.json.template  > /tmp/running.json
+
+# send the config to sztpd
+curl -i -X PUT --user my-admin@example.com:my-secret --data @/tmp/running.json -H "Content-Type:application/yang-data+json" http:/bootstrap:1080/restconf/ds/ietf-datastores:running
+
+# read config from sztpd
+curl -i --user my-admin@example.com:my-secret -H "Accept:application/yang-data+json" http://bootstrap:1080/restconf/ds/ietf-datastores:running
+
+# get onboarding info (from device perspective)
+curl -X POST --data @/tmp/input.json -H "Content-Type:application/yang-data+json" --user my-serial-number:my-secret http://bootstrap:9090/restconf/operations/ietf-sztp-bootstrap-server:get-bootstrapping-data | tee /tmp/post_rpc_input.out
+cat /tmp/post_rpc_input.out
+python -c "import base64; print(base64.b64decode(open('/tmp/post_rpc_input.out').read()))"
+
+# view audit log
+curl -i -X GET --user my-admin@example.com:my-secret  -H "Accept:application/yang-data+json" http://127.0.0.1:1080/restconf/ds/ietf-datastores:operational/wn-sztpd-1:audit-log 
+
+```
+
 ## More sZTP testing with simulator
 
 See <https://watsen.net/support/sztpd-simulator-0.0.11.tgz>
