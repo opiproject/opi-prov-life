@@ -24,7 +24,7 @@ docker-compose up --build bootstrap
 Fetching Host-meta
 
 ```text
-$ docker-compose run agent curl -i --fail -H Accept:application/yang-data+json http://bootstrap:1080/.well-known/host-meta
+$ docker-compose run --rm -T agent curl -i --fail -H Accept:application/yang-data+json http://bootstrap:1080/.well-known/host-meta
 HTTP/1.1 200 OK
 Content-Type: application/xrd+xml; charset=utf-8
 Content-Length: 104
@@ -39,7 +39,7 @@ Server: <redacted>
 Fetching the RESTCONF Root Resource
 
 ```text
-$ docker-compose run agent curl -i --fail -H Accept:application/yang-data+json http://bootstrap:1080/restconf/
+$ docker-compose run --rm -T agent curl -i --fail -H Accept:application/yang-data+json http://bootstrap:1080/restconf/
 HTTP/1.1 200 OK
 Content-Type: application/yang-data+json; charset=utf-8
 Content-Length: 137
@@ -58,7 +58,7 @@ Server: <redacted>
 Get the Current (Default) Configuration
 
 ```text
-$ docker-compose run agent curl -i -H "Accept:application/yang-data+json" http://bootstrap:1080/restconf/ds/ietf-datastores:running
+$ docker-compose run --rm -T agent curl -i -H "Accept:application/yang-data+json" http://bootstrap:1080/restconf/ds/ietf-datastores:running
 HTTP/1.1 200 OK
 Content-Type: application/yang-data+json; charset=utf-8
 Content-Length: 318
@@ -86,37 +86,86 @@ Server: <redacted>
 
 ## Device Getting Onboarding Information
 
-For now showing how to run from the same `bootstrap` container, there is a room for improvement, for sure
+Send the configuration file to SZTPD
 
 ```text
- $  docker-compose exec bootstrap bash
-root@e2e8a91b855b:/#
+$ docker-compose exec bootstrap curl -i -X PUT --user my-admin@example.com:my-secret --data @/tmp/running.json -H "Content-Type:application/yang-data+json" http:/bootstrap:1080/restconf/ds/ietf-datastores:running
+
+HTTP/1.1 204 No Content
+Date: Wed, 17 Aug 2022 19:15:57 GMT
+Server: <redacted>
 ```
 
-run inside the container:
+Read the configuration back and validate it is correct:
 
 ```text
-# transform the template into config
-export BOOT_IMG_HASH_VAL=`openssl dgst -sha256 -c /tmp/my-boot-image.img | awk '{print $2}'`
-export PRE_SCRIPT_B64=`openssl enc -base64 -A -in /tmp/my-pre-configuration-script.sh`
-export POST_SCRIPT_B64=`openssl enc -base64 -A -in /tmp/my-post-configuration-script.sh`
-export CONFIG_B64=`openssl enc -base64 -A -in /tmp/my-configuration.xml`
-envsubst '$SZTPD_INIT_PORT,$SZTPD_SBI_PORT,$SZTPD_INIT_ADDR,$BOOT_IMG_HASH_VAL,$PRE_SCRIPT_B64,$POST_SCRIPT_B64,$CONFIG_B64' < /tmp/sztpd.running.json.template  > /tmp/running.json
+docker-compose exec bootstrap curl -i --user my-admin@example.com:my-secret -H "Accept:application/yang-data+json" http://bootstrap:1080/restconf/ds/ietf-datastores:running
+```
 
-# send the config to sztpd
-curl -i -X PUT --user my-admin@example.com:my-secret --data @/tmp/running.json -H "Content-Type:application/yang-data+json" http:/bootstrap:1080/restconf/ds/ietf-datastores:running
+Get onboarding info (from device perspective)
 
-# read config from sztpd
-curl -i --user my-admin@example.com:my-secret -H "Accept:application/yang-data+json" http://bootstrap:1080/restconf/ds/ietf-datastores:running
+```text
+$ docker-compose run --rm -T agent curl --silent X POST --data @/tmp/input.json -H "Content-Type:application/yang-data+json" --user my-serial-number:my-secret http://bootstrap:9090/restconf/operations/ietf-sztp-bootstrap-server:get-bootstrapping-data | tee /tmp/post_rpc_input.json
 
-# get onboarding info (from device perspective)
-curl -X POST --data @/tmp/input.json -H "Content-Type:application/yang-data+json" --user my-serial-number:my-secret http://bootstrap:9090/restconf/operations/ietf-sztp-bootstrap-server:get-bootstrapping-data | tee /tmp/post_rpc_input.out
-cat /tmp/post_rpc_input.out
-python -c "import base64; print(base64.b64decode(open('/tmp/post_rpc_input.out').read()))"
+Creating sztp_agent_run ... done
+{
+  "ietf-sztp-bootstrap-server:output": {
+    "conveyed-information": "MIIDOQYLKoZIhvcNAQkQASugggMoBIIDJHsKICAiaWV0Zi1zenRwLWNvbnZleWVkLWluZm86b25ib2FyZGluZy1pbmZvcm1hdGlvbiI6IHsKICAgICJib290LWltYWdlIjogewogICAgICAiZG93bmxvYWQtdXJpIjogWwogICAgICAgICJodHRwczovL2V4YW1wbGUuY29tL215LWJvb3QtaW1hZ2UuaW1nIgogICAgICBdLAogICAgICAiaW1hZ2UtdmVyaWZpY2F0aW9uIjogWwogICAgICAgIHsKICAgICAgICAgICJoYXNoLWFsZ29yaXRobSI6ICJpZXRmLXN6dHAtY29udmV5ZWQtaW5mbzpzaGEtMjU2IiwKICAgICAgICAgICJoYXNoLXZhbHVlIjogIjdiOmNhOmU2OmFjOjIzOjA2OmQ4Ojc5OjA2OjhjOmFjOjAzOjgwOmUyOjE2OjQ0OjdlOjQwOjZhOjY1OmZhOmQ0OjY5OjYxOjZlOjA1OmNlOmY1Ojg3OmRjOjJiOjk3IgogICAgICAgIH0KICAgICAgXQogICAgfSwKICAgICJwcmUtY29uZmlndXJhdGlvbi1zY3JpcHQiOiAiSXk5aWFXNHZZbUZ6YUFwbFkyaHZJQ0pwYm5OcFpHVWdkR2hsSUhCeVpTMWpiMjVtYVdkMWNtRjBhVzl1TFhOamNtbHdkQzR1TGlJSyIsCiAgICAiY29uZmlndXJhdGlvbi1oYW5kbGluZyI6ICJtZXJnZSIsCiAgICAiY29uZmlndXJhdGlvbiI6ICJQSFJ2Y0NCNGJXeHVjejBpYUhSMGNITTZMMlY0WVcxd2JHVXVZMjl0TDJOdmJtWnBaeUkrQ2lBZ1BHRnVlUzE0Yld3dFkyOXVkR1Z1ZEMxdmEyRjVMejRLUEM5MGIzQStDZz09IiwKICAgICJwb3N0LWNvbmZpZ3VyYXRpb24tc2NyaXB0IjogIkl5OWlhVzR2WW1GemFBcGxZMmh2SUNKcGJuTnBaR1VnZEdobElIQnZjM1F0WTI5dVptbG5kWEpoZEdsdmJpMXpZM0pwY0hRdUxpNGlDZz09IgogIH0KfQ=="
+  }
+}
+```
 
-# view audit log
-curl -i -X GET --user my-admin@example.com:my-secret  -H "Accept:application/yang-data+json" http://127.0.0.1:1080/restconf/ds/ietf-datastores:operational/wn-sztpd-1:audit-log 
+Decode payload
 
+```text
+$ jq -r .\"ietf-sztp-bootstrap-server:output\".\"conveyed-information\" /tmp/post_rpc_input.json | base64 --decode
+0▒9
+   *▒H▒▒+▒▒(▒${
+  "ietf-sztp-conveyed-info:onboarding-information": {
+    "boot-image": {
+      "download-uri": [
+        "https://example.com/my-boot-image.img"
+      ],
+      "image-verification": [
+        {
+          "hash-algorithm": "ietf-sztp-conveyed-info:sha-256",
+          "hash-value": "7b:ca:e6:ac:23:06:d8:79:06:8c:ac:03:80:e2:16:44:7e:40:6a:65:fa:d4:69:61:6e:05:ce:f5:87:dc:2b:97"
+        }
+      ]
+    },
+    "pre-configuration-script": "Iy9iaW4vYmFzaAplY2hvICJpbnNpZGUgdGhlIHByZS1jb25maWd1cmF0aW9uLXNjcmlwdC4uLiIK",
+    "configuration-handling": "merge",
+    "configuration": "PHRvcCB4bWxucz0iaHR0cHM6L2V4YW1wbGUuY29tL2NvbmZpZyI+CiAgPGFueS14bWwtY29udGVudC1va2F5Lz4KPC90b3A+Cg==",
+    "post-configuration-script": "Iy9iaW4vYmFzaAplY2hvICJpbnNpZGUgdGhlIHBvc3QtY29uZmlndXJhdGlvbi1zY3JpcHQuLi4iCg=="
+  }
+}
+```
+
+View the Audit Log
+
+```text
+$ docker-compose exec bootstrap curl -i -X GET --user my-admin@example.com:my-secret  -H "Accept:application/yang-data+json" http://bootstrap:1080/restconf/ds/ietf-datastores:operational/wn-sztpd-1:audit-log
+
+HTTP/1.1 200 OK
+Content-Type: application/yang-data+json; charset=utf-8
+Content-Length: 648
+Date: Wed, 17 Aug 2022 19:35:34 GMT
+Server: <redacted>
+
+{
+  "wn-sztpd-1:audit-log": {
+    "log-entry": [
+      {
+        "timestamp": "2022-08-17T19:35:22Z",
+        "source-ip": "10.127.127.3",
+        "host": "bootstrap:9090",
+        "method": "POST",
+        "path": "/restconf/operations/ietf-sztp-bootstrap-server:get-bootstrapping-data",
+        "outcome": "success"
+      }
+    ]
+  }
+}
 ```
 
 ## More sZTP testing with simulator
@@ -124,7 +173,7 @@ curl -i -X GET --user my-admin@example.com:my-secret  -H "Accept:application/yan
 See <https://watsen.net/support/sztpd-simulator-0.0.11.tgz>
 
 ```text
-$ docker-compose run agent bash
+$ docker-compose run --rm -T agent bash
 root@a204778c50cc:/tmp/sztpd-simulator#
 ```
 
@@ -151,7 +200,7 @@ docker-compose up --build dhcp
 ## Test DHCP with NMAP
 
 ```text
-$ docker-compose run nmap
+$ docker-compose run --rm -T nmap
 Creating sztp_nmap_run ... done
 Starting Nmap 7.92 ( https://nmap.org ) at 2022-08-15 19:13 UTC
 Pre-scan script results:
@@ -172,7 +221,7 @@ Nmap done: 0 IP addresses (0 hosts up) scanned in 10.25 seconds
 ## Test DHCP with client
 
 ```text
-$ docker-compose run client
+$ docker-compose run --rm -T client
 Creating sztp_client_run ... done
 Internet Systems Consortium DHCP Client 4.4.3
 Copyright 2004-2022 Internet Systems Consortium.
@@ -221,7 +270,7 @@ docker-compose up --build web
 ## Test HTTP from client
 
 ```text
-docker-compose run client curl --fail http://web:8082/var/lib/
+docker-compose run --rm -T client curl --fail http://web:8082/var/lib/
 ```
 
 OR
