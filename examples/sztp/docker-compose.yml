@@ -8,6 +8,7 @@ services:
       dockerfile: Dockerfile.sztp
     environment:
       SZTPD_INIT_PORT: 1080
+      SZTPD_SBI_PORT: 9090
       SZTPD_INIT_MODE: 1
       SZTPD_ACCEPT_CONTRACT: "Yes"
       SZTPD_INIT_ADDR: 0.0.0.0

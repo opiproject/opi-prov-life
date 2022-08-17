@@ -1,0 +1,117 @@
+{
+  "wn-sztpd-1:transport": {
+    "listen": {
+      "endpoint": [
+        {
+          "name": "default startup endpoint",
+          "use-for": "native-interface",
+          "http": {
+            "tcp-server-parameters": {
+              "local-address": "$SZTPD_INIT_ADDR",
+              "local-port": $SZTPD_INIT_PORT
+            }
+          }
+        },
+        {
+          "name": "rfc8572-interface",
+          "use-for": "rfc8572-interface",
+          "http": {
+            "tcp-server-parameters": {
+              "local-address": "$SZTPD_INIT_ADDR",
+              "local-port": $SZTPD_SBI_PORT
+            }
+          }
+        }
+      ]
+    }
+  },
+  "wn-sztpd-1:admin-accounts":{
+    "admin-account": [
+      {
+        "email-address": "my-admin@example.com",
+        "password": "$0$my-secret",
+        "access": "unrestricted"
+      }
+    ]
+  },
+  "wn-sztpd-1:device-types": {
+    "device-type": [
+      {
+        "name": "my-device-type"
+      }
+    ]
+  },
+  "wn-sztpd-1:devices": {
+    "device": [
+      {
+        "serial-number": "my-serial-number",
+        "device-type": "my-device-type",
+        "activation-code": "$0$my-secret",
+        "response-manager": {
+          "matched-response": [
+            {
+              "name": "catch-all-response",
+              "response": {
+                "conveyed-information": {
+                  "onboarding-information": {
+                    "reference": "my-onboarding-information"
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "wn-sztpd-1:boot-images": {
+    "boot-image": [
+      {
+        "name": "my-boot-image.img",
+        "download-uri": [ "https://example.com/my-boot-image.img" ],
+        "image-verification": [
+          {
+            "hash-algorithm": "ietf-sztp-conveyed-info:sha-256",
+            "hash-value": "$BOOT_IMG_HASH_VAL"
+          }
+        ]
+      }
+    ]
+  },
+  "wn-sztpd-1:scripts": {
+      "pre-configuration-script": [
+          {
+              "name": "my-pre-configuration-script",
+              "script": "$PRE_SCRIPT_B64"
+          }
+      ],
+      "post-configuration-script": [
+          {
+              "name": "my-post-configuration-script",
+              "script": "$POST_SCRIPT_B64"
+          }
+      ]
+  },
+  "wn-sztpd-1:configurations": {
+      "configuration": [
+          {
+              "name": "my-configuration",
+              "configuration-handling": "merge",
+              "config": "$CONFIG_B64"
+          }
+      ]
+  },
+  "wn-sztpd-1:conveyed-information-responses": {
+      "onboarding-information-response": [
+          {
+              "name": "my-onboarding-information",
+              "onboarding-information": {
+                  "boot-image": "my-boot-image.img",
+                  "pre-configuration-script": "my-pre-configuration-script",
+                  "configuration": "my-configuration",
+                  "post-configuration-script": "my-post-configuration-script"
+              }
+          }
+      ]
+  }
+}
