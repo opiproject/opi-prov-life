@@ -21,20 +21,67 @@ docker-compose up --build bootstrap
 
 ## Test sZTP
 
+Fetching Host-meta
+
 ```text
-$ docker-compose exec bootstrap curl --silent --fail -H Accept:application/yang-data+json http://localhost:1080/.well-known/host-meta
+$ docker-compose run agent curl -i --fail -H Accept:application/yang-data+json http://bootstrap:1080/.well-known/host-meta
+HTTP/1.1 200 OK
+Content-Type: application/xrd+xml; charset=utf-8
+Content-Length: 104
+Date: Wed, 17 Aug 2022 00:29:54 GMT
+Server: <redacted>
+
 <XRD xmlns="http://docs.oasis-open.org/ns/xri/xrd-1.0">
   <Link rel="restconf" href="/restconf"/>
 </XRD>
 ```
 
-and also from another docker
+Fetching the RESTCONF Root Resource
 
 ```text
-$ docker-compose exec agent curl --silent --fail -H Accept:application/yang-data+json http://bootstrap:1080/.well-known/host-meta
-<XRD xmlns="http://docs.oasis-open.org/ns/xri/xrd-1.0">
-  <Link rel="restconf" href="/restconf"/>
-</XRD>
+$ docker-compose run agent curl -i --fail -H Accept:application/yang-data+json http://bootstrap:1080/restconf/
+HTTP/1.1 200 OK
+Content-Type: application/yang-data+json; charset=utf-8
+Content-Length: 137
+Date: Wed, 17 Aug 2022 00:30:32 GMT
+Server: <redacted>
+
+{
+    "ietf-restconf:restconf" : {
+        "data" : {},
+        "operations" : {},
+        "yang-library-version" : "2019-01-04"
+    }
+}
+```
+
+Get the Current (Default) Configuration
+
+```text
+$ docker-compose run agent curl -i -H "Accept:application/yang-data+json" http://bootstrap:1080/restconf/ds/ietf-datastores:running
+HTTP/1.1 200 OK
+Content-Type: application/yang-data+json; charset=utf-8
+Content-Length: 318
+Date: Wed, 17 Aug 2022 00:24:47 GMT
+Server: <redacted>
+
+{
+  "wn-sztpd-1:transport": {
+    "listen": {
+      "endpoint": [
+        {
+          "name": "default startup endpoint",
+          "use-for": "native-interface",
+          "http": {
+            "tcp-server-parameters": {
+              "local-address": "0.0.0.0"
+            }
+          }
+        }
+      ]
+    }
+  }
+}
 ```
 
 ## More sZTP testing with simulator
@@ -42,13 +89,13 @@ $ docker-compose exec agent curl --silent --fail -H Accept:application/yang-data
 See <https://watsen.net/support/sztpd-simulator-0.0.11.tgz>
 
 ```text
-$ docker-compose exec agent bash
+$ docker-compose run agent bash
+root@a204778c50cc:/tmp/sztpd-simulator#
+```
 
-root@a204778c50cc:/tmp/sztpd-simulator# curl --fail -H Accept:application/yang-data+json http://bootstrap:1080/.well-known/host-meta
-<XRD xmlns="http://docs.oasis-open.org/ns/xri/xrd-1.0">
-  <Link rel="restconf" href="/restconf"/>
-</XRD>
+Provision certificates and run agent
 
+```text
 root@a204778c50cc:/tmp/sztpd-simulator# cat pki/sztpd1/sbi/root-ca/my_cert.pem pki/sztpd1/sbi/intermediate1/my_cert.pem  > /tmp/trust_chain.pem
 
 root@a204778c50cc:/tmp/sztpd-simulator# ./rfc8572-agent.sh my-serial-number my-secret pki/client/end-entity/private_key.pem pki/client/end-entity/my_cert.pem bootstrap 1080 /tmp/trust_chain.pem
