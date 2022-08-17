@@ -118,9 +118,8 @@ Creating sztp_agent_run ... done
 Decode payload
 
 ```text
-$ jq -r .\"ietf-sztp-bootstrap-server:output\".\"conveyed-information\" /tmp/post_rpc_input.json | base64 --decode
-0▒9
-   *▒H▒▒+▒▒(▒${
+$ jq -r .\"ietf-sztp-bootstrap-server:output\".\"conveyed-information\" /tmp/post_rpc_input.json | base64 --decode | tail -n +2 | sed  '1i {' | jq . | tee /tmp/post_rpc_fixed.json
+{
   "ietf-sztp-conveyed-info:onboarding-information": {
     "boot-image": {
       "download-uri": [
@@ -166,6 +165,67 @@ Server: <redacted>
     ]
   }
 }
+```
+
+Download the image and scripts
+
+```text
+$ jq -r .\"ietf-sztp-conveyed-info:onboarding-information\".\"configuration\" /tmp/post_rpc_fixed.json | base64 --decode
+<top xmlns="https:/example.com/config">
+  <any-xml-content-okay/>
+</top>
+
+$ jq -r .\"ietf-sztp-conveyed-info:onboarding-information\".\"pre-configuration-script\" /tmp/post_rpc_fixed.json | base64 --decode
+#/bin/bash
+echo "inside the pre-configuration-script..."
+
+$ jq -r .\"ietf-sztp-conveyed-info:onboarding-information\".\"post-configuration-script\" /tmp/post_rpc_fixed.json | base64 --decode
+#/bin/bash
+echo "inside the post-configuration-script..."
+
+$ jq -r .\"ietf-sztp-conveyed-info:onboarding-information\".\"boot-image\".\"download-uri\"[] /tmp/post_rpc_fixed.json
+https://example.com/my-boot-image.img
+
+$ jq -r .\"ietf-sztp-conveyed-info:onboarding-information\".\"boot-image\".\"image-verification\"[] /tmp/post_rpc_fixed.json
+{
+  "hash-algorithm": "ietf-sztp-conveyed-info:sha-256",
+  "hash-value": "7b:ca:e6:ac:23:06:d8:79:06:8c:ac:03:80:e2:16:44:7e:40:6a:65:fa:d4:69:61:6e:05:ce:f5:87:dc:2b:97"
+}
+
+
+$ docker-compose run --rm -T agent curl --fail http://web:8082/var/lib/misc/
+Creating sztp_agent_run ... done
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Directory listing for /var/lib/misc/</title>
+</head>
+<body>
+<h1>Directory listing for /var/lib/misc/</h1>
+<hr>
+<ul>
+<li><a href="my-boot-image.img">my-boot-image.img</a></li>
+</ul>
+<hr>
+</body>
+</html>
+
+$ URL=$(jq -r .\"ietf-sztp-conveyed-info:onboarding-information\".\"boot-image\".\"download-uri\"[] /tmp/post_rpc_fixed.json)
+$ docker-compose run --rm -v /tmp:/tmp agent curl --output /tmp/$(basename ${URL}) --fail ${URL}
+Creating sztp_agent_run ... done
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100 65536  100 65536    0     0  31.2M      0 --:--:-- --:--:-- --:--:-- 31.2M
+
+$ openssl dgst -sha256 -c /tmp/$(basename ${URL})
+SHA256(/tmp/my-boot-image.img)= 7b:ca:e6:ac:23:06:d8:79:06:8c:ac:03:80:e2:16:44:7e:40:6a:65:fa:d4:69:61:6e:05:ce:f5:87:dc:2b:97
+
+# Validate signature
+
+$ SIGNATURE=$(openssl dgst -sha256 -c /tmp/$(basename ${URL}) | awk '{print $2}')
+$ jq -r .\"ietf-sztp-conveyed-info:onboarding-information\".\"boot-image\".\"image-verification\"[] /tmp/post_rpc_fixed.json | grep $SIGNATURE
+  "hash-value": "7b:ca:e6:ac:23:06:d8:79:06:8c:ac:03:80:e2:16:44:7e:40:6a:65:fa:d4:69:61:6e:05:ce:f5:87:dc:2b:97"
 ```
 
 ## More sZTP testing with simulator
@@ -267,10 +327,10 @@ lease {
 docker-compose up --build web
 ```
 
-## Test HTTP from client
+## Test HTTP from agent
 
 ```text
-docker-compose run --rm -T client curl --fail http://web:8082/var/lib/
+docker-compose run --rm -T agent curl --fail http://web:8082/var/lib/
 ```
 
 OR
