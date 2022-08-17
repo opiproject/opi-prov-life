@@ -14,7 +14,7 @@ services:
       SZTPD_INIT_ADDR: 0.0.0.0
     networks:
       - opi
-    command: ['sztpd', 'sqlite:///:memory:']
+    command: sh -e -u -x -c "env & envsubst '$$SZTPD_INIT_PORT,$$SZTPD_SBI_PORT,$$SZTPD_INIT_ADDR' < /tmp/running.json.static > /tmp/running.json && sztpd sqlite:///:memory"
 
   dhcp:
     build:
