@@ -38,6 +38,8 @@ services:
 
   web:
     image: python:3.10.6-slim
+    volumes:
+      - ${PWD}/config/my-boot-image.img:/var/lib/misc/my-boot-image.img:ro
     networks:
       - opi
     command: python3 -m http.server 8082

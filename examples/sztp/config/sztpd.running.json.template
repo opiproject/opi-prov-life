@@ -68,7 +68,7 @@
     "boot-image": [
       {
         "name": "my-boot-image.img",
-        "download-uri": [ "https://example.com/my-boot-image.img" ],
+        "download-uri": [ "http://web:8082/var/lib/misc/my-boot-image.img" ],
         "image-verification": [
           {
             "hash-algorithm": "ietf-sztp-conveyed-info:sha-256",
