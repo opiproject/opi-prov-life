@@ -233,7 +233,7 @@ $ jq -r .\"ietf-sztp-conveyed-info:onboarding-information\".\"boot-image\".\"ima
 See <https://watsen.net/support/sztpd-simulator-0.0.11.tgz>
 
 ```text
-$ docker-compose run --rm -T agent bash
+$ docker-compose run --rm agent bash
 root@a204778c50cc:/tmp/sztpd-simulator#
 ```
 
@@ -242,7 +242,7 @@ Provision certificates and run agent
 ```text
 root@a204778c50cc:/tmp/sztpd-simulator# cat pki/sztpd1/sbi/root-ca/my_cert.pem pki/sztpd1/sbi/intermediate1/my_cert.pem  > /tmp/trust_chain.pem
 
-root@a204778c50cc:/tmp/sztpd-simulator# ./rfc8572-agent.sh my-serial-number my-secret pki/client/end-entity/private_key.pem pki/client/end-entity/my_cert.pem bootstrap 1080 /tmp/trust_chain.pem
+root@a204778c50cc:/tmp/sztpd-simulator# ./rfc8572-agent.sh my-serial-number my-secret pki/client/end-entity/private_key.pem pki/client/end-entity/my_cert.pem bootstrap 9090 /tmp/trust_chain.pem
 WARNING: Package(s) not found: sztpd
   ^-- Getting bootstrapping data...
 failed (incorrect curl exit status code) on line 437.
