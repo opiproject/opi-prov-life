@@ -4,11 +4,16 @@
 
 set -euxo pipefail
 
-# let server start
+# let everything start
 sleep 5
 
-# test dhcp
+# test dhcp server
 docker-compose exec -T dhcp cat /var/lib/dhcpd/dhcpd.leases
+
+# let server respond
+sleep 5
+
+# tests dhcp client
 docker-compose exec -T client cat /var/lib/dhclient/dhclient.leases
 docker-compose exec -T client cat /var/lib/dhclient/dhclient.leases | grep sztp-redirect-urls
 
