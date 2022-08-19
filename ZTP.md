@@ -64,14 +64,11 @@ Secure Zero Touch Provisioning (SZTP) adds a bootstrap server to DHCP-based ZTP 
 
 ## sZTP process
 
-![Chain Loader Provisioning opiton](architecture/Provisioning_TwoStage.png)
-
-Question: how to call it PXE ? iPXE ? HTTPs?
-Use case: large scale deployments (where automation and security are major drivers) ?
-
 ![Provisioning Sequence](architecture/sZTP-sequence.png)
 
 ### Discovery
+
+Note: DHCP is completely *untrusted* in this flow, we are not going to secure that, it is just used to point to the Bootstrap server URL.
 
 - Device is powered on
   - Question: how? BMC ? Always on?
