@@ -7,6 +7,11 @@ set -euxo pipefail
 # let server start
 sleep 5
 
+# test dhcp
+docker-compose exec -T dhcp cat /var/lib/dhcpd/dhcpd.leases
+docker-compose exec -T client cat /var/lib/dhclient/dhclient.leases
+docker-compose exec -T client cat /var/lib/dhclient/dhclient.leases | grep sztp-redirect-urls
+
 # send server configuration
 docker-compose exec -T bootstrap curl -i -X PUT --user my-admin@example.com:my-secret --data @/tmp/running.json -H "Content-Type:application/yang-data+json" http:/bootstrap:1080/restconf/ds/ietf-datastores:running
 
