@@ -45,8 +45,8 @@ docker-compose run --rm -T agent curl --fail http://web:8082/var/lib/misc/
 
 # actually go and download the image from the web server
 URL=$(jq -r .\"ietf-sztp-conveyed-info:onboarding-information\".\"boot-image\".\"download-uri\"[] /tmp/post_rpc_fixed.json)
-docker-compose run --rm -v /tmp:/tmp agent curl --output /tmp/$(basename ${URL}) --fail ${URL}
+docker-compose run --rm -v /tmp:/tmp agent curl --output /tmp/"$(basename "${URL}")" --fail "${URL}"
 
 # Validate signature
-SIGNATURE=$(openssl dgst -sha256 -c /tmp/$(basename ${URL}) | awk '{print $2}')
-jq -r .\"ietf-sztp-conveyed-info:onboarding-information\".\"boot-image\".\"image-verification\"[] /tmp/post_rpc_fixed.json | grep $SIGNATURE
+SIGNATURE=$(openssl dgst -sha256 -c /tmp/"$(basename "${URL}")" | awk '{print $2}')
+jq -r .\"ietf-sztp-conveyed-info:onboarding-information\".\"boot-image\".\"image-verification\"[] /tmp/post_rpc_fixed.json | grep "${SIGNATURE}"
