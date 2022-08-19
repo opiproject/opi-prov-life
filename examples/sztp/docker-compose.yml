@@ -5,7 +5,7 @@ services:
   bootstrap:
     build:
       context: .
-      dockerfile: Dockerfile.sztp
+      dockerfile: Dockerfile.bootstrap
     environment:
       SZTPD_INIT_PORT: 1080
       SZTPD_SBI_PORT: 9090

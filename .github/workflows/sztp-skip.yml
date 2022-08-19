@@ -18,6 +18,19 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+
+  sztp-push:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        package:
+          - agent
+          - client
+          - dhcp
+          - bootstrap
+    steps:
+      - run: 'echo "No SZTP test run required"'
+
   sztp-ci:
     runs-on: ubuntu-latest
     steps:
