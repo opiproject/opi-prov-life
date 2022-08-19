@@ -105,12 +105,22 @@ docker-compose exec bootstrap curl -i --user my-admin@example.com:my-secret -H "
 Get onboarding info (from device perspective)
 
 ```text
+$ jq . config/input.json
+{
+  "ietf-sztp-bootstrap-server:input": {
+    "hw-model": "model-x",
+    "os-name": "vendor-os",
+    "os-version": "17.3R2.1",
+    "nonce": "BASE64VALUE="
+  }
+}
+
 $ docker-compose run --rm -T agent curl --silent X POST --data @/tmp/input.json -H "Content-Type:application/yang-data+json" --user my-serial-number:my-secret http://bootstrap:9090/restconf/operations/ietf-sztp-bootstrap-server:get-bootstrapping-data | tee /tmp/post_rpc_input.json
 
 Creating sztp_agent_run ... done
 {
   "ietf-sztp-bootstrap-server:output": {
-    "conveyed-information": "MIIDOQYLKoZIhvcNAQkQASugggMoBIIDJHsKICAiaWV0Zi1zenRwLWNvbnZleWVkLWluZm86b25ib2FyZGluZy1pbmZvcm1hdGlvbiI6IHsKICAgICJib290LWltYWdlIjogewogICAgICAiZG93bmxvYWQtdXJpIjogWwogICAgICAgICJodHRwczovL2V4YW1wbGUuY29tL215LWJvb3QtaW1hZ2UuaW1nIgogICAgICBdLAogICAgICAiaW1hZ2UtdmVyaWZpY2F0aW9uIjogWwogICAgICAgIHsKICAgICAgICAgICJoYXNoLWFsZ29yaXRobSI6ICJpZXRmLXN6dHAtY29udmV5ZWQtaW5mbzpzaGEtMjU2IiwKICAgICAgICAgICJoYXNoLXZhbHVlIjogIjdiOmNhOmU2OmFjOjIzOjA2OmQ4Ojc5OjA2OjhjOmFjOjAzOjgwOmUyOjE2OjQ0OjdlOjQwOjZhOjY1OmZhOmQ0OjY5OjYxOjZlOjA1OmNlOmY1Ojg3OmRjOjJiOjk3IgogICAgICAgIH0KICAgICAgXQogICAgfSwKICAgICJwcmUtY29uZmlndXJhdGlvbi1zY3JpcHQiOiAiSXk5aWFXNHZZbUZ6YUFwbFkyaHZJQ0pwYm5OcFpHVWdkR2hsSUhCeVpTMWpiMjVtYVdkMWNtRjBhVzl1TFhOamNtbHdkQzR1TGlJSyIsCiAgICAiY29uZmlndXJhdGlvbi1oYW5kbGluZyI6ICJtZXJnZSIsCiAgICAiY29uZmlndXJhdGlvbiI6ICJQSFJ2Y0NCNGJXeHVjejBpYUhSMGNITTZMMlY0WVcxd2JHVXVZMjl0TDJOdmJtWnBaeUkrQ2lBZ1BHRnVlUzE0Yld3dFkyOXVkR1Z1ZEMxdmEyRjVMejRLUEM5MGIzQStDZz09IiwKICAgICJwb3N0LWNvbmZpZ3VyYXRpb24tc2NyaXB0IjogIkl5OWlhVzR2WW1GemFBcGxZMmh2SUNKcGJuTnBaR1VnZEdobElIQnZjM1F0WTI5dVptbG5kWEpoZEdsdmJpMXpZM0pwY0hRdUxpNGlDZz09IgogIH0KfQ=="
+    "conveyed-information": "MIIDRgYLKoZIhvcNAQkQASugggM1BIIDMXsKICAiaWV0Zi1zenRwLWNvbnZleWVkLWluZm86b25ib2FyZGluZy1pbmZvcm1hdGlvbiI6IHsKICAgICJib290LWltYWdlIjogewogICAgICAiZG93bmxvYWQtdXJpIjogWwogICAgICAgICJodHRwOi8vd2ViOjgwODIvdmFyL2xpYi9taXNjL215LWJvb3QtaW1hZ2UuaW1nIgogICAgICBdLAogICAgICAiaW1hZ2UtdmVyaWZpY2F0aW9uIjogWwogICAgICAgIHsKICAgICAgICAgICJoYXNoLWFsZ29yaXRobSI6ICJpZXRmLXN6dHAtY29udmV5ZWQtaW5mbzpzaGEtMjU2IiwKICAgICAgICAgICJoYXNoLXZhbHVlIjogIjdiOmNhOmU2OmFjOjIzOjA2OmQ4Ojc5OjA2OjhjOmFjOjAzOjgwOmUyOjE2OjQ0OjdlOjQwOjZhOjY1OmZhOmQ0OjY5OjYxOjZlOjA1OmNlOmY1Ojg3OmRjOjJiOjk3IgogICAgICAgIH0KICAgICAgXQogICAgfSwKICAgICJwcmUtY29uZmlndXJhdGlvbi1zY3JpcHQiOiAiSXlFdlltbHVMMkpoYzJnS1pXTm9ieUFpYVc1emFXUmxJSFJvWlNCd2NtVXRZMjl1Wm1sbmRYSmhkR2x2YmkxelkzSnBjSFF1TGk0aUNnPT0iLAogICAgImNvbmZpZ3VyYXRpb24taGFuZGxpbmciOiAibWVyZ2UiLAogICAgImNvbmZpZ3VyYXRpb24iOiAiUEhSdmNDQjRiV3h1Y3owaWFIUjBjSE02TDJWNFlXMXdiR1V1WTI5dEwyTnZibVpwWnlJK0NpQWdQR0Z1ZVMxNGJXd3RZMjl1ZEdWdWRDMXZhMkY1THo0S1BDOTBiM0ErQ2c9PSIsCiAgICAicG9zdC1jb25maWd1cmF0aW9uLXNjcmlwdCI6ICJJeUV2WW1sdUwySmhjMmdLWldOb2J5QWlhVzV6YVdSbElIUm9aU0J3YjNOMExXTnZibVpwWjNWeVlYUnBiMjR0YzJOeWFYQjBMaTR1SWdvPSIKICB9Cn0="
   }
 }
 ```
@@ -123,7 +133,7 @@ $ jq -r .\"ietf-sztp-bootstrap-server:output\".\"conveyed-information\" /tmp/pos
   "ietf-sztp-conveyed-info:onboarding-information": {
     "boot-image": {
       "download-uri": [
-        "https://example.com/my-boot-image.img"
+        "http://web:8082/var/lib/misc/my-boot-image.img"
       ],
       "image-verification": [
         {
@@ -132,10 +142,10 @@ $ jq -r .\"ietf-sztp-bootstrap-server:output\".\"conveyed-information\" /tmp/pos
         }
       ]
     },
-    "pre-configuration-script": "Iy9iaW4vYmFzaAplY2hvICJpbnNpZGUgdGhlIHByZS1jb25maWd1cmF0aW9uLXNjcmlwdC4uLiIK",
+    "pre-configuration-script": "IyEvYmluL2Jhc2gKZWNobyAiaW5zaWRlIHRoZSBwcmUtY29uZmlndXJhdGlvbi1zY3JpcHQuLi4iCg==",
     "configuration-handling": "merge",
     "configuration": "PHRvcCB4bWxucz0iaHR0cHM6L2V4YW1wbGUuY29tL2NvbmZpZyI+CiAgPGFueS14bWwtY29udGVudC1va2F5Lz4KPC90b3A+Cg==",
-    "post-configuration-script": "Iy9iaW4vYmFzaAplY2hvICJpbnNpZGUgdGhlIHBvc3QtY29uZmlndXJhdGlvbi1zY3JpcHQuLi4iCg=="
+    "post-configuration-script": "IyEvYmluL2Jhc2gKZWNobyAiaW5zaWRlIHRoZSBwb3N0LWNvbmZpZ3VyYXRpb24tc2NyaXB0Li4uIgo="
   }
 }
 ```
@@ -176,40 +186,21 @@ $ jq -r .\"ietf-sztp-conveyed-info:onboarding-information\".\"configuration\" /t
 </top>
 
 $ jq -r .\"ietf-sztp-conveyed-info:onboarding-information\".\"pre-configuration-script\" /tmp/post_rpc_fixed.json | base64 --decode
-#/bin/bash
+#!/bin/bash
 echo "inside the pre-configuration-script..."
 
 $ jq -r .\"ietf-sztp-conveyed-info:onboarding-information\".\"post-configuration-script\" /tmp/post_rpc_fixed.json | base64 --decode
-#/bin/bash
+#!/bin/bash
 echo "inside the post-configuration-script..."
 
 $ jq -r .\"ietf-sztp-conveyed-info:onboarding-information\".\"boot-image\".\"download-uri\"[] /tmp/post_rpc_fixed.json
-https://example.com/my-boot-image.img
+http://web:8082/var/lib/misc/my-boot-image.img
 
 $ jq -r .\"ietf-sztp-conveyed-info:onboarding-information\".\"boot-image\".\"image-verification\"[] /tmp/post_rpc_fixed.json
 {
   "hash-algorithm": "ietf-sztp-conveyed-info:sha-256",
   "hash-value": "7b:ca:e6:ac:23:06:d8:79:06:8c:ac:03:80:e2:16:44:7e:40:6a:65:fa:d4:69:61:6e:05:ce:f5:87:dc:2b:97"
 }
-
-
-$ docker-compose run --rm -T agent curl --fail http://web:8082/var/lib/misc/
-Creating sztp_agent_run ... done
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Directory listing for /var/lib/misc/</title>
-</head>
-<body>
-<h1>Directory listing for /var/lib/misc/</h1>
-<hr>
-<ul>
-<li><a href="my-boot-image.img">my-boot-image.img</a></li>
-</ul>
-<hr>
-</body>
-</html>
 
 $ URL=$(jq -r .\"ietf-sztp-conveyed-info:onboarding-information\".\"boot-image\".\"download-uri\"[] /tmp/post_rpc_fixed.json)
 $ docker-compose run --rm -v /tmp:/tmp agent curl --output /tmp/$(basename ${URL}) --fail ${URL}
