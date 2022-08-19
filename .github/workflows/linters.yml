@@ -28,3 +28,9 @@ jobs:
         with:
           recursive: true
           ignore: DL3041
+
+  shellcheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: azohra/shell-linter@v0.6.0
