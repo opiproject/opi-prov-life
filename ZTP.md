@@ -16,6 +16,33 @@ see <https://www.rfc-editor.org/rfc/pdfrfc/rfc8572.txt.pdf>
 
 Secure Zero Touch Provisioning (SZTP) adds a bootstrap server to DHCP-based ZTP deployment scenarios and uses two-way authentication and data encryption to secure ZTP data.
 
+## Security Considerations for ZTP
+
+- DPU/IPU Validation
+  - Network (bootstrap server) must validate DPU/IPU certificates before offering it any artifacts
+  - This prevents rougue unauthorized devices connecting to the network
+- Network Validation
+  - DPU/IPU must validate Network (bootstrap server) that offers artifacts
+  - This prevents wrong devices shipped to wrong customers or stolen devices
+- Artifacts Validation
+  - Every artifact, downloaded during the sZTP process, must be validated for authenticity
+
+## Auxiliary RFCs
+
+- The main RFC we following here is ["Secure Zero Touch Provisioning (SZTP)"](https://www.rfc-editor.org/rfc/pdfrfc/rfc8572.txt.pdf)
+- The first part of security considerations, "DPU/IPU Validation" is done using [IEEE 802.1AR - Secure Device Identity](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=8423794)
+  - An Initial Device Identifier (IDevID) is burned during manufactoring process by DPU/IPU Manufacturer/Supplier in the protected immutable area
+  - IDevID usually includes PID and Device Serial Number
+  - Locally Significant Device Identifiers (LDevIDs) are created during the device onboarding by the DPU/IPU Owner
+  - IDevID is offered to the Bootstrap server during onboarding, then Bootstrap server challanges the IDevID to prove device identity
+  - See more details below
+- The second part of security considerations, "Network Validation" is done using [A Voucher Artifact for Bootstrapping Protocols](https://www.rfc-editor.org/rfc/pdfrfc/rfc8366.txt.pdf)
+  - This process helps establishing ownership of the device
+  - Device shipped from manufactoring but now "owned" by the customer
+  - Customers will add it's "owner" certificate to the protected immutable area to accomplish that ownership transfer
+  - Ownership Voucher will be signed by Vendor (Manufacturer) that will allow device to verify and accept OV and burn it
+  - RFC 8366 explain all this in more details
+
 ## Components of ZTP deployment
 
 ![sZTP components](architecture/sZTP-components.png)
