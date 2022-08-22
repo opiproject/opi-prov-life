@@ -86,6 +86,8 @@ Those steps will also help to understand the sZTP process from the network/syste
 
 Note: DHCP is completely *untrusted* in this flow, we are not going to secure that, it is just used to point to the Bootstrap server URL.
 
+Note: DHCP is *not* the only option for discovery. mDNS, SLAAC and others can also be supported as part of sZTP by some devices.
+
 - Device is powered on
   - Question: how? BMC ? Always on?
 - Device runs DHCP client to send a DHCP request packet to the DHCP server.
@@ -132,6 +134,8 @@ The following are the DHCPv6 options are used Network Boot and Secure ZTP
 
 ### Network trusts xPU
 
+Note: "DPU/IPU Validation" is done using [IEEE 802.1AR - Secure Device Identity](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=8423794)
+
 - Device establishes an HTTPS connection with the "Bootstrap Server"
   - Question: using what certificates?
   - Question: what about QUIC?
@@ -146,6 +150,8 @@ The following are the DHCPv6 options are used Network Boot and Secure ZTP
   - Verifies IDevID and accepts Device to the network
 
 ### xPU trusts network
+
+Note: "Network Validation" is done using [A Voucher Artifact for Bootstrapping Protocols](https://www.rfc-editor.org/rfc/pdfrfc/rfc8366.txt.pdf)
 
 - Device has to decide to trust/join the network now
   - Device asks "Bootstrap Server" to give a Voucher
