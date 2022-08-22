@@ -300,7 +300,7 @@ lease {
   fixed-address 10.127.127.100;
   filename "grubx64.efi";
   option subnet-mask 255.255.255.0;
-  option sztp-redirect-urls "http://192.0.2.1/demo.sh";
+  option sztp-redirect-urls "http://bootstrap:9090/restconf/operations/ietf-sztp-bootstrap-server:get-bootstrapping-data";
   option dhcp-lease-time 600;
   option tftp-server-name "w.x.y.z";
   option bootfile-name "test.cfg";
