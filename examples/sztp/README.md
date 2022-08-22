@@ -133,7 +133,8 @@ $ jq -r .\"ietf-sztp-bootstrap-server:output\".\"conveyed-information\" /tmp/pos
   "ietf-sztp-conveyed-info:onboarding-information": {
     "boot-image": {
       "download-uri": [
-        "http://web:8082/var/lib/misc/my-boot-image.img"
+        "http://web:8082/var/lib/misc/my-boot-image.img",
+        "ftp://web:3082/var/lib/misc/my-boot-image.img"
       ],
       "image-verification": [
         {
