@@ -60,7 +60,23 @@ Secure Zero Touch Provisioning (SZTP) adds a bootstrap server to DHCP-based ZTP 
 - Both IPv4 and IPv6 DHCP discovery and ZTP provisioning should be supported.
 - For environments that are predominately IPv6 based, we'll need a solution that supports SLAAC.
 - ZTP process and results, both success and failures, must be logged.
+- DHCP is untrusted, only used to point to Bootstrap server.
+- Device must trust network and network must trust device.
+- Need image authenticity in addition to onboarding-info authenticity.
 - TBD
+
+## Configuring Bootstrap server for Secure ZTP (SZTP)
+
+Those steps will also help to understand the sZTP process from the network/system *admin* perspective.
+
+- Install and start Bootstrap server (assuming DHCP and HTTP are already upo and running)
+- Upload IDevID certificate (*TBD: explain more*)
+- Upload "Owner Certificate" (*TBD: explain more*)
+- Upload device configuration files (config, pre-config, post-config)
+- Upload device software images
+- Add device Serial Number and "Ownership Voucher"
+- Create a profile AKA "conveyed-information" comnbining all the above (device configuration files and software images)
+- Add device entry on DHCP server (option 143 - sztp-redirect)
 
 ## sZTP process
 
