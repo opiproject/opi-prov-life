@@ -111,6 +111,7 @@ $ jq . config/input.json
     "hw-model": "model-x",
     "os-name": "vendor-os",
     "os-version": "17.3R2.1",
+    "signed-data-preferred": [null],
     "nonce": "BASE64VALUE="
   }
 }
