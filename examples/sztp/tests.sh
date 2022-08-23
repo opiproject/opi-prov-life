@@ -4,6 +4,9 @@
 
 set -euxo pipefail
 
+# docker compose plugin
+command -v docker-compose || { shopt -s expand_aliases && alias docker-compose='docker compose'; }
+
 # let everything start
 sleep 5
 
