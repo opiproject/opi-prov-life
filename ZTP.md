@@ -88,6 +88,8 @@ Note: DHCP is completely *untrusted* in this flow, we are not going to secure th
 
 Note: DHCP is *not* the only option for discovery. mDNS, SLAAC and others can also be supported as part of sZTP by some devices.
 
+Note: When sZTP is enabled, other DHCP options (except defined in the RFC, code 136,143) are *ignored*.
+
 - Device is powered on
   - Question: how? BMC ? Always on?
 - Device runs DHCP client to send a DHCP request packet to the DHCP server.
@@ -108,6 +110,8 @@ Should there be a ztp setting that automatically goes back into ZTP mode if the 
 #### DHCP Options
 
 The following are the DHCPv4 options used for Network Boot and Secure ZTP
+
+Note: When sZTP is enabled, other DHCP options (except defined in the RFC, code 136,143) are *ignored*.
 
 |   DHCP Option | Name                 | Description                                                                                                                |
 | :-----------: | :------------------- | :-------------------------------------------------                                                                         |
