@@ -78,6 +78,15 @@ Those steps will also help to understand the sZTP process from the network/syste
 - Create a profile AKA "conveyed-information" comnbining all the above (device configuration files and software images)
 - Add device entry on DHCP server (option 143 - sztp-redirect)
 
+## Device bootsraping before sZTP
+
+- OPI is *not* mandating any specific method to bring the inital image on the DPU and IPU devices
+- There are several options that can be utilized, as an example, to help define the scope:
+  - Pre-installed image from the factory with sZTP agent present (can be old)
+  - Network boot methods (for example HTTPs from UEFI) for the volatile image with sZTP agent present
+- sZTP agent will always start running on device boot
+- In case sZTP process is disabled or already happened, sZTP agent will exit
+
 ## sZTP process
 
 ![Provisioning Sequence](architecture/sZTP-sequence.png)
