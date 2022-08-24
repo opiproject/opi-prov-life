@@ -7,4 +7,7 @@ RUN curl -kL https://watsen.net/support/sztpd-simulator-0.0.11.tgz | tar -zxvf -
 WORKDIR /tmp/sztpd-simulator/pki
 RUN make pki
 
+# create trust chain
+RUN cat sztpd1/sbi/root-ca/my_cert.pem sztpd1/sbi/intermediate1/my_cert.pem > /opi.pem
+
 CMD ['/bin/sh', '-c', 'sleep infinity']
