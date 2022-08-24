@@ -9,6 +9,10 @@ RUN curl -kL https://watsen.net/support/sztpd-simulator-0.0.11.tgz | tar -zxvf -
 WORKDIR /tmp/sztpd-simulator/pki
 RUN make pki
 
+# client cert (DevID) trust anchor
+RUN cat client/root-ca/my_cert.pem client/intermediate1/my_cert.pem client/intermediate2/my_cert.pem > /tmp/ta_cert_chain.pem
+RUN openssl crl2pkcs7 -nocrl -certfile /tmp/ta_cert_chain.pem -outform DER -out /tmp/ta_cert_chain.cms
+
 # configurations, images, templates
 COPY config/ /tmp/
 
@@ -18,6 +22,7 @@ RUN \
     PRE_SCRIPT_B64=`openssl enc -base64 -A -in /tmp/my-pre-configuration-script.sh` \
     POST_SCRIPT_B64=`openssl enc -base64 -A -in /tmp/my-post-configuration-script.sh` \
     CONFIG_B64=`openssl enc -base64 -A -in /tmp/my-configuration.xml` \
-    envsubst '$BOOT_IMG_HASH_VAL,$PRE_SCRIPT_B64,$POST_SCRIPT_B64,$CONFIG_B64' < /tmp/sztpd.running.json.template > /tmp/running.json.static
+    CLIENT_CERT_TA_B64=`openssl enc -base64 -A -in /tmp/ta_cert_chain.cms` \
+    envsubst '$BOOT_IMG_HASH_VAL,$PRE_SCRIPT_B64,$POST_SCRIPT_B64,$CONFIG_B64,$CLIENT_CERT_TA_B64' < /tmp/sztpd.running.json.template > /tmp/running.json.static
 
 CMD ["sztpd", "sqlite:///:memory:"]
