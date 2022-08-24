@@ -15,11 +15,28 @@
         {
           "name": "rfc8572-interface",
           "use-for": "rfc8572-interface",
-          "http": {
+          "https": {
             "tcp-server-parameters": {
               "local-address": "$SZTPD_INIT_ADDR",
               "local-port": $SZTPD_SBI_PORT
-            }
+            },
+            "tls-server-parameters": {
+              "server-identity": {
+                "certificate": {
+                  "reference": {
+                    "asymmetric-key": "sbi-server-end-entity-key",
+                    "certificate": "sbi-server-end-entity-cert"
+                  }
+                }
+              },
+              "client-authentication": {
+                "ca-certs": {
+                  "local-truststore-reference": "my-device-identity-ca-certs"
+                }
+              }
+            },
+            "http-server-parameters": {},
+            "restconf-server-parameters": {}
           }
         }
       ]
@@ -33,6 +50,27 @@
         "access": "unrestricted"
       }
     ]
+  },
+  "wn-sztpd-1:keystore": {
+    "asymmetric-keys": {
+      "asymmetric-key": [
+        {
+          "name": "sbi-server-end-entity-key",
+          "public-key-format": "ietf-crypto-types:subject-public-key-info-format",
+          "public-key": "$SBI_PUB_KEY_B64",
+          "private-key-format": "ietf-crypto-types:ec-private-key-format",
+          "cleartext-private-key": "$SBI_PRI_KEY_B64",
+          "certificates": {
+            "certificate": [
+              {
+                "name": "sbi-server-end-entity-cert",
+                "cert-data": "$SBI_EE_CERT_B64"
+              }
+            ]
+          }
+        }
+      ]
+    }
   },
   "wn-sztpd-1:truststore": {
     "certificate-bags": {
