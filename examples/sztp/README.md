@@ -86,16 +86,6 @@ Server: <redacted>
 
 ## Device Getting Onboarding Information
 
-Send the configuration file to SZTPD
-
-```text
-$ docker-compose exec bootstrap curl -i -X PUT --user my-admin@example.com:my-secret --data @/tmp/running.json -H "Content-Type:application/yang-data+json" http:/bootstrap:1080/restconf/ds/ietf-datastores:running
-
-HTTP/1.1 204 No Content
-Date: Wed, 17 Aug 2022 19:15:57 GMT
-Server: <redacted>
-```
-
 Read the configuration back and validate it is correct:
 
 ```text
@@ -105,7 +95,7 @@ docker-compose exec bootstrap curl -i --user my-admin@example.com:my-secret -H "
 Get onboarding info (from device perspective)
 
 ```text
-$ docker-compose run --rm -T agent curl --silent X POST --data @/tmp/input.json -H "Content-Type:application/yang-data+json" --user my-serial-number:my-secret http://bootstrap:9090/restconf/operations/ietf-sztp-bootstrap-server:get-bootstrapping-data | tee /tmp/post_rpc_input.json
+$ docker-compose run --rm -T agent curl -X POST --data @/tmp/input.json -H "Content-Type:application/yang-data+json" --user my-serial-number:my-secret http://bootstrap:9090/restconf/operations/ietf-sztp-bootstrap-server:get-bootstrapping-data | tee /tmp/post_rpc_input.json
 
 Creating sztp_agent_run ... done
 {
