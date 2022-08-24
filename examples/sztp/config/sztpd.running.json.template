@@ -34,10 +34,35 @@
       }
     ]
   },
+  "wn-sztpd-1:truststore": {
+    "certificate-bags": {
+      "certificate-bag": [
+        {
+          "name": "my-device-identity-ca-certs",
+          "description": "A set of TA certs that can be used to authenticate device client certs.",
+          "certificate": [
+            {
+              "name": "my-device-identity-ca-cert-circa-2020",
+              "cert-data": "$CLIENT_CERT_TA_B64"
+            }
+          ]
+        }
+      ]
+    }
+  },
   "wn-sztpd-1:device-types": {
     "device-type": [
       {
-        "name": "my-device-type"
+        "name": "my-device-type",
+        "identity-certificates": {
+          "verification": {
+            "local-truststore-reference": {
+              "certificate-bag": "my-device-identity-ca-certs",
+              "certificate": "my-device-identity-ca-cert-circa-2020"
+            }
+          },
+          "serial-number-extraction": "wn-x509-c2n:serial-number"
+        }
       }
     ]
   },
