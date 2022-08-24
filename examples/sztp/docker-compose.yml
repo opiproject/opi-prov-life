@@ -60,6 +60,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.agent
+    volumes:
+      - ${PWD}/config/input.json:/tmp/input.json:ro
     networks:
       - opi
     command: ['/bin/sh', '-c', 'sleep infinity']

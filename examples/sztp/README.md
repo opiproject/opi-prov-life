@@ -105,17 +105,6 @@ docker-compose exec bootstrap curl -i --user my-admin@example.com:my-secret -H "
 Get onboarding info (from device perspective)
 
 ```text
-$ jq . config/input.json
-{
-  "ietf-sztp-bootstrap-server:input": {
-    "hw-model": "model-x",
-    "os-name": "vendor-os",
-    "os-version": "17.3R2.1",
-    "signed-data-preferred": [null],
-    "nonce": "BASE64VALUE="
-  }
-}
-
 $ docker-compose run --rm -T agent curl --silent X POST --data @/tmp/input.json -H "Content-Type:application/yang-data+json" --user my-serial-number:my-secret http://bootstrap:9090/restconf/operations/ietf-sztp-bootstrap-server:get-bootstrapping-data | tee /tmp/post_rpc_input.json
 
 Creating sztp_agent_run ... done
@@ -173,6 +162,54 @@ Server: <redacted>
         "method": "POST",
         "path": "/restconf/operations/ietf-sztp-bootstrap-server:get-bootstrapping-data",
         "outcome": "success"
+      }
+    ]
+  }
+}
+```
+
+View the Bootstrapping Log
+
+```text
+$ docker-compose exec bootstrap curl -i -X GET --user my-admin@example.com:my-secret  -H "Accept:application/yang-data+json" http://bootstrap:1080/restconf/ds/ietf-datastores:operational/wn-sztpd-1:devices/device=my-serial-number/bootstrapping-log
+HTTP/1.1 200 OK
+Content-Type: application/yang-data+json; charset=utf-8
+Content-Length: 1034
+Date: Wed, 24 Aug 2022 18:48:48 GMT
+Server: <redacted>
+
+{
+  "wn-sztpd-1:bootstrapping-log": {
+    "log-entry": [
+      {
+        "timestamp": "2022-08-24T18:47:54Z",
+        "source-ip": "10.127.127.3",
+        "method": "POST",
+        "path": "/restconf/operations/ietf-sztp-bootstrap-server:get-bootstrapping-data",
+        "return-code": 200,
+        "event-details": {
+          "get-bootstrapping-data-event": {
+            "passed-input": {
+              "hw-model": "model-x",
+              "os-name": "vendor-os",
+              "os-version": "17.3R2.1",
+              "signed-data-preferred": [
+                null
+              ],
+              "nonce": "BASE64VALUE="
+            },
+            "selected-response": "catch-all-response",
+            "response-details": {
+              "managed-response": {
+                "conveyed-information": {
+                  "onboarding-information": {
+                    "referenced-definition": "my-onboarding-information"
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     ]
   }
