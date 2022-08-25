@@ -7,6 +7,7 @@ RUN apt-get update && apt-get install -y gettext && rm -rf /var/lib/apt/lists/*
 # certificates
 RUN curl -kL https://watsen.net/support/sztpd-simulator-0.0.11.tgz | tar -zxvf - -C /tmp/
 WORKDIR /tmp/sztpd-simulator/pki
+RUN sed -i 's/localhost/bootstrap/g' sztpd1/sbi/end-entity/openssl.cnf
 RUN make pki
 
 # SBI Port certificates
@@ -16,6 +17,9 @@ RUN openssl crl2pkcs7 -nocrl -certfile /tmp/cert_chain.pem -outform DER -out /tm
 # client cert (DevID) trust anchor
 RUN cat client/root-ca/my_cert.pem client/intermediate1/my_cert.pem client/intermediate2/my_cert.pem > /tmp/ta_cert_chain.pem
 RUN openssl crl2pkcs7 -nocrl -certfile /tmp/ta_cert_chain.pem -outform DER -out /tmp/ta_cert_chain.cms
+
+# TODO: remove this line and run test from agent container instead
+RUN cat sztpd1/sbi/root-ca/my_cert.pem sztpd1/sbi/intermediate1/my_cert.pem > /opi.pem
 
 # configurations, images, templates
 COPY config/ /tmp/
