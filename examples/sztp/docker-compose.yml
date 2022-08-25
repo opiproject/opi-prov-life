@@ -35,6 +35,9 @@ services:
       NODE_IP_RANGE_MIN: 10.127.127.100
       NODE_IP_RANGE_MAX: 10.127.127.253
       NODE_IP_ADDRESS: 10.127.127.3
+    cap_add:
+      - CAP_NET_BIND_SERVICE
+      - CAP_NET_RAW
     networks:
       - opi
     command: sh -e -u -x -c 'envsubst < /etc/dhcp/dhcpd.conf.template > /etc/dhcp/dhcpd.conf && dhcpd -d'
@@ -58,6 +61,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.client
+    cap_add:
+      - CAP_NET_RAW
     networks:
       - opi
     command: dhclient -d -v
