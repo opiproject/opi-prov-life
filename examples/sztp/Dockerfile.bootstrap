@@ -6,7 +6,8 @@ RUN apt-get update && apt-get install -y gettext && rm -rf /var/lib/apt/lists/*
 
 # certificates
 RUN curl -kL https://watsen.net/support/sztpd-simulator-0.0.11.tgz | tar -zxvf - -C /tmp/
-RUN cd /tmp/sztpd-simulator/pki && make pki
+WORKDIR /tmp/sztpd-simulator/pki
+RUN make pki
 
 # configurations, images, templates
 COPY config/ /tmp/
