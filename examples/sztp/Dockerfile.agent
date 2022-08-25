@@ -2,9 +2,10 @@ FROM docker.io/library/python:3.10.6
 
 RUN apt update && apt install -y libyang-tools libxml2-utils
 
-# FIXME: why ADD is not working here?
+# certificates
 RUN curl -kL https://watsen.net/support/sztpd-simulator-0.0.11.tgz | tar -zxvf - -C /tmp/
 WORKDIR /tmp/sztpd-simulator/pki
+RUN sed -i 's/localhost/bootstrap/g' sztpd1/sbi/end-entity/openssl.cnf
 RUN make pki
 
 # create trust chain
