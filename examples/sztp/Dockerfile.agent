@@ -1,6 +1,6 @@
-FROM docker.io/library/python:3.10.6
+FROM docker.io/library/python:3.10.6-slim
 
-RUN apt update && apt install -y libyang-tools libxml2-utils
+RUN apt update && apt install -y libyang-tools libxml2-utils make curl && rm -rf /var/lib/apt/lists/*
 
 # certificates
 RUN curl -kL https://watsen.net/support/sztpd-simulator-0.0.11.tgz | tar -zxvf - -C /tmp/

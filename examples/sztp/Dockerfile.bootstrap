@@ -1,8 +1,7 @@
-FROM docker.io/library/python:3.10.6
-RUN pip install --no-cache-dir sztpd==0.0.11
+FROM docker.io/library/python:3.10.6-slim
 
-# need gettext for envsubst command
-RUN apt-get update && apt-get install -y gettext && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y gettext libsqlite3-dev make curl && rm -rf /var/lib/apt/lists/*
+RUN pip install --no-cache-dir sztpd==0.0.11
 
 # certificates
 RUN curl -kL https://watsen.net/support/sztpd-simulator-0.0.11.tgz | tar -zxvf - -C /tmp/
