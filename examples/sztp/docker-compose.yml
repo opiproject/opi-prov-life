@@ -51,7 +51,7 @@ services:
   web:
     image: python:3.10.6-slim
     volumes:
-      - ${PWD}/config/my-boot-image.img:/var/lib/misc/my-boot-image.img:ro
+      - ./config/my-boot-image.img:/var/lib/misc/my-boot-image.img:Z,ro
     networks:
       - opi
     command: python3 -m http.server 8082
@@ -73,7 +73,7 @@ services:
       context: .
       dockerfile: Dockerfile.agent
     volumes:
-      - ${PWD}/config/input.json:/tmp/input.json:ro
+      - ./config/input.json:/tmp/input.json:Z,ro
     networks:
       - opi
     command: ['/bin/sh', '-c', 'sleep infinity']
