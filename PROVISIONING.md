@@ -1,6 +1,6 @@
 # Discovery and Provisioning
 
-## Docs
+## Supportive docs and alternative spec
 
 - please look at <https://github.com/silicom-ltd/uBMC>
 - please look at <https://opencomputeproject.github.io/onie/overview/>
@@ -42,36 +42,36 @@
 
 see [Inventory](INVENTORY.md)
 
-## Re-Provisioning
+## Adopted solution for RFC 8572 Secure Zero Touch
 
-tbd... re-celling, faults...
+See [ZTP](ZTP.md) for diagrams and detailed explanation.
 
-## Manual Provisioning
+See [Demo](https://github.com/opiproject/opi-prov-life/tree/main/examples/sztp) for running example.
 
-Andy: Do we need to cover manual methods in our scope? Many, many methods...
+## Additional provisioning methods out of OPI scope
+
+Some provisioning can be triggered by external actors either manually or automatically.
+
+We call "Automatic Provisioning" a provisioning process that is usually one that is automated by the environment and/or control plane, and doesn't involve a human operator's direct involvement (in e.g. plugging in a USB drive or a laptop via an ethernet/console cable)
+
+For example, [MaaS](https://maas.io) or [Ironic](https://www.openstack.org/use-cases/bare-metal/).
+
+Those are currently out of OPI scope, but here are few examples:
 
 ### RSHIM custom Provisioning
 
 NVIDIA has a manual provisioning process based on a virtual *-over-PCIe device set, called [RSHIM](https://github.com/Mellanox/rshim). RSHIM creates, among other things, a virtual point-to-point ethernet device, and a virtual console device, between host and DPU/IPU. See also [usage](https://docs.nvidia.com/networking/display/BlueFieldDPUOSLatest/Deploying+DPU+OS+Using+BFB+from+Host) of RSHIM.
 Many customers are using this process to deploy their own OS image and initialize system configuration, since they trust the OS running on the x86 host.
 
-## Automatic Provisioning
+### Provisioning via xPU BMC
 
-We call "Automatic Provisioning" a provisioning process that is usually one that is automated by the environment and/or control plane, and doesn't involve a human operator's direct involvement (in e.g. plugging in a USB drive or a laptop via an ethernet/console cable)
+xPU can receive commands via its BMC (using IPMI, RedFish etc.) to change boot order to PXE boot, and then to boot.
 
-### Externally-initiated
-
-Provisioning can be triggered by an external actor, usually via BMC.
-
-#### DPU BMC
-
-DPU can receive commands via its BMC (using IPMI, RedFish etc.) to change boot order to PXE boot, and then to boot.
-
-#### Platform BMC
+### Provisioning via Platform-Server-Host BMC
 
 The interaction from the previous section can also be applied using a trusted network connection between platform BMC and NIC BMC (using [NCSI](https://en.wikipedia.org/wiki/NC-SI)). In this scenario,  the platform BMC is able to interact with the NIC BMC without any involvement of, or placing trust in, an OS running on the host. One could send custom OEM commands over NC-SI to the BMC, or have a RedFish client on DPU receive commands from RedFish server on the platform BMC.
 
-#### USB/Virtual media Provisioning
+### USB/Virtual media Provisioning
 
 Note: This is typically a manual method, enabled by a one-to-one interaction with a BMC.
 
@@ -121,11 +121,3 @@ POST https://<bmc_ip_address>/redfish/v1/Systems/1/Actions/ComputerSystem.Reset
     "ResetType" : "ForceRestart"
 }
 ```
-
-### Passive (ZTP/SZTP)
-
-See [ZTP](ZTP.md)
-
-## TBD
-
-tbd
