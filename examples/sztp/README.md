@@ -1,4 +1,4 @@
-# sZTP and DHCP adn HTTP
+# sZTP and DHCP and HTTP
 
 ## Docs
 
