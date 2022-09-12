@@ -1,4 +1,4 @@
-FROM docker.io/library/python:3.10.6-slim
+FROM docker.io/library/python:3.10.7-slim
 
 RUN apt update && apt install -y libyang-tools libxml2-utils make curl && rm -rf /var/lib/apt/lists/*
 
