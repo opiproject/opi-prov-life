@@ -11,7 +11,7 @@ OPI subgroup dealing with provisioning and lifecycle management.
 * Description & Responsibilities
   * [Discovery & Provisioning](PROVISIONING.md)
   * [Inventory](INVENTORY.md)
-  * Boot sequencing
+  * [Boot sequencing](BOOTSEQ.md)
   * Lifecycle & Updates
   * [Monitoring & Telemetry](MONITORING.md)
 * Leader
