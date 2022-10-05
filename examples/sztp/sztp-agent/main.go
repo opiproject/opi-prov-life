@@ -2,7 +2,7 @@ package main
 
 import (
 	"github.com/TwiN/go-color"
-	"github.com/alknopfler/opi-prov-life/examples/sztp/stpd-agent/cmd"
+	"github.com/alknopfler/opi-prov-life/examples/sztp/sztp-agent/cmd"
 
 	"github.com/spf13/cobra"
 	"log"
@@ -26,6 +26,7 @@ func newCommand() *cobra.Command {
 		},
 	}
 
+	c.AddCommand(cmd.NewDaemonCommand())
 	c.AddCommand(cmd.NewStatusCommand())
 	c.AddCommand(cmd.NewEnableCommand())
 	c.AddCommand(cmd.NewDisableCommand())
