@@ -2,7 +2,6 @@
 
 [![Docker](https://github.com/opiproject/opi-prov-life/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/opiproject/opi-prov-life/actions/workflows/docker-publish.yml)
 [![Linters](https://github.com/opiproject/opi-prov-life/actions/workflows/linters.yml/badge.svg)](https://github.com/opiproject/opi-prov-life/actions/workflows/linters.yml)
-[![sZTP](https://github.com/opiproject/opi-prov-life/actions/workflows/sztp.yml/badge.svg)](https://github.com/opiproject/opi-prov-life/actions/workflows/sztp.yml)
 
 ## Description
 
