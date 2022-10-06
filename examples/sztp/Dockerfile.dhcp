@@ -1,4 +1,0 @@
-FROM docker.io/library/fedora:36
-RUN dnf install -y dhcp-server gettext
-COPY ./dhcpd.conf.template /etc/dhcp/
-CMD ["dhcpd", "-d"]
