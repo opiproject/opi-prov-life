@@ -29,6 +29,15 @@ jobs:
           recursive: true
           ignore: DL3041
 
+  YAMLlint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ibiqlik/action-yamllint@v3
+        with:
+          file_or_dir: examples/telegraf/docker-compose.yml
+          config_data: "{extends: default, rules: {line-length: disable}}"
+
   shellcheck:
     runs-on: ubuntu-latest
     steps:
