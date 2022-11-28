@@ -11,7 +11,7 @@ OPI subgroup dealing with provisioning and lifecycle management.
   * [Discovery & Provisioning](PROVISIONING.md)
   * [Inventory](INVENTORY.md)
   * [Boot sequencing](BOOTSEQ.md)
-  * Lifecycle & Updates
+  * [Lifecycle & Updates](LIFECYCLE.md)
   * [Monitoring & Telemetry](MONITORING.md)
 * Leader
   * [Boris Glimcher](https://github.com/glimchb)
