@@ -71,12 +71,21 @@ System Information
         Family: Octeon 10
 ```
 
-## Remote Inventory
+## Remote Network Inventory
 
 - Redfish
   - what if there is no NIC BMC and no IPU IMC ? Run redfish server on the ARM cores
 - gRPC
   - add new gRPC service and RPC calls for inventory query
+
+## Remote Host/BMC Inventory
+
+Host host/platform BMC access inventory information from the DPU/IPU ?
+
+- NC-SI
+- PLDM
+- VPD
+- other...
 
 ## Leftovers
 
