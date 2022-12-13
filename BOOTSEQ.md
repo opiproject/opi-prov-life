@@ -28,7 +28,7 @@ Entities optionally participating in the boot/reboot/shutdown processes:
 - Should Host OS wait for xPU to finish boot ?
   - For some functions, it must (e.g. NVMe namespace that it needs to boot from)
   - With a pre-provisioned, local host OS present, and for other functions (most notably, networking), the host can continue its boot sequence. Ports should appear down from the host's perspective until the xPU is ready to handle traffic from/to host.
-  - Host OS continues to its boot. xPU needs to either respond to PCIe transactions or respond with retry config cycles(CRS) till it is ready. This automatically holds the Host BIOS
+  - Host OS continues to its boot. xPU needs to either respond to PCIe transactions or respond with retry config cycles(CRS) till it is ready. This automatically holds the Host BIOS. Note that Host BIOS may need to be modified to allow longer CRS response time before timing out.
 - Should xPU OS wait for host to finish boot ?
   - How tightly coupled should host and xPU be during boot phase?
 - who tells Host OS/xPU OS to wait and how ?
