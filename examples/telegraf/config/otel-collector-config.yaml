@@ -5,6 +5,10 @@ receivers:
       grpc:
 
 exporters:
+  prometheus:
+    endpoint: "0.0.0.0:8889"
+    const_labels:
+      label1: value1
 
   logging:
 
@@ -28,4 +32,4 @@ service:
     metrics:
       receivers: [otlp]
       processors: [batch]
-      exporters: [logging]
+      exporters: [logging, prometheus]

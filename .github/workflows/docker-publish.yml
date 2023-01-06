@@ -56,6 +56,12 @@ jobs:
           docker inspect --format='{{json .Name}} - {{json .State.Health.Status}}' $(docker-compose ps -q)
           uniq -c <<< $(docker inspect --format='{{json .State.Health.Status}}' $(docker-compose ps -q)) | grep -q '4 "healthy"' || true
           docker-compose exec -T spdk /usr/local/bin/perf -r 'traddr:127.0.0.1 trtype:TCP adrfam:IPv4 trsvcid:4420' -c 0x1 -q 1 -o 4096 -w randread -t 10 || true
+          echo wait 15s for prometheus to start... && sleep 15s
+          curl --fail http://127.0.0.1:9091/api/v1/query?query=mem_free | grep mem_free
+          curl --fail http://127.0.0.1:9091/api/v1/query?query=cpu_usage_user | grep cpu_usage_user
+          curl --fail http://127.0.0.1:9091/api/v1/query?query=dpu_num_blocks | grep dpu_num_blocks
+          curl --fail http://127.0.0.1:9091/api/v1/query?query=net_bytes_recv | grep net_bytes_recv
+          curl --fail http://127.0.0.1:9091/api/v1/query?query=redfish_thermal_fans_reading_rpm | grep redfish_thermal_fans_reading_rpm
         working-directory: examples/telegraf
 
       - name: Logs
