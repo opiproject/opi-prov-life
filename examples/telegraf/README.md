@@ -124,3 +124,15 @@ docker run --rm --net=host --name=grafana -p 3000:3000 grafana/grafana
 Loging to <http://127.0.0.1:3000/login> using default (admin/admin)
 
 Add new datasource InfluxDB with all the parameters above
+
+## Run Prometheus
+
+Use [docker-compose](docker-compose.yml) or manually
+
+```text
+curl --fail http://127.0.0.1:9091/api/v1/query?query=mem_free | grep mem_free
+curl --fail http://127.0.0.1:9091/api/v1/query?query=cpu_usage_user | grep cpu_usage_user
+curl --fail http://127.0.0.1:9091/api/v1/query?query=dpu_num_blocks | grep dpu_num_blocks
+curl --fail http://127.0.0.1:9091/api/v1/query?query=net_bytes_recv | grep net_bytes_recv
+curl --fail http://127.0.0.1:9091/api/v1/query?query=redfish_thermal_fans_reading_rpm | grep redfish_thermal_fans_reading_rpm
+```

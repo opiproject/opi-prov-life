@@ -114,6 +114,17 @@ services:
     healthcheck:
       test: wget --no-verbose --tries=1 --spider http://localhost:8086/ping || exit 1
 
+  prometheus:
+    image: prom/prometheus:v2.41.0
+    volumes:
+      - ./config/prometheus.yaml:/etc/prometheus/prometheus.yml:z
+    ports:
+      - "9091:9090"
+    networks:
+      - opi
+    healthcheck:
+      test: ["CMD", "wget", "http://localhost:9090"]
+
 volumes:
   influxdb-storage:
 
