@@ -4,8 +4,7 @@ version: "3.7"
 services:
 
   spdk:
-    build:
-      context: .
+    image: ghcr.io/opiproject/opi-storage-spdk:main
     volumes:
       - /dev/hugepages:/dev/hugepages
       - /dev/shm:/dev/shm
