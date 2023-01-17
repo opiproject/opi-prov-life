@@ -71,6 +71,23 @@ System Information
         Family: Octeon 10
 ```
 
+Example from Intel:
+
+```bash
+$ dmidecode -t system
+
+Handle 0x0001, DMI type 1, 27 bytes
+System Information
+        Manufacturer: Intel
+        Product Name: Intel(R) Infrastructure Processing Unit (Intel(R) IPU)
+        Version: A0
+        Serial Number: -------------
+        UUID: 8a95d198-7f46-11e5-bf8b-08002704d48e
+        Wake-up Type: Power Switch
+        SKU Number: -------------
+        Family: -------------
+```
+
 ## Remote Network Inventory
 
 - Redfish
