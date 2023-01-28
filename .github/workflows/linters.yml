@@ -22,7 +22,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: ibiqlik/action-yamllint@v3
         with:
-          file_or_dir: examples/telegraf/docker-compose.yml
+          file_or_dir: examples
           config_data: "{extends: default, rules: {line-length: disable}}"
 
   shellcheck:
