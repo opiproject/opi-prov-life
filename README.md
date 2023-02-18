@@ -1,6 +1,7 @@
 # Provisioning and Platform Management Group
 
 [![Linters](https://github.com/opiproject/opi-prov-life/actions/workflows/linters.yml/badge.svg)](https://github.com/opiproject/opi-prov-life/actions/workflows/linters.yml)
+[![License](https://img.shields.io/github/license/opiproject/opi-prov-life?style=flat-square&color=blue&label=License)](https://github.com/opiproject/opi-prov-life/blob/master/LICENSE)
 
 ## Description
 
