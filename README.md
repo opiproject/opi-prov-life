@@ -1,6 +1,5 @@
 # Provisioning and Platform Management Group
 
-[![Docker](https://github.com/opiproject/opi-prov-life/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/opiproject/opi-prov-life/actions/workflows/docker-publish.yml)
 [![Linters](https://github.com/opiproject/opi-prov-life/actions/workflows/linters.yml/badge.svg)](https://github.com/opiproject/opi-prov-life/actions/workflows/linters.yml)
 
 ## Description
