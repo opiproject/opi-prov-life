@@ -22,6 +22,8 @@ Entities optionally participating in the boot/reboot/shutdown processes:
 
 ## Bootup
 
+See different approaches for in-band vs oob on bootup ccordination [here](./COORDINATION.md)
+
 - Server is Powered On
 - xPU receives power and starts booting
   - These events may not be synchronous. The xPU may be installed in a PCIe slot providing persistent power. xPU power cycle may be a function of the host BMC (and potentially the xPU BMC) rather than the power state of the host
