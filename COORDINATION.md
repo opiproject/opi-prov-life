@@ -9,6 +9,7 @@ Reference [BOOTSEQ.md](./BOOTSEQ.md)
 ## Out-band via platform BMC
 
 ### PLDM State sensors
+
 Useful State definitions
 
 | Set ID 129 Software Termination Status        | Status related to firmware of the operating system.                   | Notes/Usage |
@@ -31,7 +32,6 @@ Useful State definitions
 | 5 – Manual Warm Reset         | A restart is initiated by the user activation of a mechanical device (for example, pressing a button) and does not involve powering the entity off or activating the system’s reset circuitry. |             |
 | 6 – System Restart            | A restart of the entity is initiated by entity hardware components and accomplished by activating the system’s reset circuitry.                                                                |             |
 | 7 – Watchdog Timeout          | A restart of the entity is initiated in response to a detected system hang condition.                                                                                                          |             |
-
 
 | Set ID 196 Boot Progress                                                   | System firmware or software booting status.                                               | Notes/Usage   |
 | :------------------------                                                   | :-------------                                                                             | :------- |
@@ -62,25 +62,30 @@ Useful State definitions
 | 25 – Pointing Device Test                                                  | The BIOS is testing the pointing device.                                                  |         |
 | 26 – Primary Processor Initialization                                      | The BIOS is initializing the primary processor.                                           |         |
 
-
-
 Reference:
-- https://www.dmtf.org/dsp/DSP0249 DMTF DSP0249 State Set Specification
-- https://www.dmtf.org/dsp/DSP0248 DMTF DSP0248 PLDM for Platform Monitoring and Control Specification
+
+- <https://www.dmtf.org/dsp/DSP0249> DMTF DSP0249 State Set Specification
+- <https://www.dmtf.org/dsp/DSP0248> DMTF DSP0248 PLDM for Platform Monitoring and Control Specification
 
 ### PLDM RDE
+
 Reference:
-- https://www.dmtf.org/dsp/DSP0218 DMTF DSP0218 PLDM for Redfish Device Enablement
+
+- <https://www.dmtf.org/dsp/DSP0218> DMTF DSP0218 PLDM for Redfish Device Enablement
 
 ### i2c
+
 I2C on it's own is not useful unless there is a protocol defined.  
 
 ### NC-SI OEM
 
 ### usb
+
 Could use PLDM State Sensor over PLDM over MTCP over USB
 Reference:
-- https://www.dmtf.org/sites/default/files/standards/documents/DSP0283_0.1.5WIP10.pdf (WIP) DMTF MCTP over USB Binding Specification
 
-### others...
+- <https://www.dmtf.org/sites/default/files/standards/documents/DSP0283_0.1.5WIP10.pdf> (WIP) DMTF MCTP over USB Binding Specification
+
+### others
+
 ## Out-of-band xPU BMC
