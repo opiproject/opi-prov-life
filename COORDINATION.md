@@ -2,7 +2,7 @@
 
 Reference [BOOTSEQ.md](./BOOTSEQ.md)
 
-# Use cases
+## Use cases
 
 This proposal applies to the following use cases:
 
@@ -15,12 +15,12 @@ This proposal applies to the following use cases:
 
 The multi-host case where one or more xPUs are attached to multiple servers within an enclosure is deferred to another exercise.  This requires a Chassis Management Controller (CMC).
 
-# Assumptions
+## Assumptions
 
 1.	While the xPU is powered by 3.3Vaux only
 
-	a.	OOB communications from the server BMC shall be limited to accessing the FRU (EEPROM) and/or security chip on the xPU if they are available
-	b.	There shall be no IB communication from the server CPU because it is in S5 state (powered off)
+	1.	OOB communications from the server BMC shall be limited to accessing the FRU (EEPROM) and/or security chip on the xPU if they are available
+	2.	There shall be no IB communication from the server CPU because it is in S5 state (powered off)
 
 2.	The xPU may ignore transitions in the PERST# signal
 3.	The xPU may require separate mechanisms to reset its PCIe interface and compute complex
@@ -31,7 +31,6 @@ The multi-host case where one or more xPUs are attached to multiple servers with
 8.	The xPU may or may not be the only network data path (tenant) to the host OS
 9.	Downstream Port Containment (DPC) is not a practical mechanism to hot add PCIe functions during POST
 10.	When an xPU is equipped with an AMC it shall be subservient to the server BMC.  Other cases will be considered later.
-
 
 ## In-band PCIe
 
