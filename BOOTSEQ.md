@@ -20,6 +20,17 @@ Entities optionally participating in the boot/reboot/shutdown processes:
 - There is communication between some of the entities from above
 - More...
 
+## DPU Vendors Survey
+
+- What is the role of a BMC on the xPU regarding startup?
+- What casues the ARM cores to start running? Application of 12V? Release of PCIe RESET? Write to a location via NC-SI or I2C? ??
+- How does PCIe reset affect the xPU's PCIe interface and the ARM cores?
+- What happens to the xPU's PCIe interface when the ARM cores lockup?
+- What is the maximum time from release of PCIe RESET until the xPU responds to config cycles?
+- How does the xPU determine if it should boot to its OS or some diagnostic FW?
+- Is there a difference in xPU PCIe behavior between an OS running or diagnoostic FW?
+- What is the method for determining the xPU boot status via PCIe, I2C and NC-SI?
+
 ## Bootup
 
 See different approaches for in-band vs oob on bootup ccordination [here](./COORDINATION.md)
