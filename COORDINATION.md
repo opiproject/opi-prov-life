@@ -2,8 +2,17 @@
 
 Reference [BOOTSEQ.md](./BOOTSEQ.md)
 
+## TLDR
+
+This page is taking assumptions and use cases from [BOOTSEQ.md](./BOOTSEQ.md) page and tries to deep dive on 2 possible solutions of the only initial bootup part.
+Two possible solutions are either in-band via different PCIe mechanisms or OOB via BMC assisted mechanisms.
+Initial bootup part covers: Server is Powered On, DPU receives power and starts booting, Host OS should wait for DPU to finish booting.
+
+Coordinated shutdowns, reboots, crashes, error handling will be details on a separate page.
+
 ## In-band PCIe
 
+- using CRS approach 
 - what problems we have today with PCIe, timeouts, errors, retries,...
 
 ## Out-band via platform BMC
