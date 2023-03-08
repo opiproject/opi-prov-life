@@ -11,7 +11,6 @@ Entities optionally participating in the boot/reboot/shutdown processes:
 - additional xPUs that reside within the Server
 - Optional Chassis Management Controller (aka CMC)
 
-
 ## Use cases
 
 Following use cases are considered first:
