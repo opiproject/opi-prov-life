@@ -6,7 +6,7 @@ Entities optionally participating in the boot/reboot/shutdown processes:
 
 - Platform UEFI/BIOS of the Server
 - Platform BMC of the Server
-- xPU BMC
+- xPU BMC (also called AMC sometimes)
 - xPU ATF/UEFI/BIOS
 - additional xPUs that reside within the Server
 
