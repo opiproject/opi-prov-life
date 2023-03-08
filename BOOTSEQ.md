@@ -9,6 +9,21 @@ Entities optionally participating in the boot/reboot/shutdown processes:
 - xPU BMC (also called AMC sometimes)
 - xPU ATF/UEFI/BIOS
 - additional xPUs that reside within the Server
+- Optional Chassis Management Controller (aka CMC)
+
+
+## Use cases
+
+Following use cases are considered first:
+
+- One or more xPUs in a single server
+- A single xPU attached to multiple CPUs within the same server
+- The xPU is powered on at the same time as the server BMC using Auxiliary power
+- The server BMC controls when the xPU and server CPUs are powered with Primary power
+- The xPU boots from the network or on-board non-volatile storage
+- xPUs can be with and without a local AMC (aka NIC BMC) on Board
+
+The multi-host case where one or more xPUs are attached to multiple servers within an enclosure is deferred to another exercise.  This requires a Chassis Management Controller (CMC).
 
 ## Assumptions
 
