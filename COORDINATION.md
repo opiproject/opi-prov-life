@@ -12,10 +12,14 @@ Coordinated shutdowns, reboots, crashes, error handling will be details on a sep
 
 ## In-band PCIe
 
-- using CRS approach 
+- using CRS approach
 - what problems we have today with PCIe, timeouts, errors, retries,...
 
 ## Out-band via platform BMC
+
+## Diagram
+
+![OOB Plat BMC Boot coordination power on seq](architecture/OOB-Plat-BMC-Boot-coordination-power-on-seq.png)
 
 ### PLDM State sensors
 
