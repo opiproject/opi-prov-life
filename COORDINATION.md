@@ -17,7 +17,7 @@ Coordinated shutdowns, reboots, crashes, error handling will be details on a sep
 
 ## Driver Ready Check
 
-The race condition to consider is when the Host is first to boot from a port or a disk hanging off of an infrastructure device (DPU/OPU).  To ensure that the port / disk is ready to be used by the Host, the driver running in the UEFI / BIOS should check that the infrastructure is ready before trying to PXE boot or to read the boot disk.
+The race condition to consider is when the Host is first to boot before the infrastrastructure is ready to serve to the Host its boot image (from a port or a disk hanging off the infrastructure device (DPU/IPU)).  To ensure that the port / disk is ready to be used by the Host, the driver running in the UEFI / BIOS should check that the infrastructure is ready before trying to PXE boot or to read the boot disk.
 Infrastructure devices acting as either a Host peripheral or as an independent entity will benefit from this 'ready' check.
 
 ### Virtio-net
