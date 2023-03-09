@@ -9,6 +9,19 @@ For example, the first initial bootup part, is detailed here [COORDINATION.md](.
 
 Coordinated shutdowns, reboots, crashes, error handling will be detailed on a separate pages and link will be posted here.
 
+## Terms
+
+AMC  Add-in Management Controller on a PCIe card
+BMC  Baseboard Management Controller
+CMC  Chassis Management Controller
+CRS  PCI Configuration Request Retry Status
+DPC  Downstream Port Containment
+FRU  Field Replacement Unit
+IB   In-Band communications over the PCIe interface
+OOB  Out-of-Band communication over I2C, NC-SI, UART, etc
+UEFI Unified Extensible Firmware Interface previously referred to as BIOS
+xPU  SmartIO, SmartNIC, DPU, or IPU
+
 ## Entities
 
 Entities optionally participating in the boot/reboot/shutdown processes:
@@ -41,7 +54,20 @@ The multi-host case where one or more xPUs are attached to multiple servers with
 - There are use cases for network boot only.
 - xPU boot can take some time (full linux distro)
 - There is communication between some of the entities from above
-- More...
+- While the xPU is powered by 3.3Vaux only
+  - OOB communications from the server BMC shall be limited to accessing the FRU (EEPROM) and/or security chip on the xPU if they are available
+  - There shall be no IB communication from the server CPU because it is in S5 state (powered off)
+- The xPU may ignore transitions in the PERST# signal
+- The xPU may require separate mechanisms to reset its PCIe interface and compute complex
+- The xPU may start to boot as soon as it detects the stable application of +12V and +3.3V
+- The xPU is agnostic as to if +12V and +3V are derived from Primary or Auxiliary power
+- The xPU has no dependencies on the status of the server OS
+- The server OS may have dependencies on a booted xPU, but may continue to boot when the xPU fails to boot after some appropriate timeout
+- Downstream Port Containment (DPC) is not a practical mechanism to hot add PCIe functions during POST
+- There are multiple configurations of AMC and BMC
+  - BMC and no AMC (will address this use case first)
+  - BMC and AMC with BMC as the supervisor
+  - BMC and AMC with AMC as the supervisor
 
 ## DPU Vendors Survey
 
