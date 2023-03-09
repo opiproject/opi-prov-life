@@ -10,12 +10,12 @@ Initial bootup part covers: Server is Powered On, DPU receives power and starts 
 
 Coordinated shutdowns, reboots, crashes, error handling will be details on a separate page.
 
-1. In-band PCIe
+## 1: In-band PCIe
 
 - using CRS approach
 - what problems we have today with PCIe, timeouts, errors, retries,...
 
-2. Driver Ready Check
+## 2: Driver Ready Check
 
 The race condition to consider is when the Host is first to boot before the infrastrastructure is ready to serve to the Host its boot image (from a port or a disk hanging off the infrastructure device (DPU/IPU)).  To ensure that the port / disk is ready to be used by the Host, the driver running in the UEFI / BIOS should check that the infrastructure is ready before trying to PXE boot or to read the boot disk.
 Infrastructure devices acting as either a Host peripheral or as an independent entity will benefit from this 'ready' check.
@@ -32,7 +32,7 @@ The virtio-blk device presents its driver in an option ROM (OROM) for UEFI / BIO
 
 The NVMe device driver will poll the CSTS.rdy bit to ensure that infrastructure backend is ready before reading or writing.
  
-3. Out-band via platform BMC
+## 3: Out-band via platform BMC
 
 ## Diagram
 
