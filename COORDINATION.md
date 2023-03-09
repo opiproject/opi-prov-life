@@ -15,6 +15,23 @@ Coordinated shutdowns, reboots, crashes, error handling will be details on a sep
 - using CRS approach
 - what problems we have today with PCIe, timeouts, errors, retries,...
 
+## Driver Ready Check
+
+The race condition to consider is when the Host is first to boot from a port or a disk hanging off of an infrastructure device (DPU/OPU).  To ensure that the port / disk is ready to be used by the Host, the driver running in the UEFI / BIOS should check that the infrastructure is ready before trying to PXE boot or to read the boot disk.
+Infrastructure devices acting as either a Host peripheral or as an independent entity will benefit from this 'ready' check.
+
+### Virtio-net
+
+The virtio-net device presents its driver in an option ROM (OROM) for UEFI / BIOS.  This driver will stall the PXE boot process until the infrastructure backend is ready.
+
+### Virtio-blk
+
+The virtio-blk device presents its driver in an option ROM (OROM) for UEFI / BIOS.  This driver will stall the requests on the disk until the infrastructure backend is ready.
+
+### NVMe
+
+The NVMe device driver will poll the CSTS.rdy bit to ensure that infrastructure backend is ready before reading or writing.
+ 
 ## Out-band via platform BMC
 
 ## Diagram
