@@ -31,7 +31,7 @@ The virtio-blk device presents its driver in an option ROM (OROM) for UEFI / BIO
 ### NVMe
 
 The NVMe device driver will poll the CSTS.rdy bit to ensure that infrastructure backend is ready before reading or writing.
- 
+
 ## 3: Out-band via platform BMC
 
 ## Diagram
