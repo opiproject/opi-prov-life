@@ -17,6 +17,7 @@ isolated from each other.
 
 Provisioning follows the same rules as a Multi-Host NIC, based on a set of
 device types:
+
 * **Data Plane Devices:** Virtio-net, Virtio-blk, NVMe and idpf are data
 plane devices exposed to attached hosts.  Resetting a data plane device will
 reset the device only, and will leave all other devices (and all other hosts)
@@ -69,6 +70,7 @@ host and network interfaces.
 ## Platform Perspectivies
 
 From the point of view of the server platform:
+
 * **Power:** The IPU can be powered from the PCIe goldfingers or be given its own
 independent power, depending on the design of the platform.
 * **Boot Sequence:** When power is shared, booting of the attached host(s) and
@@ -86,12 +88,12 @@ a debug connector on the faceplate. Not required for operation.
 * **Dynamic Data Plane Devices:** BIOS and IPU can be configured to support
 dynamic hot plug of data plane devices on Host PCIe.
 Not required for operation.
-* **Host Reboot/Failure:** Individual hosts can stall, stop, reboot, crash, 
+* **Host Reboot/Failure:** Individual hosts can stall, stop, reboot, crash,
 lose power, etc., and this will have no direct effect on the operation of the
 IPU or any of the other attached hosts (assuming their power continues to be
 supplied).
 Loss of the host with the control plane device likely will have an effect on
-the functionality of data plane devices on other hosts. 
+the functionality of data plane devices on other hosts.
 * **Platform BMC:** The platform BMC may connect to the IPU over NC-SI or any of
 the other IPU connections such a Gigabit Ethernet or debug connector.
 Connection to the Platform BMC is not required for IPU operation.
