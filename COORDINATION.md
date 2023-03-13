@@ -18,15 +18,15 @@ Coordinated shutdowns, reboots, crashes, error handling will be details on a sep
 ## 2: Driver Ready Check
 
 The race condition to consider is when the Host is first to boot before the infrastrastructure is ready to serve to the Host its boot image (from a port or a disk hanging off the infrastructure device (DPU/IPU)).  To ensure that the port / disk is ready to be used by the Host, the driver running in the UEFI / BIOS should check that the infrastructure is ready before trying to PXE boot or to read the boot disk.
-Infrastructure devices acting as either a Host peripheral or as an independent entity will benefit from this 'ready' check.
+Infrastructure devices acting as either a Host peripheral or as an independent entity will benefit from this 'ready' check. This ready check enables the common case of shared power across IPU and server(s), and enables parallel startup of the IPU and attached host(s) once shared power is applied. The infrastructure devices must be ready on the PCIe bus(es) at enumeration time which allows the driver to address the race condition.
 
 ### Virtio-net
 
-The virtio-net device presents its driver in an option ROM (OROM) for UEFI / BIOS.  This driver will stall the PXE boot process until the infrastructure backend is ready.
+The virtio-net device presents its driver in an option ROM (OROM) for UEFI / BIOS.  This driver will stall the PXE boot process until the infrastructure backend is ready (via a driver specific signaling).
 
 ### Virtio-blk
 
-The virtio-blk device presents its driver in an option ROM (OROM) for UEFI / BIOS.  This driver will stall the requests on the disk until the infrastructure backend is ready.
+The virtio-blk device presents its driver in an option ROM (OROM) for UEFI / BIOS.  This driver will stall the requests on the disk until the infrastructure backend is ready (via a driver specific signaling).
 
 ### NVMe
 
