@@ -24,7 +24,6 @@ Coordinated shutdowns, reboots, crashes, error handling will be detailed on a se
 | UEFI | Unified Extensible Firmware Interface previously referred to as BIOS |
 | xPU  | SmartIO, SmartNIC, DPU, or IPU                                       |
 
-
 ## Entities
 
 Entities optionally participating in the boot/reboot/shutdown processes:
