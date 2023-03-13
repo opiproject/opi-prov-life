@@ -12,8 +12,38 @@ Coordinated shutdowns, reboots, crashes, error handling will be details on a sep
 
 ## 1: In-band PCIe
 
-- using CRS approach
-- what problems we have today with PCIe, timeouts, errors, retries,...
+IB refers to PCIe config access to the xPU from UEFI running on the server cores.
+
+1. All xPU devices shall have a standard PCI PF0 interface (PCI Physical Function 0) that is fully compliant to the PCIe specification
+   - The PF0 interface shall be functional 3 seconds after PERST# is de-asserted
+   - The PF0 interface shall be functional when the compute complex on the xPU is running, locked up or halted
+2. Define a new PCI Class Code and corresponding PCI architected Extended Capability Structure for xPUs
+   - Define PCI sub-classes for xPUs with and without an AMC
+   - The PCI architected Extended Capability Structure shall include items 3-7 below
+3. Define a read/write PF0 OS_BOOT_SELECT register with the following bits defined
+   - Network OS boot (bit only - does not include the actual path and credentials)
+   - OS on xPU’s non-volatile storage
+   - UEFI on xPU’s non-volatile storage
+   - Maintenance OS/FW on xPU’s non-volatile storage
+   - Other
+4. Define a read only PF0 OS_STATUS register with the following bits defined
+   - Not started
+   - Booting
+   - Booted
+   - Stalled or locked-up
+   - Halted
+5. Define a read only PF0 CRASHDUMP_STATUS register with the following bits defined
+   - Not started
+   - In progress
+   - Complete
+6. Define a read only PF0 MAX_BOOT_TIME register with a range from 0 to 1600 seconds
+7. Define a read/write PF0 RESET register with individual bits to resets specific segments of the xPU
+   - PCI interface
+   - CPU complex
+   - AMC
+   - Accelerator1
+   - Accelerator2
+   - other
 
 ## 2: Driver Ready Check
 
@@ -34,7 +64,7 @@ The NVMe device driver will poll the CSTS.rdy bit to ensure that infrastructure 
 
 ## 3: Out-band via platform BMC
 
-## Diagram
+### Diagram
 
 ![OOB Plat BMC Boot coordination power on seq](architecture/OOB-Plat-BMC-Boot-coordination-power-on-seq.png)
 
