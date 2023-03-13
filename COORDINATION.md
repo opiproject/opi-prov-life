@@ -64,6 +64,14 @@ The NVMe device driver will poll the CSTS.rdy bit to ensure that infrastructure 
 
 ## 3: Out-band via platform BMC
 
+### OOB proposal with PCI architected Extended Capability Structure in the xPU
+
+OOB refers to USB2 access to the xPU from the server BMC.  USB2 implies future products, and is necessary as a high speed OOB interface for supporting large files associated with FW/SW upgrade and audit logs.
+
+- USB2 accesses from the BMC may terminate at an ASIC, FPGA, or AMC on the xPU.
+- The xPU shall provide OOB abstracted protocol access (eg. PLDM) to the registers described in the IB proposal with PCI architected Extended Capability Structure
+- The xPU shall start responding to requests from the BMC within 3 seconds after 12V is applied to the xPU
+
 ### Diagram
 
 ![OOB Plat BMC Boot coordination power on seq](architecture/OOB-Plat-BMC-Boot-coordination-power-on-seq.png)
