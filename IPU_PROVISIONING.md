@@ -135,8 +135,8 @@ control plane device.
    - The Management Controller and the host containing the Control Plane device
 are independent, separate entities.
  - **What is the method for determining the xPU boot status via PCIe, I2C and NC-SI?**
-   - Data plane devices will show ready when the backend clears the Device
-Ready check. Each host can boot/reboot/reset/etc. independent of one another.
+   - Data plane devices will show ready when the backend clears the
+[Device Ready check](COORDINATION.md#2-driver-ready-check). Each host can boot/reboot/reset/etc. independent of one another.
 The Management Controller is ultimately the arbiter of shared resources and
 controls the full IPU reset.
 
