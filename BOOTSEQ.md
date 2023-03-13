@@ -11,16 +11,19 @@ Coordinated shutdowns, reboots, crashes, error handling will be detailed on a se
 
 ## Terms
 
-AMC  Add-in Management Controller on a PCIe card
-BMC  Baseboard Management Controller
-CMC  Chassis Management Controller
-CRS  PCI Configuration Request Retry Status
-DPC  Downstream Port Containment
-FRU  Field Replacement Unit
-IB   In-Band communications over the PCIe interface
-OOB  Out-of-Band communication over I2C, NC-SI, UART, etc
-UEFI Unified Extensible Firmware Interface previously referred to as BIOS
-xPU  SmartIO, SmartNIC, DPU, or IPU
+| Term | Description
+|------|----------------------------------------------------------------------|
+| AMC  | Add-in Management Controller on a PCIe card                          |
+| BMC  | Baseboard Management Controller                                      |
+| CMC  | Chassis Management Controller                                        |
+| CRS  | PCI Configuration Request Retry Status                               |
+| DPC  | Downstream Port Containment                                          |
+| FRU  | Field Replacement Unit                                               |
+| IB   | In-Band communications over the PCIe interface                       |
+| OOB  | Out-of-Band communication over I2C, NC-SI, UART, etc                 |
+| UEFI | Unified Extensible Firmware Interface previously referred to as BIOS |
+| xPU  | SmartIO, SmartNIC, DPU, or IPU                                       |
+
 
 ## Entities
 
