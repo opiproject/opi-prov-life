@@ -8,7 +8,7 @@ From a provisioning perspective, an Infrastructure Processing Unit (IPU) works
 as a Multi-Host NIC with an embedded core complex as one of the hosts. A
 Multi-Host NIC is split between 2 or more host interfaces (commonly over PCIe)
 and 1 or more Network Interfaces (commonly over Ethernet).  Host Devices
-are divided into '''Data Plane''', '''Control Plane''', and '''Management'''
+are divided into **Data Plane**, **Control Plane**, and **Management**
 which can be individually passed to different hosts and have their own
 capabilities, reset and security domains, where each device is hardware
 isolated from each other.
@@ -17,21 +17,22 @@ isolated from each other.
 
 Provisioning follows the same rules as a Multi-Host NIC, based on a set of
 device types:
- * '''Data Plane Devices''': Virtio-net, Virtio-blk, NVMe and idpf are data
+ * **Data Plane Devices**: Virtio-net, Virtio-blk, NVMe and idpf are data
 plane devices exposed to attached hosts.  Resetting a data plane device will
 reset the device only, and will leave all other devices (and all other hosts)
 unchanged.
- * '''Control Plane Device''': A control plane device (usually on the embedded
+ * **Control Plane Device**: A control plane device (usually on the embedded
 core complex) is capable of resetting any of the host interfaces (e.g., PCIe)
 of the Multi-Host NIC. It is also able to request a full device reset from the
 management controller.
- * '''Management Device'';': A Chassis Management Controller (CMC) and/or an
+ * **Management Device**: A Chassis Management Controller (CMC) and/or an
 Integrated Management Controller (IMC) is given a Management Device capable of
-managing and resetting the entire IPU.
+managing and resetting the entire IPU. An IMC is a second embedded host
+available in certain IPU devices.
 
 ## Host Perspectives
 
-From the point of view of an attached host (including the embedded complex):
+From the point of view of an attached host (including integrated ones):
 
  * Startup Enumeration: The set of devices available to that Host at startup
 will be found right at PCIe enumeration time.
@@ -44,7 +45,7 @@ receive network traffic, including stateless offloads such as TSO, RSS, etc.
 block storage reads, writes, flushes, etc. on a disk assigned to that host.
  * Host Boot: Attached hosts can boot from network or storage data plane
 devices.  Each device's driver verifies that the boot mechanism is ready
-before proceeding with the host boot, to ensure that the boot disk accessible
+before proceeding with the host boot, to ensure that the boot disk is accessible
 (often times coming from over the network).
  * Control Plane is Optional: One host is responsible for the control of
 traffic between hosts and between data plane devices. The remaining hosts use
@@ -56,9 +57,9 @@ either by the attached CMC or an integrated IMC. Control Plane devices can
 request for the IPU to be reset by doing an in-band request to the
 management controller.
  * Multi-Socket: Connecting up multiple PCIe connections to the same core
-complex but on different sockets can enable multiple Data Plane devices from
+complex can enable multiple data plane devices from
 the same IPU to be connected to different sockets.
- * Visibility:  A host with data plane devices (only) has no visibility into
+ * Visibility:  A host with only data plane devices has no visibility into
 the data plane implementation (could be an IPU, DPU, software backend, etc.).
 A host with a control plane device has control of everything in the IPU that
 has been granted to it by the management device.  The Management Controller
@@ -79,14 +80,17 @@ w/ FRU and power sensors. No additional information is required over the I2C
 to put an IPU into a server.
  * NC-SI: Most IPU cards include an optional cable containing an NC-SI
 connector meant to be plugged into a platform BMC.  Not required for operation.
- * Console: The IPU has a console port, often exposed alongside NC-SI or over
+ * Console: The IPU has a console port for the integrated core complex(es),
+often exposed alongside NC-SI or over
 a debug connector on the faceplate. Not required for operation.
  * Dynamic Data Plane Devices: BIOS and IPU can be configured to support
-dynamic hot plug of data plane devices on the PCIe. Not required for operation.
+dynamic hot plug of data plane devices on Host PCIe.
+Not required for operation.
  * Host Reboot/Failure: Individual hosts can stall, stop, reboot, crash, 
 lose power, etc., and this will have no direct effect on the operation of the
-IPU or any of the other attached hosts if their power continues to be supplied.
- Loss of the host with the control plane device likely will have an effect on
+IPU or any of the other attached hosts (assuming their power continues to be
+supplied).
+Loss of the host with the control plane device likely will have an effect on
 the functionality of data plane devices on other hosts. 
  * Platform BMC: The platform BMC may connect to the IPU over NC-SI or any of
 the other IPU connections such a Gigabit Ethernet or debug connector.
@@ -108,15 +112,15 @@ likely cause the data plane devices on other hosts to stop responding.
 
  - What is the role of a BMC on the xPU regarding startup?
    - The platform BMC is not required for IPU startup or operation.
- - What casues the ARM cores to start running? Application of 12V? Release of PCIe RESET? Write to a location via NC-SI or I2C? ??
+ - What causes the ARM cores to start running? Application of 12V? Release of PCIe RESET? Write to a location via NC-SI or I2C? ??
    - Embedded cores (either x86 or ARM based) are their own host complex and
 are controlled via the Management Controller (CMC, IMC, etc.)
  - How does PCIe reset affect the xPU's PCIe interface and the ARM cores?
    - PCIe reset of a data plane device only resets that specific device
-   - Embedded cores can reset themselves are are not resettable by any other
+   - Embedded cores can reset themselves and are not resettable by any other
 host via PCIe alone.
  - What happens to the xPU's PCIe interface when the ARM cores lockup?
-   - Loss of the embedded core complex has no direct impact on other host
+   - Loss of an embedded core complex has no direct impact on other host
 complexes attached to the IPU. Loss of the control device likely will cause
 data plane devices on other hosts to stop responding.
  - What is the maximum time from release of PCIe RESET until the xPU responds to config cycles?
