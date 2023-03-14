@@ -10,9 +10,24 @@ Initial bootup part covers: Server is Powered On, DPU receives power and starts 
 
 Coordinated shutdowns, reboots, crashes, error handling will be details on a separate page.
 
+## Terms
+
+| Term                   | Description                                                          |
+|------------------------|----------------------------------------------------------------------|
+| Platform BMC           | Baseboard Management Controller                                      |
+| CMC                    | Chassis Management Controller                                        |
+| CRS                    | PCI Configuration Request Retry Status                               |
+| DPC                    | Downstream Port Containment                                          |
+| FRU                    | Field Replacement Unit                                               |
+| OOB                    | Out-of-Band communication over I2C, NC-SI, UART, etc                 |
+| UEFI                   | Unified Extensible Firmware Interface previously referred to as BIOS |
+| xPU                    | SmartIO, SmartNIC, DPU, or IPU                                       |
+| xPU BMC, aBMC, AMC     | Add-in Management Controller on a PCIe card                          |
+| xPU Mgmt               | Terminates OOB Mgmt from Platform BMC, maybe xPU BMC or other MCU    |
+
 ## 1: In-band PCIe
 
-IB refers to PCIe config access to the xPU from UEFI running on the server cores.
+In-Band refers to PCIe config access to the xPU from UEFI running on the server cores.
 
 1. All xPU devices shall have a standard PCI PF0 interface (PCI Physical Function 0) that is fully compliant to the PCIe specification
    - The PF0 interface shall be functional 3 seconds after PERST# is de-asserted
@@ -72,7 +87,9 @@ The NVMe device driver will poll the CSTS.rdy bit to ensure that infrastructure 
 
 ![OOB Plat BMC Boot coordination power on seq](architecture/OOB-Plat-BMC-Boot-coordination-power-on-seq.png)
 
-### PLDM State sensors
+### PLDM State sensors - PLDM
+
+Note: PLDM is over MTCP which can be caried over i2C, serial, USB and other physical connections
 
 Useful State definitions
 
@@ -142,6 +159,8 @@ Reference:
 I2C on it's own is not useful unless there is a protocol defined.  
 
 ### NC-SI OEM
+
+NC-SI 1.2 draft has no standard equivilant of the PLDM State Set Specification so OEM specific extensions would be required.
 
 ### usb
 
