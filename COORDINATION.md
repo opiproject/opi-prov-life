@@ -149,7 +149,7 @@ Using an SPDM encrypted session might be a good way share credentials between th
 
 Reference:
 
-- https://www.dmtf.org/dsp/DSP0274 DMTF DSP0274 Security Protocol and Data Model (SPDM) Specification
+- <https://www.dmtf.org/dsp/DSP0274> DMTF DSP0274 Security Protocol and Data Model (SPDM) Specification
 
 ### I2C
 
@@ -159,7 +159,7 @@ I2C on it's own is not useful unless there is a protocol defined.
 
 NC-SI 1.2 draft has no standard equivilant of the PLDM State Set Specification so OEM specific extensions would be required.
 
-### usb
+### USB
 
 Could use PLDM State Sensor over PLDM over MTCP over USB
 Reference:
