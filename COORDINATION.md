@@ -52,7 +52,9 @@ Infrastructure devices acting as either a Host peripheral or as an independent e
 
 ### Assumptions
 
-The infrastructure devices must be ready on the PCIe bus(es) at enumeration time which allows the driver to address the race condition.
+The infrastructure devices must follow the PCI spec and be ready on the bus(es)
+at enumeration time, and/or hot plug devices in and out dynamically.
+
 
 ### Virtio-net
 
@@ -65,6 +67,21 @@ The virtio-blk device presents its driver in an option ROM (OROM) for UEFI / BIO
 ### NVMe
 
 The NVMe device driver will poll the CSTS.rdy bit to ensure that infrastructure backend is ready before reading or writing.
+
+### idpf
+
+The idpf device will come up with the link down, and will notify the driver
+that it is ready by bringing the link up.  The driver will wait to send on
+the device until the link is brought up.
+
+### Summary
+
+- **Pros:** No assumptions or changes required on the host, including BIOS.
+Infrastructure devices can be used to provision the host they
+are running inside. Devices presented can be standard and/or software defined.
+- **Cons:** The infrastructure device needs to follow the PCI spec, including
+meeting the timing constraints around enumeration.  Dynamic adding and
+deleting devices on the PCI bus via hot plug requires BIOS configuration.
 
 ## 3: Out-band via platform BMC
 
