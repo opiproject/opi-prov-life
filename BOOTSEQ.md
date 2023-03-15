@@ -21,6 +21,7 @@ Coordinated shutdowns, reboots, crashes, error handling will be detailed on a se
 | FRU  | Field Replacement Unit                                               |
 | IB   | In-Band communications over the PCIe interface                       |
 | OOB  | Out-of-Band communication over I2C, NC-SI, UART, etc                 |
+| OROM | Option ROM used by a device to provide a driver to BIOS for booting  |
 | UEFI | Unified Extensible Firmware Interface previously referred to as BIOS |
 | xPU  | SmartIO, SmartNIC, DPU, or IPU                                       |
 
