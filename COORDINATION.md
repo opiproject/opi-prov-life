@@ -12,18 +12,7 @@ Coordinated shutdowns, reboots, crashes, error handling will be details on a sep
 
 ## Terms
 
-| Term                   | Description                                                          |
-|------------------------|----------------------------------------------------------------------|
-| Platform BMC           | Baseboard Management Controller                                      |
-| CMC                    | Chassis Management Controller                                        |
-| CRS                    | PCI Configuration Request Retry Status                               |
-| DPC                    | Downstream Port Containment                                          |
-| FRU                    | Field Replacement Unit                                               |
-| OOB                    | Out-of-Band communication over I2C, NC-SI, UART, etc                 |
-| UEFI                   | Unified Extensible Firmware Interface previously referred to as BIOS |
-| xPU                    | SmartIO, SmartNIC, DPU, or IPU                                       |
-| xPU BMC, aBMC, AMC     | Add-in Management Controller on a PCIe card                          |
-| xPU Mgmt               | Terminates OOB Mgmt from Platform BMC, maybe xPU BMC or other MCU    |
+see <https://github.com/opiproject/opi-prov-life/blob/main/BOOTSEQ.md#terms>
 
 ## 1: In-band PCIe
 
