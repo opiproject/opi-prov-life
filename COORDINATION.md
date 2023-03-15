@@ -95,6 +95,7 @@ Useful State definitions
 
 | Set ID 129 Software Termination Status        | Status related to firmware of the operating system.                   | Notes/Usage |
 | :-----                                        | :-----                                                                | :-----      |
+| 0 – Unknown                                   | Unknown                                                               |             |
 | 1 – Normal                                    | Software termination is not detected.                                 |             |
 | 2 – Software Termination Detected             | Software termination is detected.                                     |             |
 | 3 – Critical Stop during  Load/Initialization | The software entity failed during loading or initialization.          |             |
@@ -106,6 +107,7 @@ Useful State definitions
 
 | Set ID 192 Boot/Restart Cause | Represents the stimulus that booted the entity.                                                                                                                                                | Notes/Usage |
 | :-----                        | :-----                                                                                                                                                                                         | :-----      |
+| 0 – Unknown                   | Unknown                                                                                                                                                                                        |             |
 | 1 – Powered Up                | A start of the system is initiated by changing the entity’s state from  powered off to powered on.                                                                                             |             |
 | 2 – Hard Reset                | A restart of the system is accomplished by activating the entity’s reset circuitry.                                                                                                            |             |
 | 3 – Warm Reset                | A restart of the system is performed by software that does not involve powering the system off or activating the entity’s reset circuitry.                                                     |             |
@@ -114,34 +116,15 @@ Useful State definitions
 | 6 – System Restart            | A restart of the entity is initiated by entity hardware components and accomplished by activating the system’s reset circuitry.                                                                |             |
 | 7 – Watchdog Timeout          | A restart of the entity is initiated in response to a detected system hang condition.                                                                                                          |             |
 
-| Set ID 196 Boot Progress                                                   | System firmware or software booting status.                                               | Notes/Usage   |
-| :------------------------                                                   | :-------------                                                                             | :------- |
-| 1 – Boot Not Active                                                        | Boot-up of the firmware or software is not active. It may be already functional.          |         |
-| 2 – Boot Completed                                                         | The boot process of the firmware or software has completed.                               |         |
-| 3 – Memory Initialization                                                  | The boot process is currently initializing the memory.                                    |         |
-| 4 – Hard-Disk Initialization                                               | The boot process is currently initializing the hard disk.                                 |         |
-| 5 – Secondary Processor(s)Initialization                                   | The boot process is currently initializing the secondary processors.                      |         |
-| 6 – User Authentication                                                    | The boot process is processing the user authentication.                                   |         |
-| 7 – User-Initiated System Setup                                            | System firmware or BIOS has entered the user system firmware or BIOS configuration setup. |         |
-| 8 – USB Resource Configuration                                             | System firmware or BIOS is currently configuring the USB resource.                        |         |
-| 9 – PCI Resource Configuration                                             | System firmware or BIOS is configuring the PCI resources.                                 |         |
-| 10 – Option ROM Initialization                                             | The option ROM is being initialized.                                                      |         |
-| 11 – Video Initialization                                                  | The video controller is being initialized.                                                |         |
-| 12 – Cache Initialization                                                  | The cache memory is being initialized.                                                    |         |
-| 13 – SM Bus Initialization                                                 | The system firmware or BIOS is initializing the SM Bus.                                   |         |
-| 14 – Keyboard Controller Initialization                                    | The system firmware or BIOS is initializing the keyboard controller.                      |         |
-| 15 – Embedded Controller/Management Controller Initialization              | The system firmware or BIOS is initializing the embedded management controller.           |         |
-| 16 – Docking Station Attachment                                            | The main system unit is attaching to the docking station.                                 |         |
-| 17 – Enabling Docking Station                                              | The system firmware or BIOS is enabling the docking station.                              |         |
-| 18 – Docking Station Ejection                                              | The main system unit is ejected from the docking station.                                 |         |
-| 19 – Disabling Docking Station                                             | The system firmware or BIOS is disabling the docking station.                             |         |
-| 20 – Calling Operating System Wake-Up Vector                               | The system firmware or BIOS is starting the operating system.                             |         |
-| 21 – Starting Operating System Boot Process (for example, calling INT 19h) | The system firmware or BIOS is booting the operating system.                              |         |
-| 22 – Baseboard or Motherboard Initialization                               | The BIOS is initializing the motherboard.                                                 |         |
-| 23 – Floppy Initialization                                                 | The BIOS is initializing the floppy drive.                                                |         |
-| 24 – Keyboard Test                                                         | The BIOS is testing the keyboard.                                                         |         |
-| 25 – Pointing Device Test                                                  | The BIOS is testing the pointing device.                                                  |         |
-| 26 – Primary Processor Initialization                                      | The BIOS is initializing the primary processor.                                           |         |
+| Set ID 196 Boot Progress                                                   | System firmware or software booting status.                                               | Notes/Usage                          |
+| :------------------------                                                  | :-------------                                                                            | :-------                             |
+| 0 - Unknown                                                                | Unknonwn, not a defined value                                                             | Initial state before UEFI is entered |
+| 1 ... 5 (Not Used)                                                         | Not Used                                                                                  |                                      |
+| 6 – User Authentication                                                    | The boot process is processing the user authentication.                                   |                                      |
+| 7 – User-Initiated System Setup                                            | System firmware or BIOS has entered the user system firmware or BIOS configuration setup. |                                      |
+| 8 ... 20 (Not Used)                                                        | Not Used                                                                                  |                                      |
+| 21 – Starting Operating System Boot Process (for example, calling INT 19h) | The system firmware or BIOS is booting the operating system.                              | Marks transition from UEFI to OS     |
+| 22 ... 26 (Not Used)                                                       | Not Used                                                                                  |                                      |
 
 Reference:
 
@@ -154,7 +137,21 @@ Reference:
 
 - <https://www.dmtf.org/dsp/DSP0218> DMTF DSP0218 PLDM for Redfish Device Enablement
 
-### i2c
+### SPDM
+
+SPDM runs over MTCP/I2C, PCIe DOE, and potentually MTCP/USB.  Not that some physical layers do not support Asyncronus Event Notifications (AEN).  SPDM is initiated by the platform BMC to the xPU.
+
+The platform BMC can use SPDM to get a device certificate or alias certificate from an xPU and challenge that xPU to verify it has the associated private key.  If the platform BMC supports mutual authentication, the xPU can get a device certificate for the platform BMC and challenge it.  The use case for SPDM is not clear.  It makes sense for the platform BMC to validate the xPU if the platform BMC is considered thw primary Root of Trust (ROT).  If the xPU is an independent or primary ROT it may not make sense to have the platform BMC validate it.  Also note that verification of authenticity requires a trust store of CA certs to be kept on the device doing the verification.
+
+If mutual authentication is supported it may make sense to privilage some operations from platform BMC to XPU for example NMI, reset or graceful shutdown requests.
+
+Using an SPDM encrypted session might be a good way share credentials between the xPU and the platform BMC to be used for protocols that require credentials (i.e. Redfish).
+
+Reference:
+
+- https://www.dmtf.org/dsp/DSP0274 DMTF DSP0274 Security Protocol and Data Model (SPDM) Specification
+
+### I2C
 
 I2C on it's own is not useful unless there is a protocol defined.  
 
