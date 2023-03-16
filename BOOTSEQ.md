@@ -20,6 +20,7 @@ Coordinated shutdowns, reboots, crashes, error handling will be detailed on a se
 | DPC  | Downstream Port Containment                                          |
 | FRU  | Field Replacement Unit                                               |
 | IB   | In-Band communications over the PCIe interface                       |
+| IDPF | Infrastructure Data Plane Function                                   |
 | OOB  | Out-of-Band communication over I2C, NC-SI, UART, etc                 |
 | OROM | Option ROM used by a device to provide a driver to BIOS for booting  |
 | UEFI | Unified Extensible Firmware Interface previously referred to as BIOS |
