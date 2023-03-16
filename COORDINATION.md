@@ -59,7 +59,6 @@ Infrastructure devices acting as either a Host peripheral or as an independent e
 The infrastructure devices must follow the PCI spec and be ready on the bus(es)
 at enumeration time, and/or hot plug devices in and out dynamically.
 
-
 ### Virtio-net
 
 The virtio-net device presents its driver in an option ROM (OROM) for UEFI / BIOS.  This driver will stall the PXE boot process until the infrastructure backend is ready (via a driver specific signaling).
@@ -72,7 +71,7 @@ The virtio-blk device presents its driver in an option ROM (OROM) for UEFI / BIO
 
 The NVMe device driver will poll the CSTS.rdy bit to ensure that infrastructure backend is ready before reading or writing.
 
-### idpf
+### idpf (Infrastructure Data Plane Function)
 
 The idpf device will come up with the link down, and will notify the driver
 that it is ready by bringing the link up.  The driver will wait to send on
