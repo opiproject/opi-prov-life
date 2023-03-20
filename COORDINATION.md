@@ -21,6 +21,8 @@ In-Band refers to PCIe config access to the xPU from UEFI running on the server 
 1. All xPU devices shall have a standard PCI PF0 interface (PCI Physical Function 0) that is fully compliant to the PCIe specification
    - The PF0 interface shall be functional 3 seconds after PERST# is de-asserted
    - The PF0 interface shall be functional when the compute complex on the xPU is running, locked up or halted
+   - ***SB> Does special PF0 serve any other purpose? How about PF1 ? Are PFS1-N assumed to be ready when PF0 is ready? How about Multi host? Do we need multiple PF0 in case of multihost? If PF1 is to be given to separate host, how will second host realize readiness? Why PF0 needs a new class code ? why not propose the capability extension to existing devices (virtio/nvme/idpf etc ?)***
+   
 2. Define a new PCI Class Code and corresponding PCI architected Extended Capability Structure for xPUs
    - Define PCI sub-classes for xPUs with and without an AMC
    - The PCI architected Extended Capability Structure shall include items 3-7 below
@@ -36,10 +38,13 @@ In-Band refers to PCIe config access to the xPU from UEFI running on the server 
    - Booted
    - Stalled or locked-up
    - Halted
+   - ***SB> what does OS refer to here? there could be multiple software subsystems on the XPU running multiple OS. what is the difference between Halted and Not started ? When does the transition take place?***
+   
 5. Define a read only PF0 CRASHDUMP_STATUS register with the following bits defined
    - Not started
    - In progress
    - Complete
+   - ***SB> should this proposed in PCIe AER non fatal category?***
 6. Define a read only PF0 MAX_BOOT_TIME register with a range from 0 to 1600 seconds
 7. Define a read/write PF0 RESET register with individual bits to resets specific segments of the xPU
    - PCI interface
@@ -48,6 +53,34 @@ In-Band refers to PCIe config access to the xPU from UEFI running on the server 
    - Accelerator1
    - Accelerator2
    - other
+   - ***SB> How is this related to standard PCIe FLR? Looks like we are assuming XPU internal architecture here. What if the XPU's CPU complex is the one driving its PCIe interface?***
+   
+   
+##1.a: PCIe CRS (Config Retry Status)
+1. CRS support in RC is mandatory
+2. PCIe spec defines CRS Software Visibility capability in Root Capabilities register. 
+3. If supported by HW, OS gets to know when a device is not ready by reading a value of 0x0001 for vendor id register.  OS polls while configuration read is pending. If not supported, HW generally retries the vendor id request until CRS condition is cleared.
+4. CRS can also be enhanced as per XPU requirements and proposed to PCI SIG, specifically mandating a timeout and PCIe compliance testing.
+
+
+### Summary
+
+*  Pros
+  - Existing PCIe inband Spec.
+  - Takes care of all sorts of resets (PERST, FLR, D3hot, D3 cold etc)
+  - Linux supports CRS (upto 60 sec using exponential back off)
+  - Seems to be in use FPGA devcies already
+  		- [https://www.intel.com/content/www/us/en/docs/programmable/683111/21-1/configuration-retry-status.html]()
+	   - [https://www.xilinx.com/content/dam/xilinx/support/documents/ip_documentation/pcie4_uscale_plus/v1_3/pg213-pcie4-ultrascale-plus.pdf]()
+	   
+* Cons
+	- Some BIOSes do not support it
+	- EDK2 does not seem to support it
+	- There seems to be no time limit as per PCIe Spec, results in variable behavior. As per PCIe base spcec 4.0 section 2.3.2
+      - *“A Root Complex implementation may choose to limit the number of Configuration Request/CRS Completion Status loops before determining that something is wrong with the target of the Request and taking appropriate action, e.g., complete the Request to the host as a failed transaction.”  * 
+  -  Implementation complicated by software visibility option (if not visible, it is treated similar to CA and UR with 1sec timeout), some old IPs do not support software visibility.
+
+
 
 ## 2: Driver Ready Check
 
@@ -63,9 +96,14 @@ at enumeration time, and/or hot plug devices in and out dynamically.
 
 The virtio-net device presents its driver in an option ROM (OROM) for UEFI / BIOS.  This driver will stall the PXE boot process until the infrastructure backend is ready (via a driver specific signaling).
 
+***SB> Since this is needed by all virtio_net PF devices, shouldn't this be added/proposed to virtio spec and be made part of EDK/OVMF etc so that it can be reused?***
+
+
 ### Virtio-blk
 
 The virtio-blk device presents its driver in an option ROM (OROM) for UEFI / BIOS.  This driver will stall the requests on the disk until the infrastructure backend is ready (via a driver specific signaling).
+
+***SB> Same as above.***
 
 ### NVMe
 
@@ -87,6 +125,7 @@ meeting the timing constraints around enumeration.  Dynamic adding and
 deleting devices on the PCI bus via hot plug requires BIOS configuration.
 
 ## 3: Out-band via platform BMC
+***SB> How about multi Host support?***
 
 ### Diagram
 
