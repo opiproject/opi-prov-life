@@ -171,6 +171,12 @@ Reference:
 
 - <https://www.dmtf.org/sites/default/files/standards/documents/DSP0283_0.1.5WIP10.pdf> (WIP) DMTF MCTP over USB Binding Specification
 
+USB2 implies future products, and is necessary as a high speed OOB interface for supporting large files associated with FW/SW upgrade and audit logs.
+
+- USB2 accesses from the BMC may terminate at an ASIC, FPGA, or AMC on the xPU.
+- The xPU shall provide OOB abstracted protocol access (eg. PLDM) to the registers described in the IB section with PCI architected Extended Capability Structure
+- The xPU shall start responding to requests from the BMC within 3 seconds after 12V is applied to the xPU
+
 ### others
 
 ## Out-of-band xPU BMC
