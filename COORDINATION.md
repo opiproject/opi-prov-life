@@ -18,7 +18,7 @@ see <https://github.com/opiproject/opi-prov-life/blob/main/BOOTSEQ.md#terms>
 
 In-Band refers to PCIe config access to the xPU from UEFI running on the server cores.
 
-### Assumptions
+### Assumption
 
 Servers need to change their BIOS/UEFI implementation to accomodate for this option.
 
