@@ -80,8 +80,11 @@ the device until the link is brought up.
 ### Summary
 
 - **Pros:** No assumptions or changes required on the host, including BIOS.
-Infrastructure devices can be used to provision the host they
-are running inside. Devices presented can be standard and/or software defined.
+Infrastructure devices can be used to provision the host(s) they
+are running inside, either in a single server or in a server with multiple
+independent host complexes. Devices presented can be standards based
+and/or software defined. Not dependent on changes in other standards
+bodies or specs outside of OPI.
 - **Cons:** The infrastructure device needs to follow the PCI spec, including
 meeting the timing constraints around enumeration.  Dynamic adding and
 deleting devices on the PCI bus via hot plug requires BIOS configuration.
