@@ -18,6 +18,12 @@ see <https://github.com/opiproject/opi-prov-life/blob/main/BOOTSEQ.md#terms>
 
 In-Band refers to PCIe config access to the xPU from UEFI running on the server cores.
 
+### Assumptions
+
+Servers need to change their BIOS/UEFI implementation to accomodate for this option.
+
+### Details
+
 1. All xPU devices shall have a standard PCI PF0 interface (PCI Physical Function 0) that is fully compliant to the PCIe specification
    - The PF0 interface shall be functional 3 seconds after PERST# is de-asserted
    - The PF0 interface shall be functional when the compute complex on the xPU is running, locked up or halted
