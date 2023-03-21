@@ -62,8 +62,9 @@ Infrastructure devices acting as either a Host peripheral or as an independent e
 
 ### Assumptions
 
-The infrastructure devices must follow the PCI spec and be ready on the bus(es)
+- The infrastructure devices must follow the PCI spec and be ready on the bus(es)
 at enumeration time, and/or hot plug devices in and out dynamically.
+- Drivers for both X86 and ARM have to be present at the same time in option ROM (OROM).
 
 ### Virtio-net
 
