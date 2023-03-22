@@ -73,6 +73,7 @@ Infrastructure devices acting as either a Host peripheral or as an independent e
 - The infrastructure devices must follow the PCI spec and be ready on the bus(es)
 at enumeration time, and/or hot plug devices in and out dynamically.
 - Drivers for both X86 and ARM have to be present at the same time in option ROM (OROM).
+  - xPUs running on Arm-based servers are required to use AARCH64 native UEFI Drivers (see the UEFI driver requirements in section 7.3.3.1 of [Arm BBR specification](https://developer.arm.com/documentation/den0044/latest)
 
 ### Virtio-net
 
