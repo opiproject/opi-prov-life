@@ -107,6 +107,14 @@ deleting devices on the PCI bus via hot plug requires BIOS configuration.
 
 ## 3: Out-band via platform BMC
 
+- **Pros:**
+No timing issues with PCIe.
+Many standards to choose from for xPU <-> server BMC communication.
+- **Cons:**
+Will require changes in server BMC.
+Will require changes in BIOS/UEFI.
+No defacto standards in BIOS/UEFI <-> BMC communication.
+
 ### Diagram
 
 ![OOB Plat BMC Boot coordination power on seq](architecture/OOB-Plat-BMC-Boot-coordination-power-on-seq.png)
