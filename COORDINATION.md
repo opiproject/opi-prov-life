@@ -18,11 +18,11 @@ see <https://github.com/opiproject/opi-prov-life/blob/main/BOOTSEQ.md#terms>
 
 In-Band refers to PCIe config access to the xPU from UEFI running on the server cores.
 
-- **Pros:** 
+- **Pros:**
 No OOB communication.
 No changes required in server BMC.
-- **Cons:** 
-Will require PCIe SIG adoption. 
+- **Cons:**
+Will require PCIe SIG adoption.
 Will require changes in BIOS/UEFI.
 No defacto standards in BIOS/UEFI <-> BMC communication.
 
