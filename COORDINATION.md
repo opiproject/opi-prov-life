@@ -206,4 +206,6 @@ USB2 implies future products, and is necessary as a high speed OOB interface for
 
 ### others
 
-## Out-of-band xPU BMC
+## 4: Out-of-band xPU BMC
+
+tbd
