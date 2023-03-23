@@ -24,7 +24,9 @@ No changes required in server BMC.
 - **Cons:**
 Will require PCIe SIG adoption.
 Will require changes in BIOS/UEFI.
-No defacto standards in BIOS/UEFI <-> BMC communication.
+No defacto standards in BIOS/UEFI <-> BMC communication. 
+
+***SE> Why is this a con for in-band approach? There is no depdndency on BIOS/UEFI<-> BMC communication here, right?
 
 ### Assumption
 
@@ -44,6 +46,11 @@ Servers need to change their BIOS/UEFI implementation to accomodate for this opt
    - UEFI on xPU’s non-volatile storage
    - Maintenance OS/FW on xPU’s non-volatile storage
    - Other
+
+***SE> Instructing the xPU to enter a maintenance mode or a "boot override" is useful, but may not be sufficent. There might be a need for a more complete in-band host management interface for xPUs, similar to NVMe-MI Host Interface or CXL . Maybe keep this simple and remove from this proposal?
+
+If we beleive this is required, we will have to think about the compexity this may add to the xPU boot order management (xPU UEFI BootOrder variable, AMC boot order from IPMI/Redfis, etc..)
+
 4. Define a read only PF0 OS_STATUS register with the following bits defined
    - Not started
    - Booting
@@ -62,6 +69,11 @@ Servers need to change their BIOS/UEFI implementation to accomodate for this opt
    - Accelerator1
    - Accelerator2
    - other
+
+
+***SE> Another thought comes to mind. We could define a new DOE object (which we can do using our own specification with a GUID, without having to go to PCI-SIG). The DOE object can then be formatted to include multiple fields (and versioned/extensible for the future if needed). These fields can include OS_STATUS, CRASHDUMP_STATUS, etc.. registers described above. DOE allows for bi-directional MMIO communication, so we could also have write fields. For more information, refer to the DOE PCIe ECN here: https://members.pcisig.com/wg/PCI-SIG/document/18483?uploaded=1. For adapters that already support DOE hardware (for other features, such as PCIe IDE/CMA, etc..), adding support for a new feature using the same DOE hardware may just require a firmware change (to be confirmed).
+
+
 
 ## 2: Driver Ready Check
 
@@ -87,6 +99,17 @@ The virtio-blk device presents its driver in an option ROM (OROM) for UEFI / BIO
 
 The NVMe device driver will poll the CSTS.rdy bit to ensure that infrastructure backend is ready before reading or writing.
 
+***SE> Let's take the NVMe case since it is straightforward: The NVMe spec allows for Timeout (TO) value in the Controller Capabilities (CAP) register to be set to control the maximum time the host software shall wait for CSTS.RDY. The maximum TO value allowed by the spec is 127 seconds. The EDK2 NVMe UEFI driver [is already following this](https://github.com/tianocore/edk2/blob/master/MdeModulePkg/Bus/Pci/NvmExpressDxe/NvmExpressHci.c#L417) when it tries to enable/disable the NVMe host controller initialization.
+
+But even in this straightforward case, there are still issues:
+
+1. There is a chance that the 127 seconds (~2 min) may not be enough to complete the NVMe controller intitalization on the xPU side. This includes, for instance, initial deployment (or re-deployment) of the SW on the NVMe storage (possibly from network). In such cases, the host behavior after the timeout is not standard. Some servers may retry booting from the same boot option multiple times, while others may retry the entire boot order (potentially multiple times), and some even reboot the server, etc...
+
+2. Also, the actual TO / retries in the UEFI NVMe driver happen during the driver "start" function, which is invoked when the driver tries to "connect" to discover the targets/HW behind it. This is different from the UEFI/BIOS code that actually tries to boot from the device (which happens later). When the "driver connect" fails, there is no defined standard behavior on what should UEFI/BIOS do. Most will simply ignore that driver, and not attempt to "re-connect" it unless there is a boot path (or user intervention) that requires attempting to re-connect all drivers (which can be a time costly operation)
+
+3. Another issue is that this solution relies on the OptionROM to be loaded. What if the xPU initialization is taking too long, and the OptionROM is still not loaded at the time of the host PCIe resource allocation.
+
+
 ### idpf (Infrastructure Data Plane Function)
 
 The idpf device will come up with the link down, and will notify the driver
@@ -105,6 +128,8 @@ bodies or specs outside of OPI.
 meeting the timing constraints around enumeration.  Dynamic adding and
 deleting devices on the PCI bus via hot plug requires BIOS configuration.
 
+***SE> One thought is that this option can be improved by using a contract/handshake, similar to the UEFI specification method for detecting Adapter Information, such as the Media presence (or other attributes that can be dynamic).  See UEFI spec: https://uefi.org/specs/UEFI/2.10/11_Protocols_UEFI_Driver_Model.html?highlight=adapter_info_#network-media-state . This is already suppoted by many network adapters and UEFI/BIOS implementations. This removes the need to rely on delay in the driver/OptionROM implementation, and instead gives the control to the BIOS/UEFI to detect when the xPU is ready. This however does NOT address the issues with xPU initialization taking too long that the PCI OptionROM itself does not get loaded in time when the host needs it.
+
 ## 3: Out-band via platform BMC
 
 - **Pros:**
@@ -121,7 +146,7 @@ No defacto standards in BIOS/UEFI <-> BMC communication.
 
 ### PLDM State sensors - PLDM
 
-Note: PLDM is over MTCP which can be caried over i2C, serial, USB and other physical connections
+Note: PLDM is over MTCP which can be caried over I2C, I3C, PCIe VDM, serial, USB and other physical connections
 
 Useful State definitions
 
@@ -169,11 +194,12 @@ Reference:
 
 - <https://www.dmtf.org/dsp/DSP0218> DMTF DSP0218 PLDM for Redfish Device Enablement
 
+
 ### SPDM
 
-SPDM runs over MTCP/I2C, PCIe DOE, and potentually MTCP/USB.  Not that some physical layers do not support Asyncronus Event Notifications (AEN).  SPDM is initiated by the platform BMC to the xPU.
+SPDM runs over MTCP/I2C, PCIe DOE, and potentially MTCP/USB.  Not that some physical layers do not support Asyncronus Event Notifications (AEN).  SPDM is initiated by the platform BMC to the xPU.
 
-The platform BMC can use SPDM to get a device certificate or alias certificate from an xPU and challenge that xPU to verify it has the associated private key.  If the platform BMC supports mutual authentication, the xPU can get a device certificate for the platform BMC and challenge it.  The use case for SPDM is not clear.  It makes sense for the platform BMC to validate the xPU if the platform BMC is considered thw primary Root of Trust (ROT).  If the xPU is an independent or primary ROT it may not make sense to have the platform BMC validate it.  Also note that verification of authenticity requires a trust store of CA certs to be kept on the device doing the verification.
+The platform BMC can use SPDM to get a device certificate or alias certificate from an xPU and challenge that xPU to verify it has the associated private key.  If the platform BMC supports mutual authentication, the xPU can get a device certificate for the platform BMC and challenge it.  The use case for SPDM is not clear.  It makes sense for the platform BMC to validate the xPU if the platform BMC is considered the primary Root of Trust (ROT).  If the xPU is an independent or primary ROT it may not make sense to have the platform BMC validate it.  Also note that verification of authenticity requires a trust store of CA certs to be kept on the device doing the verification.
 
 If mutual authentication is supported it may make sense to privilage some operations from platform BMC to XPU for example NMI, reset or graceful shutdown requests.
 
@@ -182,6 +208,8 @@ Using an SPDM encrypted session might be a good way share credentials between th
 Reference:
 
 - <https://www.dmtf.org/dsp/DSP0274> DMTF DSP0274 Security Protocol and Data Model (SPDM) Specification
+
+***SE> While this information about SPDM is useful for securing the MCTP/PLDM management traffic with the xPU (as well as PCIe CMA), in itself, it is not a solution for the boot coordination problem discussed here. I suggest removing this to avoid confusion.
 
 ### I2C
 
@@ -203,6 +231,8 @@ USB2 implies future products, and is necessary as a high speed OOB interface for
 - USB2 accesses from the BMC may terminate at an ASIC, FPGA, or AMC on the xPU.
 - The xPU shall provide OOB abstracted protocol access (eg. PLDM) to the registers described in the IB section with PCI architected Extended Capability Structure
 - The xPU shall start responding to requests from the BMC within 3 seconds after 12V is applied to the xPU
+
+***SE> This is just a variation of PLDM over MCTP over some physical media, which in this case is USB. MCTP over USB Binding specification is still WIP. Maybe merge this with the PLDM/MCTP sub-section above?
 
 ### others
 
