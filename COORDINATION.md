@@ -10,6 +10,15 @@ Initial bootup part covers: Server is Powered On, DPU receives power and starts 
 
 Coordinated shutdowns, reboots, crashes, error handling will be details on a separate page.
 
+***SE> My TLDR:
+
+We do not necessarily need to pick one option. 
+
+- Option 1 may be useful as a long-term architected in-band solution, especially with the DOE path (which does not require a PCIe spec change)
+- Option 3 may be preferred by systems that prefer OOB management (BMC manages all devices directly). And it does not necessarily conflict with Option (1) for the in-band host/UEFI operation 
+- Option 2 may be a stop-gap, especially if it does not require a host (HW, BIOS or BMC) changes. But it is not guaranteed to work in all cases.
+
+
 ## Terms
 
 see <https://github.com/opiproject/opi-prov-life/blob/main/BOOTSEQ.md#terms>
@@ -26,7 +35,7 @@ Will require PCIe SIG adoption.
 Will require changes in BIOS/UEFI.
 No defacto standards in BIOS/UEFI <-> BMC communication. 
 
-***SE> Why is this a con for in-band approach? There is no depdndency on BIOS/UEFI<-> BMC communication here, right?
+***SE> Why is this a con for in-band approach? There is no dependency on BIOS/UEFI<-> BMC communication here, right?
 
 ### Assumption
 
@@ -47,7 +56,7 @@ Servers need to change their BIOS/UEFI implementation to accomodate for this opt
    - Maintenance OS/FW on xPU’s non-volatile storage
    - Other
 
-***SE> Instructing the xPU to enter a maintenance mode or a "boot override" is useful, but may not be sufficent. There might be a need for a more complete in-band host management interface for xPUs, similar to NVMe-MI Host Interface or CXL . Maybe keep this simple and remove from this proposal?
+***SE> Instructing the xPU to enter a maintenance mode or a "boot override" is useful, but may not be sufficient. There might be a need for a more complete in-band host management interface for xPUs, similar to NVMe-MI Host Interface or CXL . Maybe keep this simple and remove from this proposal?
 
 If we beleive this is required, we will have to think about the compexity this may add to the xPU boot order management (xPU UEFI BootOrder variable, AMC boot order from IPMI/Redfis, etc..)
 
@@ -99,15 +108,13 @@ The virtio-blk device presents its driver in an option ROM (OROM) for UEFI / BIO
 
 The NVMe device driver will poll the CSTS.rdy bit to ensure that infrastructure backend is ready before reading or writing.
 
-***SE> Let's take the NVMe case since it is straightforward: The NVMe spec allows for Timeout (TO) value in the Controller Capabilities (CAP) register to be set to control the maximum time the host software shall wait for CSTS.RDY. The maximum TO value allowed by the spec is 127 seconds. The EDK2 NVMe UEFI driver [is already following this](https://github.com/tianocore/edk2/blob/master/MdeModulePkg/Bus/Pci/NvmExpressDxe/NvmExpressHci.c#L417) when it tries to enable/disable the NVMe host controller initialization.
+***SE> Let's take the NVMe case since it is straightforward: The NVMe spec allows for Timeout (TO) value in the Controller Capabilities (CAP) register to be set to control the maximum time the host software shall wait for CSTS.RDY. The maximum TO value allowed by the spec is 127 seconds. The EDK2 NVMe UEFI driver [is already following this](https://github.com/tianocore/edk2/blob/master/MdeModulePkg/Bus/Pci/NvmExpressDxe/NvmExpressHci.c#L417) when it tries to enable/disable the NVMe host controller initialization. But even in this straightforward case, there are still issues:
 
-But even in this straightforward case, there are still issues:
+***SE> 1. There is a chance that the 127 seconds (~2 min) may not be enough to complete the NVMe controller initialization on the xPU side. This includes, for instance, initial deployment (or re-deployment) of the SW on the NVMe storage (possibly from network). In such cases, the host behavior after the timeout is not standard. Some servers may retry booting from the same boot option multiple times, while others may retry the entire boot order (potentially multiple times), and some even reboot the server, etc...
 
-1. There is a chance that the 127 seconds (~2 min) may not be enough to complete the NVMe controller intitalization on the xPU side. This includes, for instance, initial deployment (or re-deployment) of the SW on the NVMe storage (possibly from network). In such cases, the host behavior after the timeout is not standard. Some servers may retry booting from the same boot option multiple times, while others may retry the entire boot order (potentially multiple times), and some even reboot the server, etc...
+***SE> 2. Also, the actual TO / retries in the UEFI NVMe driver happen during the driver "start" function, which is invoked when the driver tries to "connect" to discover the targets/HW behind it. This is different from the UEFI/BIOS code that actually tries to boot from the device (which happens later). When the "driver connect" fails, there is no defined standard behavior on what should UEFI/BIOS do. Most will simply ignore that driver, and not attempt to "re-connect" it unless there is a boot path (or user intervention) that requires attempting to re-connect all drivers (which can be a time costly operation)
 
-2. Also, the actual TO / retries in the UEFI NVMe driver happen during the driver "start" function, which is invoked when the driver tries to "connect" to discover the targets/HW behind it. This is different from the UEFI/BIOS code that actually tries to boot from the device (which happens later). When the "driver connect" fails, there is no defined standard behavior on what should UEFI/BIOS do. Most will simply ignore that driver, and not attempt to "re-connect" it unless there is a boot path (or user intervention) that requires attempting to re-connect all drivers (which can be a time costly operation)
-
-3. Another issue is that this solution relies on the OptionROM to be loaded. What if the xPU initialization is taking too long, and the OptionROM is still not loaded at the time of the host PCIe resource allocation.
+***SE> 3. Another issue is that this solution relies on the OptionROM to be loaded. What if the xPU initialization is taking too long, and the OptionROM is still not loaded at the time of the host PCIe resource allocation.
 
 
 ### idpf (Infrastructure Data Plane Function)
@@ -128,7 +135,7 @@ bodies or specs outside of OPI.
 meeting the timing constraints around enumeration.  Dynamic adding and
 deleting devices on the PCI bus via hot plug requires BIOS configuration.
 
-***SE> One thought is that this option can be improved by using a contract/handshake, similar to the UEFI specification method for detecting Adapter Information, such as the Media presence (or other attributes that can be dynamic).  See UEFI spec: https://uefi.org/specs/UEFI/2.10/11_Protocols_UEFI_Driver_Model.html?highlight=adapter_info_#network-media-state . This is already suppoted by many network adapters and UEFI/BIOS implementations. This removes the need to rely on delay in the driver/OptionROM implementation, and instead gives the control to the BIOS/UEFI to detect when the xPU is ready. This however does NOT address the issues with xPU initialization taking too long that the PCI OptionROM itself does not get loaded in time when the host needs it.
+***SE> One thought is that this option can be improved by using a contract/handshake, similar to the UEFI specification method for detecting Adapter Information, such as the Media presence (or other attributes that can be dynamic).  See UEFI spec: https://uefi.org/specs/UEFI/2.10/11_Protocols_UEFI_Driver_Model.html?highlight=adapter_info_#network-media-state . This is already supported by many network adapters and UEFI/BIOS implementations. This removes the need to rely on delay in the driver/OptionROM implementation, and instead gives the control to the BIOS/UEFI to detect when the xPU is ready. This however does NOT address the issues with xPU initialization taking too long that the PCI OptionROM itself does not get loaded in time when the host needs it.
 
 ## 3: Out-band via platform BMC
 
