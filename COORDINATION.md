@@ -40,6 +40,10 @@ No defacto standards in BIOS/UEFI <-> BMC communication.
 
 Servers need to change their BIOS/UEFI implementation to accomodate for this option.
 
+### Diagram
+
+![Flow for PCI in-band boot coordination](architecture/xPU%20PCI%20in-band%20boot%20coordination%2020230321.png)
+
 ### Details
 
 1. All xPU devices shall have a standard PCI PF0 interface (PCI Physical Function 0) that is fully compliant to the PCIe specification
@@ -84,10 +88,6 @@ These fields can include OS_STATUS, CRASHDUMP_STATUS, etc.. registers described 
 DOE allows for bi-directional MMIO communication, so we could also have write fields. 
 For more information, refer to the DOE PCIe ECN here: <https://members.pcisig.com/wg/PCI-SIG/document/18483?uploaded=1>.
 For adapters that already support DOE hardware (for other features, such as PCIe IDE/CMA, etc..), adding support for a new feature using the same DOE hardware may just require a firmware change (_to be confirmed_).
-
-### Figure 1: Flow for PCI in-band boot coordination
-
-![Flow for PCI in-band boot coordination](architecture/xPU%20PCI%20in-band%20boot%20coordination%2020230321.png)
 
 ## 2: Driver Ready Check
 
