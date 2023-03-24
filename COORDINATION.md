@@ -40,7 +40,7 @@ No defacto standards in BIOS/UEFI <-> BMC communication.
 
 Servers need to change their BIOS/UEFI implementation to accomodate for this option.
 
-### Diagram
+### Flow Diagram
 
 ![Flow for PCI in-band boot coordination](architecture/xPU%20PCI%20in-band%20boot%20coordination%2020230321.png)
 
@@ -82,10 +82,10 @@ Servers need to change their BIOS/UEFI implementation to accomodate for this opt
 
 ### DOE Improvement
 
-We could define a new DOE object (which we can do using our own specification with a GUID, without having to go to PCI-SIG). 
-The DOE object can then be formatted to include multiple fields (and versioned/extensible for the future if needed). 
-These fields can include OS_STATUS, CRASHDUMP_STATUS, etc.. registers described above. 
-DOE allows for bi-directional MMIO communication, so we could also have write fields. 
+We could define a new DOE object (which we can do using our own specification with a GUID, without having to go to PCI-SIG).
+The DOE object can then be formatted to include multiple fields (and versioned/extensible for the future if needed).
+These fields can include OS_STATUS, CRASHDUMP_STATUS, etc.. registers described above.
+DOE allows for bi-directional MMIO communication, so we could also have write fields.
 For more information, refer to the DOE PCIe ECN here: <https://members.pcisig.com/wg/PCI-SIG/document/18483?uploaded=1>.
 For adapters that already support DOE hardware (for other features, such as PCIe IDE/CMA, etc..), adding support for a new feature using the same DOE hardware may just require a firmware change (_to be confirmed_).
 
