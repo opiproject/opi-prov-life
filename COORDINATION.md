@@ -119,6 +119,14 @@ The idpf device will come up with the link down, and will notify the driver
 that it is ready by bringing the link up.  The driver will wait to send on
 the device until the link is brought up.
 
+### Improvement
+
+This option can be improved by using a contract/handshake, similar to the UEFI specification method for detecting Adapter Information, such as the Media presence (or other attributes that can be dynamic).
+See UEFI spec: <https://uefi.org/specs/UEFI/2.10/11_Protocols_UEFI_Driver_Model.html?highlight=adapter_info_#network-media-state>.
+This is already supported by many network adapters and UEFI/BIOS implementations.
+This removes the need to rely on delay in the driver/OptionROM implementation, and instead gives the control to the BIOS/UEFI to detect when the xPU is ready.
+This however does NOT address the issues with xPU initialization taking too long that the PCI OptionROM itself does not get loaded in time when the host needs it.
+
 ### Summary
 
 - **Pros:** No assumptions or changes required on the host, including BIOS.
