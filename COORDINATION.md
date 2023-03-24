@@ -14,11 +14,12 @@ Coordinated shutdowns, reboots, crashes, error handling will be details on a sep
 
 see <https://github.com/opiproject/opi-prov-life/blob/main/BOOTSEQ.md#terms>
 
-## Summary
+## Working Summary
 
 We do not necessarily need to pick one option:
+
 - Option 1 may be useful as a long-term architected in-band solution, especially with the DOE path (which does not require a PCIe spec change)
-- Option 3 may be preferred by systems that prefer OOB management (BMC manages all devices directly). And it does not necessarily conflict with Option (1) for the in-band host/UEFI operation 
+- Option 3 may be preferred by systems that prefer OOB management (BMC manages all devices directly). And it does not necessarily conflict with Option (1) for the in-band host/UEFI operation
 - Option 2 may be a stop-gap, especially if it does not require a host (HW, BIOS or BMC) changes. But it is not guaranteed to work in all cases.
 
 _This is still an **active** discussion at this point in time in this TWG._
