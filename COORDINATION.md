@@ -65,7 +65,7 @@ Servers need to change their BIOS/UEFI implementation to accomodate for this opt
 
 ### Figure 1: Flow for PCI in-band boot coordination
 
-![Flow for PCI in-band boot coordination](architecture/xPU PCI in-band boot coordination 20230321.png "Flow for PCI in-band boot coordination")
+![Flow for PCI in-band boot coordination](architecture/xPU%20PCI%20in-band%20boot%20coordination%2020230321.png)
 
 ## 2: Driver Ready Check
 
