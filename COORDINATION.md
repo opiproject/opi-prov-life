@@ -155,7 +155,7 @@ No defacto standards in BIOS/UEFI <-> BMC communication.
 
 ### PLDM State sensors - PLDM
 
-Note: PLDM is over MTCP which can be caried over i2C, serial, USB and other physical connections
+Note: PLDM is over MTCP which can be caried over I2C, I3C, PCIe VDM, serial, USB and other physical connections
 
 Useful State definitions
 
