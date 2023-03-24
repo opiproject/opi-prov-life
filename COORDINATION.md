@@ -63,6 +63,10 @@ Servers need to change their BIOS/UEFI implementation to accomodate for this opt
    - Accelerator2
    - other
 
+### Figure 1: Flow for PCI in-band boot coordination
+
+![Flow for PCI in-band boot coordination](architecture/xPU PCI in-band boot coordination 20230321.png "Flow for PCI in-band boot coordination")
+
 ## 2: Driver Ready Check
 
 The race condition to consider is when the Host is first to boot before the infrastrastructure is ready to serve to the Host its boot image (from a port or a disk hanging off the infrastructure device (DPU/IPU)).  To ensure that the port / disk is ready to be used by the Host, the driver running in the UEFI / BIOS should check that the infrastructure is ready before trying to PXE boot or to read the boot disk.
@@ -198,7 +202,7 @@ Reference:
 
 - <https://www.dmtf.org/sites/default/files/standards/documents/DSP0283_0.1.5WIP10.pdf> (WIP) DMTF MCTP over USB Binding Specification
 
-USB2 implies future products, and is necessary as a high speed OOB interface for supporting large files associated with FW/SW upgrade and audit logs.
+USB2 implies future products that will plug into PCIe CEM 6 which supports USB2 signals. This is necessary as a high speed OOB interface for supporting large files associated with FW/SW upgrade and audit logs.
 
 - USB2 accesses from the BMC may terminate at an ASIC, FPGA, or AMC on the xPU.
 - The xPU shall provide OOB abstracted protocol access (eg. PLDM) to the registers described in the IB section with PCI architected Extended Capability Structure
