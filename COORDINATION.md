@@ -48,12 +48,6 @@ Servers need to change their BIOS/UEFI implementation to accomodate for this opt
 1. Define a new PCI Class Code and corresponding PCI architected Extended Capability Structure for xPUs
    - Define PCI sub-classes for xPUs with and without an AMC
    - The PCI architected Extended Capability Structure shall include items 3-7 below
-1. Define a read/write PF0 OS_BOOT_SELECT register with the following bits defined
-   - Network OS boot (bit only - does not include the actual path and credentials)
-   - OS on xPU’s non-volatile storage
-   - UEFI on xPU’s non-volatile storage
-   - Maintenance OS/FW on xPU’s non-volatile storage
-   - Other
 1. Define a read only PF0 OS_STATUS register with the following bits defined
    - Not started
    - Booting
@@ -72,6 +66,15 @@ Servers need to change their BIOS/UEFI implementation to accomodate for this opt
    - Accelerator1
    - Accelerator2
    - other
+
+**Optional possible addition to consider:**
+
+1. Define a read/write PF0 OS_BOOT_SELECT register with the following bits defined
+   - Network OS boot (bit only - does not include the actual path and credentials)
+   - OS on xPU’s non-volatile storage
+   - UEFI on xPU’s non-volatile storage
+   - Maintenance OS/FW on xPU’s non-volatile storage
+   - Other
 
 ### Figure 1: Flow for PCI in-band boot coordination
 
