@@ -103,7 +103,7 @@ at enumeration time, and/or hot plug devices in and out dynamically.
 
 ## UEFI boot flow
 
-![PI Boot Flow](https://github.com/tianocore/tianocore.github.io/blob/master/images/PI_Boot_Phases.JPG))
+![PI Boot Flow](https://github.com/tianocore/tianocore.github.io/blob/master/images/PI_Boot_Phases.JPG)
 
 ### Virtio-net
 
