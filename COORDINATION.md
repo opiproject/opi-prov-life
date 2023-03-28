@@ -101,7 +101,7 @@ at enumeration time, and/or hot plug devices in and out dynamically.
 - Drivers for both X86 and ARM have to be present at the same time in option ROM (OROM).
   - xPUs running on Arm-based servers are required to use AARCH64 native UEFI Drivers (see the UEFI driver requirements in section 7.3.3.1 of [Arm BBR specification](https://developer.arm.com/documentation/den0044/latest)
 
-## UEFI boot flow
+### UEFI boot flow
 
 ![PI Boot Flow](https://github.com/tianocore/tianocore.github.io/blob/master/images/PI_Boot_Phases.JPG)
 
