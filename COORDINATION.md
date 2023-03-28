@@ -103,6 +103,8 @@ at enumeration time, and/or hot plug devices in and out dynamically.
 
 ### UEFI boot flow
 
+UEFI specification section of how PCI Option ROMs are "loaded" from the device into memory, then started later on with driver "connect": <https://uefi.org/specs/UEFI/2.10/14_Protocols_PCI_Bus_Support.html?highlight=option%20rom#pci-bus-driver-responsibilities>
+
 ![PI Boot Flow](https://github.com/tianocore/tianocore.github.io/blob/master/images/PI_Boot_Phases.JPG)
 
 ### Virtio-net
