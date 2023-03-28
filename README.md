@@ -2,6 +2,8 @@
 
 [![Linters](https://github.com/opiproject/opi-prov-life/actions/workflows/linters.yml/badge.svg)](https://github.com/opiproject/opi-prov-life/actions/workflows/linters.yml)
 [![License](https://img.shields.io/github/license/opiproject/opi-prov-life?style=flat-square&color=blue&label=License)](https://github.com/opiproject/opi-prov-life/blob/master/LICENSE)
+[![GitHub stars](https://img.shields.io/github/stars/opiproject/opi-prov-life.svg?style=flat-square&label=github%20stars)](https://github.com/opiproject/opi-prov-life)
+[![GitHub Contributors](https://img.shields.io/github/contributors/opiproject/opi-prov-life.svg?style=flat-square)](https://github.com/opiproject/opi-prov-life/graphs/contributors)
 
 ## Description
 
