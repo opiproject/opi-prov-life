@@ -107,6 +107,8 @@ UEFI specification section of how PCI Option ROMs are "loaded" from the device i
 
 ![PI Boot Flow](https://github.com/tianocore/tianocore.github.io/blob/master/images/PI_Boot_Phases.JPG)
 
+For more details see <https://github.com/tianocore/tianocore.github.io/wiki/PI-Boot-Flow>
+
 ### Virtio-net
 
 The virtio-net device presents its driver in an option ROM (OROM) for UEFI / BIOS.  This driver will stall the PXE boot process until the infrastructure backend is ready (via a driver specific signaling).
