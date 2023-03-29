@@ -159,7 +159,25 @@ No defacto standards in BIOS/UEFI <-> BMC communication.
 
 ### Diagram
 
-![OOB Plat BMC Boot coordination power on seq](architecture/OOB-Plat-BMC-Boot-coordination-power-on-seq.png)
+```mermaid
+sequenceDiagram
+    participant ServerBmc
+    participant ServerBios
+    participant xPUmngmnt
+    participant xPUCpu
+    ServerBmc->>ServerBios: Power On
+    ServerBmc->>xPUmngmnt: Power On
+    xPUmngmnt->>xPUCpu: Power On
+    ServerBmc->>xPUmngmnt: FRU request
+    xPUmngmnt->>ServerBmc: FRU response
+    ServerBmc->>ServerBios: hold enumeration
+    xPUCpu->>xPUmngmnt: Update Boot status 1
+    xPUCpu->>xPUmngmnt: Update Boot status 2
+    xPUCpu->>xPUmngmnt: Update Boot status 3
+    ServerBmc->>xPUmngmnt: Get Boot status
+    xPUmngmnt->>ServerBmc: xPU ready
+    ServerBmc->>ServerBios: continue enumeration
+```
 
 ### PLDM State sensors - PLDM
 
