@@ -42,7 +42,26 @@ Servers need to change their BIOS/UEFI implementation to accomodate for this opt
 
 ### Flow Diagram
 
-![Flow for PCI in-band boot coordination](architecture/xPU%20PCI%20in-band%20boot%20coordination%2020230321.png)
+```mermaid
+sequenceDiagram
+    participant ServerUEFI
+    participant xPUPF0
+    participant xPUCPU
+    ServerUEFI->>xPUPF0: Power On
+    xPUPF0->>xPUCPU: Power On
+    xPUCPU->>xPUPF0: Set OS_STATUS to BOOTING
+    xPUCPU->>xPUPF0: Set MAX_BOOT_TIME
+    ServerUEFI->>xPUPF0: Reqest xPU calss code
+    ServerUEFI->>xPUPF0: Response xPU calss code
+    ServerUEFI->>xPUPF0: Reqest MAX_BOOT_TIME
+    ServerUEFI->>xPUPF0: Response MAX_BOOT_TIME
+    ServerUEFI->>xPUPF0: Poll OS_STATUS until BOOTED or MAX_BOOT_TIME expires
+    xPUCPU->>xPUPF0: Set OS_STATUS to BOOTED
+    ServerUEFI->>xPUPF0: Response OS_STATUS
+    ServerUEFI->>xPUPF0: Reqest enumerate B/D/F for entire xPU
+    ServerUEFI->>xPUPF0: Response enumerate
+    ServerUEFI->>ServerUEFI: UEFI continues to next stages inc oROM
+```
 
 ### Details
 
