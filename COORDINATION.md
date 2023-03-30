@@ -55,9 +55,13 @@ sequenceDiagram
     xPUPF0->>ServerUEFI: Response xPU calss code
     ServerUEFI->>xPUPF0: Reqest MAX_BOOT_TIME
     xPUPF0->>ServerUEFI: Response MAX_BOOT_TIME
-    ServerUEFI->>xPUPF0: Poll OS_STATUS until BOOTED or MAX_BOOT_TIME expires
-    xPUCPU->>xPUPF0: Set OS_STATUS to BOOTED
-    xPUPF0->>ServerUEFI: Response OS_STATUS
+    loop CheckReady
+        ServerUEFI->>xPUPF0: Poll OS_STATUS until BOOTED or MAX_BOOT_TIME expires
+       xPUPF0->>ServerUEFI: Response OS_STATUS
+       xPUPF0->>ServerUEFI: Response OS_STATUS
+       xPUCPU->>xPUPF0: Set OS_STATUS to BOOTED
+       xPUPF0->>ServerUEFI: Response OS_STATUS
+    end
     ServerUEFI->>xPUPF0: Reqest enumerate B/D/F for entire xPU
     xPUPF0->>ServerUEFI: Response enumerate
     ServerUEFI->>ServerUEFI: UEFI continues to next stages inc oROM
