@@ -35,4 +35,10 @@ see <https://github.com/opiproject/opi-prov-life/blob/main/BOOTSEQ.md#terms>
 
 ## 2: Host reboots
 
-tbd
+* Host can choose to reboot in different ways (shell, ipmi)
+* Maybe we can use somehow PCIe PERST signal to notify DPU that host reboots
+* DPU would like to free some resources/context assoiciated with that Host
+* DPU can re-provision it for next Tenant on reboot
+* DPU can deny/prevent from Host reboot
+* How DPU reaction changes if it is installed in a slot providing persistent power, implying it should be independent of host?
+* TBD
