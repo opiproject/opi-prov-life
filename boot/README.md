@@ -111,6 +111,8 @@ See different approaches for in-band vs oob on bootup ccordination [here](./COOR
 
 ## xPU and host reboot
 
+See different approaches for in-band vs oob on reboot ccordination [here](./REBOOT.md)
+
 - xPU OS/FW reboot assumed to cause Host OS crash
   - Not in all cases. e.g. NVIDIA's design separates the various components, and an ARM complex reboot should have no direct effect on the host OS. Similarly, some vendors implement ISSU processes for certain FW updates where no disruption is observed.
   - This will cause challenges for xPU OS deployment and multi-xPU depolyments. We should encourage graceful reset behaviour from host/OS/xPUs
