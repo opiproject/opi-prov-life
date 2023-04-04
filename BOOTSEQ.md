@@ -5,7 +5,7 @@
 This page is high level overview of assumptions, use cases and considerations for coordination between Server (aka Host) and DPU.
 The detailed solutinos and options will have their own pages.
 
-For example, the first initial bootup part, is detailed here [COORDINATION.md](./COORDINATION.md) considering in-band via different PCIe mechanisms or OOB via Server BMC assisted mechanisms.
+For example, the first initial bootup part, is detailed here [COORDINATION.md](./boot/COORDINATION.md) considering in-band via different PCIe mechanisms or OOB via Server BMC assisted mechanisms.
 
 Coordinated shutdowns, reboots, crashes, error handling will be detailed on a separate pages and link will be posted here.
 
