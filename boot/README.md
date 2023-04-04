@@ -1,4 +1,4 @@
-# Boot sequencing
+# High Level Boot sequencing
 
 ## TLDR
 
