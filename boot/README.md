@@ -7,7 +7,9 @@ The detailed solutinos and options will have their own pages.
 
 For example, the first initial bootup part, is detailed here [COORDINATION.md](./COORDINATION.md) considering in-band via different PCIe mechanisms or OOB via Server BMC assisted mechanisms.
 
-Coordinated shutdowns, reboots, crashes, error handling will be detailed on a separate pages and link will be posted here.
+For example, the second reboot part, is detailed here [REBOOT.md](./REBOOT.md) considering in-band via different PCIe mechanisms or OOB via Server BMC assisted mechanisms.
+
+Other coordinated shutdowns, reboots, crashes, error handling will be detailed on a separate pages and link will be posted here.
 
 ## Terms
 
