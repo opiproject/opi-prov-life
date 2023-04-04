@@ -77,6 +77,8 @@ The multi-host case where one or more xPUs are attached to multiple servers with
 
 ## DPU Vendors Survey
 
+See replies here <https://github.com/opiproject/opi-prov-life/tree/main/vendors>
+
 - What is the role of a BMC on the xPU regarding startup?
 - What casues the ARM cores to start running? Application of 12V? Release of PCIe RESET? Write to a location via NC-SI or I2C? ??
 - How does PCIe reset affect the xPU's PCIe interface and the ARM cores?
