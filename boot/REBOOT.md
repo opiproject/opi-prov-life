@@ -33,6 +33,21 @@ see <https://github.com/opiproject/opi-prov-life/blob/main/BOOTSEQ.md#terms>
 * Out-band via platform BMC: maybe using techiniques from [BOOTSEQ.md](../BOOTSEQ.md)
 * In-Band TBD: maybe PCIe, IRQ, ...
 
+### OOB Diagram
+
+```mermaid
+sequenceDiagram
+    participant ServerBmc
+    participant ServerBios
+    participant xPUmngmnt
+    participant xPUCpu
+    xPUmngmnt->>ServerBmc: Reboot notifcation
+    ServerBmc->>xPUmngmnt: Reboot postpone request
+    ServerBmc->>ServerBios: Reboot notifcation
+    xPUmngmnt->>ServerBmc: Reboot notifcation
+    xPUmngmnt->>xPUmngmnt: Reboot on timeout anyways
+```
+
 ## 2: Host reboots
 
 * Host can choose to reboot in different ways (shell, ipmi)
