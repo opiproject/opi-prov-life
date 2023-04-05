@@ -113,7 +113,7 @@ See different approaches for in-band vs oob on bootup ccordination [here](./COOR
   - Yes. XPU services/devices will be unavailable
 - More...
 
-## xPU and host reboot
+## DPU Reboot and Graceful shutdown
 
 See different approaches for in-band vs oob on reboot ccordination [here](./REBOOT.md)
 
@@ -121,14 +121,15 @@ See different approaches for in-band vs oob on reboot ccordination [here](./REBO
   - Not in all cases. e.g. NVIDIA's design separates the various components, and an ARM complex reboot should have no direct effect on the host OS. Similarly, some vendors implement ISSU processes for certain FW updates where no disruption is observed.
   - This will cause challenges for xPU OS deployment and multi-xPU depolyments. We should encourage graceful reset behaviour from host/OS/xPUs
 - How xPU can reboot ?
-  - Can notify Host OS that reboot is about to happen?
-  - IRQ?
-  - OS specific?
-  - Through out-of-band link to host BMC?
+  - Can DPU notify Host OS that reboot is about to happen?
+  - Host can stop and failover the workload during that time to another DPU or to another Host
+  - HOw ? Via IRQ?
+  - Is it OS specific?
+  - Maybe through out-of-band link to host BMC?
   - xPU has to reboot without causing complete disrutpion, it can result in packet drops/storage IO timeout etc, but not require host reboot. It can send IRQs which would be vendor specific. Another option is to hotunplug all devices from host, which would be disruptive.
 - More...
 
-## Graceful shutdown
+## Host Reboot and Graceful shutdown
 
 - Should Host notify to xPU when reboot requested (linux shutdown/reboot command) and how ?
   - How does xPU reaction change if it is installed in a slot providing persistent power, implying it should be independent of host?
@@ -139,8 +140,6 @@ See different approaches for in-band vs oob on reboot ccordination [here](./REBO
   - Can xPU deny a host reboot/powercycle event?
   - Does persistent power change this behavior?
   - xPU could control its PCIe config/Bar  responses once it sees PERST# signal from host. the Host BIOS will then wait for PCIe config cycles to be succesful during reboot.
-- How does host respond to a xPU going off line? (during lifecycle event etc.)
-- More...
 
 ## Error handling
 
