@@ -172,6 +172,8 @@ deleting devices on the PCI bus via hot plug requires BIOS configuration.
 
 ## 3: Out-band via platform BMC
 
+Note: All server vendors have proprietary BIOS/UEFI <-> BMC communication. OPI will leave this out of scope and not try to standardize it.
+
 - **Pros:**
 No timing issues with PCIe.
 Many standards to choose from for xPU <-> server BMC communication.
