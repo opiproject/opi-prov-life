@@ -2,7 +2,7 @@
 
 ## TLDR
 
-Devices attached to the host to/from the infrastructure need to be added, 
+Devices attached to the host to/from the infrastructure need to be added,
 deleted, and connected up on the infrastructure side
 (to the dataplane, hypervisor, etc.).  For supporting VMs & containers these
 devices also need to be connected up on the host side.
@@ -60,6 +60,3 @@ following associations are made:
 
 Having this mapping on the agent side enables the connectivity of VMs and
 containers to the correct device, identified by their 3-tuple.
-
-
-
