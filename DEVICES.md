@@ -1,4 +1,4 @@
-# Device Management (Note: **Experimental** for Discussion Purposes)
+# Device Management - Note: **Experimental** for Discussion Purposes
 
 ## TLDR
 
