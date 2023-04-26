@@ -14,6 +14,8 @@ see <https://github.com/opiproject/opi-prov-life/blob/main/BOOTSEQ.md#terms>
 
 ## 1: DPU reboots
 
+When DPU reboots we want to notify Host (either OS or BMC) about this fact.
+
 ### Why
 
 * Host can yank DPU power if Host is not aware that DPU is rebooting
@@ -49,6 +51,8 @@ sequenceDiagram
 ```
 
 ## 2: Host reboots
+
+When Host reboots we want to notify DPU about this fact.
 
 * Host can choose to reboot in different ways (shell, ipmi)
 * Maybe we can use somehow PCIe PERST signal to notify DPU that host reboots
