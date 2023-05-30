@@ -17,11 +17,11 @@ This page lists xPU base firmware and security requirements and recommendations.
 
 ## Proposal _(To be discussed)_
 
-1. xPUs with Arm-based processors are recommended to achieve [Arm SystemReady ES v 1.4](https://www.arm.com/architecture/system-architectures/systemready-certification-program/es)(or newer) certification .
-2. xPUs with Arm-based processors are required to be compliant with the following specifications. Requirements are to be verified using [SystemReady ES ACS v1.2.0](https://github.com/ARM-software/arm-systemready/tree/main/ES) (or newer).
+1. xPUs with Arm-based processors are required to be compliant with the following specifications. Requirements are to be verified using [SystemReady ES ACS v1.2.0](https://github.com/ARM-software/arm-systemready/tree/main/ES) (or newer).
      - BSA ver 1.0c (or newer).
      - SBBR recipe in BBR v1.0 (or newer), which includes implementing UEFI, ACPI, and SMBIOS.
      - BBSR v 1.2 (or newer).
+2. xPUs with Arm-based processors are recommended to achieve [Arm SystemReady ES v 1.4](https://www.arm.com/architecture/system-architectures/systemready-certification-program/es)(or newer) certification .
 
 ## Arm SystemReady certification program
 
