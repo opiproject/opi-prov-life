@@ -16,7 +16,7 @@ OPI subgroup dealing with provisioning and lifecycle management.
   * [Lifecycle & Updates](LIFECYCLE.md)
   * [Monitoring & Telemetry](MONITORING.md)
 * Leader
-  * [Boris Glimcher](https://github.com/glimchb)
+  * 🔴 Missing
 * Meeting Time & Date
   * Tuesdays 13:00-13:45 ET
 * Slack Channel
