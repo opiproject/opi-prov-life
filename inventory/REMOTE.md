@@ -67,16 +67,19 @@ $ curl -qkL -u root:password https://bf2-bmc-ip/redfish/v1/UpdateService/Firmwar
 ```
 
 Example from Marvell:
+
 ```bash
 tbd
 ```
 
 Example from Intel:
+
 ```bash
 tbd
 ```
 
 Example from AMD:
+
 ```bash
 tbd
 ```
