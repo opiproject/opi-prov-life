@@ -1,11 +1,16 @@
 ## Remote Host/BMC Inventory
 
-Host host/platform BMC access inventory information from the DPU/IPU ?
+This is designed for HOST, ether CPU or platform BMC to access inventory, like serial number.
+As an example, today some information are via FRU for regular PCIe NICs.
+
+### What protocol to use
 
 - NC-SI
 - PLDM
 - VPD
 - other...
+
+### Examples
 
 VPD Example from Nvidia:
 
