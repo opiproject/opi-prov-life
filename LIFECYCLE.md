@@ -4,7 +4,7 @@ High level requirements on a DPU/IPU or subsequently a "device"
 
 ## Terms
 
-see <https://github.com/opiproject/opi-prov-life/blob/main/BOOTSEQ.md#terms>
+see <https://github.com/opiproject/opi-prov-life/blob/main/boot/README.md#terms>
 
 ## Reboot device
 
