@@ -17,12 +17,12 @@ This is designed for applications running on the xPU to access inventory locally
   - connector
   - slot
 - OPI will define mandatory tables and fields for OPI compliance.
-- OPI will produce smbios-validation-tool like [google](https://github.com/google/smbios-validation-tool)
-- Check more info in Provisioning TWG <https://github.com/opiproject/opi-prov-life>
 
 ## Validation
 
-See <https://github.com/opiproject/smbios-validation-tool>
+In order to test compliance and help DPU vendors to fix errors and missing tables and fields, we adopting validation tools:
+- See <https://github.com/opiproject/smbios-validation-tool>
+- See <https://wiki.ubuntu.com/FirmwareTestSuite>
 
 ## Examples
 
