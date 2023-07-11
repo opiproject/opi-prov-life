@@ -88,3 +88,10 @@ Advantage: all modern control planes today use gRPC and not REST
 - add new gRPC service and RPC calls for inventory query
 - see proto definition [here](https://github.com/opiproject/opi-api/blob/main/common/v1/inventory.proto)
 - see example implementation [here](https://github.com/opiproject/opi-smbios-bridge)
+
+### gRPC Vendor examples
+
+- [Nvidia](https://github.com/opiproject/opi-smbios-bridge#nvidia-example)
+- [Marvell](https://github.com/opiproject/opi-smbios-bridge#marvell-example)
+- [Intel](https://github.com/opiproject/opi-smbios-bridge#intel-example)
+- [AMD](https://github.com/opiproject/opi-smbios-bridge#amd-example)
