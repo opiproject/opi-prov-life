@@ -2,7 +2,7 @@
 
 ## TLDR
 
-Adopted https://github.com/opiproject/sztp
+Adopted <https://github.com/opiproject/sztp>
 
 ## Supportive docs and alternative spec
 
