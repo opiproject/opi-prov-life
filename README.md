@@ -11,7 +11,7 @@ OPI subgroup dealing with provisioning and lifecycle management.
 
 * Description & Responsibilities
   * [Discovery & Provisioning](PROVISIONING.md)
-  * [Inventory](INVENTORY.md)
+  * [Inventory](./inventory/README.md)
   * [Boot sequencing](./boot/README.md)
   * [Lifecycle & Updates](LIFECYCLE.md)
   * [Monitoring & Telemetry](https://github.com/opiproject/otel)
