@@ -13,7 +13,9 @@ example if we using redfish:
 ```bash
 $ curl -s -k -u <bmc-user>:<password> -X POST -H "Content-Type: application/json" -d '{"ResetType": "ForceRestart"}' https://<bmc-ip-address>/redfish/v1/Managers/<ID>/Actions/Manager.Reset
 and
-$ curl -s -k -u <bmc-user>:<password> -X POST -H "Content-Type: application/json" -d '{"ResetType": "PowerCycle"}' https://<bmc-ip-address>/redfish/v1/Systems/<ID>/Actions/ComputerSystem.Reset 
+$ curl -s -k -u <bmc-user>:<password> -X POST -H "Content-Type: application/json" -d '{"ResetType": "PowerCycle"}' https://<bmc-ip-address>/redfish/v1/Systems/<ID>/Actions/ComputerSystem.Reset
+
+# see http://redfish.dmtf.org/schemas/v1/Resource.json#/definitions/ResetType
 ```
 
 ## Update device
