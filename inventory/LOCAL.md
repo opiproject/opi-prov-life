@@ -1,5 +1,7 @@
 # Local Inventory
 
+This is designed for applications running on the xPU to access inventory locally, like serial number.
+
 - OPI adopted [SMBIOS](https://www.dmtf.org/standards/smbios) for DPUs and IPUs
 - SMBIOS is used for local access inside the DPUs and IPUs to get BIOS and System information about DPUs and IPUs
 - SMBIOS is a standard way to get similar information from servers, so DPUs and IPUs adoption make sense
