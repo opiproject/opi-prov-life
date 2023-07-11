@@ -40,7 +40,7 @@ $ curl -qkL -u root:password https://10.240.76.127/redfish/v1/UpdateService/Firm
 }
 ```
 
-Example from Nvidia:
+Example from Nvidia [Documentation](https://docs.nvidia.com/networking/display/BlueFieldBMCSWLatest):
 
 ```bash
 $ curl -qkL -u root:password https://bf2-bmc-ip/redfish/v1/UpdateService/FirmwareInventory/e4013534_running
