@@ -52,7 +52,7 @@ $ curl -s -k -u <bmc-user>:<password> -X POST -H "Content-Type: application/json
 
 ## Debug device
 
-* see [Monitoring](MONITORING.md)
+* see [Monitoring](https://github.com/opiproject/otel)
 * uniform method of failure data collection and recovery
 * explore SOL (Serial over LAN) as well
 
