@@ -55,3 +55,10 @@ $ curl -s -k -u <bmc-user>:<password> -X POST -H "Content-Type: application/json
 * see [Monitoring](MONITORING.md)
 * uniform method of failure data collection and recovery
 * explore SOL (Serial over LAN) as well
+
+example if we using redfish:
+
+```bash
+$ curl -s -k -u <bmc-user>:<password> -X GET -H "Content-Type: application/json" https://<bmc-ip-address>/redfish/v1/Managers/<ID>/LogServices/{LogServiceId}/Entries
+# TODO: add more examples
+```
