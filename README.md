@@ -14,7 +14,7 @@ OPI subgroup dealing with provisioning and lifecycle management.
   * [Inventory](INVENTORY.md)
   * [Boot sequencing](./boot/README.md)
   * [Lifecycle & Updates](LIFECYCLE.md)
-  * [Monitoring & Telemetry](MONITORING.md)
+  * [Monitoring & Telemetry](https://github.com/opiproject/otel)
 * Leader
   * [Gal Zaidman](https://github.com/Gal-Zaidman)
 * Meeting Time & Date
