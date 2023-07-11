@@ -1,4 +1,4 @@
-## Remote Network Inventory
+# Remote Network Inventory
 
 This is designed for external control plane that wishes to access inventory, like serial number, remotely.
 Also, potentially, also match what xPU resides in what Server.
