@@ -7,12 +7,18 @@ see [Terms](../boot/README.md#terms)
 
 ## Redfish
 
+Advantage: new standard for servers today, has big ecosystem around it
+
 - what subset of redfish to implement on xPU BMC (aka AMC) ?
 - what we re-use and/or contribute back to [OpenBMC](https://github.com/openbmc)?
 - what if there is no xPU BMC (aka AMC) ? Run redfish server on the ARM cores?
 - How [Redfish SmartNIC White Paper](https://www.dmtf.org/sites/default/files/standards/documents/DSP2063_1.0.0.pdf) is related ?
+- Can we create [Mockups](https://github.com/DMTF/Redfish-Mockup-Creator) for DPUs?
+- See DMTF ecosystem around resfish [here](https://github.com/search?q=org:DMTF+redfish&type=repositories)
 
 ## gRPC
+
+Advantage: all modern control planes today use gRPC and not REST
 
 - add new gRPC service and RPC calls for inventory query
 - see proto definition [here](https://github.com/opiproject/opi-api/blob/main/common/v1/inventory.proto)
