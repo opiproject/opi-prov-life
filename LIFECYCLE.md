@@ -18,8 +18,8 @@ $ curl -s -k -u <bmc-user>:<password> -X POST -H "Content-Type: application/json
 * OS update
 * software/application update
 
- example if we using redfish:
- 
+example if we using redfish:
+
 ```bash
 $ curl -k \
      -u <bmc-user>:<password> \
@@ -37,8 +37,8 @@ $ curl -k \
 * via network - required
 * via host - optional
 
- example if we using redfish:
- 
+example if we using redfish:
+
 ```bash
 $ curl -s -k -u <bmc-user>:<password> -X POST -H "Content-Type: application/json" -d '{"ResetType": "ResetAll"}' https://<bmc-ip-address>/redfish/v1/Managers/<ID>/Actions/Manager.ResetToDefaults
 # TODO: add more examples
