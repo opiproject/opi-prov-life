@@ -1,5 +1,9 @@
 # Discovery and Provisioning
 
+## TLDR
+
+Adopted https://github.com/opiproject/sztp
+
 ## Supportive docs and alternative spec
 
 - please look at <https://github.com/silicom-ltd/uBMC>
