@@ -12,7 +12,7 @@ Coordinated shutdowns, reboots, crashes, error handling will be details on a sep
 
 ## Terms
 
-see <https://github.com/opiproject/opi-prov-life/blob/main/BOOTSEQ.md#terms>
+see <https://github.com/opiproject/opi-prov-life/blob/main/boot/README.md#terms>
 
 ## Working Summary
 
