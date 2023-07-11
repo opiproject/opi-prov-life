@@ -20,6 +20,12 @@ This is designed for applications running on the xPU to access inventory locally
 - OPI will produce smbios-validation-tool like [google](https://github.com/google/smbios-validation-tool)
 - Check more info in Provisioning TWG <https://github.com/opiproject/opi-prov-life>
 
+## Validation
+
+See <https://github.com/opiproject/smbios-validation-tool>
+
+## Examples
+
 Example from DELL:
 
 ```bash
