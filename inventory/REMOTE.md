@@ -16,6 +16,71 @@ Advantage: new standard for servers today, has big ecosystem around it
 - Can we create [Mockups](https://github.com/DMTF/Redfish-Mockup-Creator) for DPUs?
 - See DMTF ecosystem around resfish [here](https://github.com/search?q=org:DMTF+redfish&type=repositories)
 
+### Redfish Vendor examples
+
+Example from DELL:
+
+```bash
+$ curl -qkL -u root:password https://10.240.76.127/redfish/v1/UpdateService/FirmwareInventory/Installed-0-24.35.20.00
+{
+  "@odata.context": "/redfish/v1/$metadata#SoftwareInventory.SoftwareInventory",
+  "@odata.id": "/redfish/v1/UpdateService/FirmwareInventory/Installed-0-24.35.20.00",
+  "@odata.type": "#SoftwareInventory.v1_2_1.SoftwareInventory",
+  "Description": "Represents Firmware Inventory",
+  "Id": "Installed-0-24.35.20.00",
+  "Name": "Mellanox Network Adapter - B8:CE:F6:CC:6A:16",
+  "ReleaseDate": "00:00:00Z",
+  "SoftwareId": "0",
+  "Status": {
+    "Health": "OK",
+    "State": "Enabled"
+  },
+  "Updateable": true,
+  "Version": "24.35.20.00"
+}
+```
+
+Example from Nvidia:
+
+```bash
+$ curl -qkL -u root:password https://bf2-bmc-ip/redfish/v1/UpdateService/FirmwareInventory/e4013534_running
+{
+    "@odata.id": "/redfish/v1/UpdateService/FirmwareInventory/e4013534_running",
+    "@odata.type": "#SoftwareInventory.v1_1_0.SoftwareInventory",
+    "Description": "BMC image",
+    "Id": "e4013534_running",
+    "Members@odata.count": 1,
+    "Name": "Software Inventory",
+    "RelatedItem": [
+        {
+            "@odata.id": "/redfish/v1/Managers/bmc"
+        }
+    ],
+    "Status": {
+        "Health": "OK",
+        "HealthRollup": "OK",
+        "State": "Enabled"
+    },
+    "Updateable": true,
+    "Version": "2.8.2-20-gfc1389898"
+}
+```
+
+Example from Marvell:
+```bash
+tbd
+```
+
+Example from Intel:
+```bash
+tbd
+```
+
+Example from AMD:
+```bash
+tbd
+```
+
 ## gRPC
 
 Advantage: all modern control planes today use gRPC and not REST
