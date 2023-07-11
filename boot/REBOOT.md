@@ -1,6 +1,6 @@
 # DPU and Host reboot coordination approaches
 
-Reference [BOOTSEQ.md](../BOOTSEQ.md)
+Reference [BOOTSEQ.md](./README.md)
 
 ## TLDR
 
