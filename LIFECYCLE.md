@@ -2,6 +2,10 @@
 
 High level requirements on a DPU/IPU or subsequently a "device"
 
+## Terms
+
+see <https://github.com/opiproject/opi-prov-life/blob/main/BOOTSEQ.md#terms>
+
 ## Reboot device
 
 example if we using redfish:
