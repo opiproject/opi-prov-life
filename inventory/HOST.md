@@ -1,7 +1,7 @@
 # Remote Host/BMC Inventory
 
 This is designed for HOST, ether CPU or platform BMC to access inventory, like serial number.
-As an example, today some information are via FRU for regular PCIe NICs.
+As an example, today some information are via FRU EEPROM for regular PCIe NICs.
 
 ## What protocol to use
 
