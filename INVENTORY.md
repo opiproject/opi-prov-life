@@ -2,14 +2,19 @@
 
 ## Local Inventory
 
+This is designed for applications running on the xPU to access inventory locally, like serial number.
 Moved to [here](./inventory/LOCAL.md)
 
 ## Remote Network Inventory
 
+This is designed for external control plane that wishes to access inventory, like serial number, remotely.
+Also, potentially, also match what xPU resides in what Server.
 Moved to [here](./inventory/REMOTE.md)
 
 ## Remote Host/BMC Inventory
 
+This is designed for HOST, ether CPU or platform BMC to access inventory, like serial number.
+As an example, today some information are via FRU for regular PCIe NICs.
 Moved to [here](./inventory/HOST.md)
 
 ## Leftovers
