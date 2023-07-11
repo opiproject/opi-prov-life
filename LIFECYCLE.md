@@ -33,6 +33,7 @@ $ curl -s -k -u <bmc-user>:<password> -X PATCH -H "Content-Type: application/jso
 * firmware update
 * OS update
 * software/application update
+* NIC BMC (aka AMC) update if exists
 
 example if we using redfish:
 
