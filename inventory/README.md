@@ -17,7 +17,7 @@ This is designed for HOST, ether CPU or platform BMC to access inventory, like s
 As an example, today some information are via FRU for regular PCIe NICs.
 Moved to [here](./inventory/HOST.md)
 
-## Leftovers
+## Leftovers (to remove)
 
 this page talks about common inventory information information provided by DPU vendors in a same format
 
