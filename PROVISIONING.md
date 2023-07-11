@@ -44,7 +44,7 @@ see [Inventory](./inventory/README.md)
 
 ## Adopted solution for RFC 8572 Secure Zero Touch
 
-See [ZTP](ZTP.md) for diagrams and detailed explanation.
+See [ZTP](https://github.com/opiproject/sztp) for diagrams and detailed explanation.
 
 See [Demo](https://github.com/opiproject/sztp) for running example.
 
