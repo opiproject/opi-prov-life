@@ -40,13 +40,13 @@
 
 ## Inventory Query or Broadcast
 
-see [Inventory](INVENTORY.md)
+see [Inventory](./inventory/README.md)
 
 ## Adopted solution for RFC 8572 Secure Zero Touch
 
 See [ZTP](ZTP.md) for diagrams and detailed explanation.
 
-See [Demo](https://github.com/opiproject/opi-prov-life/tree/main/examples/sztp) for running example.
+See [Demo](https://github.com/opiproject/sztp) for running example.
 
 ## Additional provisioning methods out of OPI scope
 
