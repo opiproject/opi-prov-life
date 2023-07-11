@@ -22,7 +22,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: ibiqlik/action-yamllint@v3
         with:
-          file_or_dir: examples
+          file_or_dir: .
           config_data: "{extends: default, rules: {line-length: disable}}"
 
   shellcheck:
