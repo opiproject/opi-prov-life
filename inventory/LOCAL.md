@@ -21,6 +21,7 @@ This is designed for applications running on the xPU to access inventory locally
 ## Validation
 
 In order to test compliance and help DPU vendors to fix errors and missing tables and fields, we adopting validation tools:
+
 - See <https://github.com/opiproject/smbios-validation-tool>
 - See <https://wiki.ubuntu.com/FirmwareTestSuite>
 
