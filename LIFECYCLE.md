@@ -82,5 +82,8 @@ example if we using redfish:
 
 ```bash
 $ curl -s -k -u <bmc-user>:<password> -X GET -H "Content-Type: application/json" https://<bmc-ip-address>/redfish/v1/Managers/<ID>/LogServices/{LogServiceId}/Entries
+{}
+$ curl -s -k -u <bmc-user>:<password> -X POST -H "Content-Type: application/json" https://<bmc-ip-address>/redfish/v1/Managers/<ID>/LogServices/{LogServiceId}/Actions/LogService.ClearLog
+{}
 # TODO: add more examples
 ```
