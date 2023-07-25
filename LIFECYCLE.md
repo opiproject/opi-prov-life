@@ -61,7 +61,7 @@ $ curl -s -k -u <bmc-user>:<password> -X POST -H "Content-Type: application/json
 # TODO: add more examples
 ```
 
-# Set date and time
+## Set date and time
 
 example if we using redfish:
 
