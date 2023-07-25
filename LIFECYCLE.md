@@ -61,6 +61,17 @@ $ curl -s -k -u <bmc-user>:<password> -X POST -H "Content-Type: application/json
 # TODO: add more examples
 ```
 
+# Get/Set date and time
+
+example if we using redfish:
+
+```bash
+$ curl -s -k -u <bmc-user>:<password> -X PATCH -H "Content-Type: application/json" -d '{"DateTime": "2019-04-25T26:24:46+00:00"}' https://<bmc-ip-address>/redfish/v1/Managers/<ID>
+{
+  "DateTime": "2019-04-25T26:24:46+00:00"
+}
+```
+
 ## Debug device
 
 * see [Monitoring](https://github.com/opiproject/otel)
