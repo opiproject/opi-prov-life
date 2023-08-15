@@ -186,10 +186,13 @@ No defacto standards in BIOS/UEFI <-> BMC communication.
 
 ```mermaid
 sequenceDiagram
+    autonumber
     participant ServerBmc
     participant ServerBios
-    participant xPUmngmnt
-    participant xPUCpu
+    box rgb(100,100,100) xPU
+       participant xPUmngmnt
+       participant xPUCpu
+    end
     ServerBmc->>ServerBios: Power On
     ServerBmc->>xPUmngmnt: Power On
     xPUmngmnt->>xPUCpu: Power On
