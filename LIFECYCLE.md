@@ -81,6 +81,8 @@ $ curl -s -k -u <bmc-user>:<password> -X POST -H "Content-Type: application/json
 
 # see http://redfish.dmtf.org/schemas/v1/Resource.json#/definitions/ResetKeysType
 
+$ curl -s -k -u <bmc-user>:<password> -X PATCH -H "Content-Type: application/json" -d '{"SecureBootEnable":true}' https://<bmc-ip-address>/redfish/v1/Systems/<ID>/SecureBoot
+
 # TODO: add more examples
 ```
 
