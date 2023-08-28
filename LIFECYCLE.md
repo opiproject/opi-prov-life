@@ -72,6 +72,18 @@ $ curl -s -k -u <bmc-user>:<password> -X PATCH -H "Content-Type: application/jso
 }
 ```
 
+## Secure boot
+
+example if we using redfish:
+
+```bash
+$ curl -s -k -u <bmc-user>:<password> -X POST -H "Content-Type: application/json" -d '{"ResetKeysType": "DeleteAllKeys"}' https://<bmc-ip-address>/redfish/v1/Systems/<ID>/SecureBoot/Actions/SecureBoot.ResetKeys
+
+# see http://redfish.dmtf.org/schemas/v1/Resource.json#/definitions/ResetKeysType
+
+# TODO: add more examples
+```
+
 ## Debug device
 
 * see [Monitoring](https://github.com/opiproject/otel)
