@@ -12,14 +12,14 @@ jobs:
   markdown-lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Run tests
         run: docker run -v $PWD:/workdir ghcr.io/igorshubovych/markdownlint-cli:latest --ignore=minutes --disable=MD013 "**/*.md"
 
   YAMLlint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: ibiqlik/action-yamllint@v3
         with:
           file_or_dir: boot
@@ -28,5 +28,5 @@ jobs:
   shellcheck:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: azohra/shell-linter@v0.6.0
