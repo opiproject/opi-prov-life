@@ -95,7 +95,18 @@ example if we using redfish:
 # change default password for the first time
 $ curl -k -H "X-Auth-Token: blahblah" -X PATCH https://<bmc-ip-address>/redfish/v1/AccountService/Accounts/root -d '{"Password": "mynew@password"}'
 
+# list
+$ curl -s -k -u <bmc-user>:<password> -X GET https://<bmc-ip-address>/redfish/v1/AccountService/Accounts
+
 # TODO: add more examples, do we also need to add/remove accounts ?
+```
+
+## Network management
+
+example if we using redfish:
+
+```bash
+# TODO: add examples for DHCP vs static config, also IPv4 and IPv6...
 ```
 
 ## Debug device
