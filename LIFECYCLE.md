@@ -11,6 +11,7 @@ see <https://github.com/opiproject/opi-prov-life/blob/main/boot/README.md#terms>
 example if we using redfish:
 
 ```bash
+# this is mostly useful after FW update
 $ curl -s -k -u <bmc-user>:<password> -X POST -H "Content-Type: application/json" -d '{"ResetType": "ForceRestart"}' https://<bmc-ip-address>/redfish/v1/Managers/<ID>/Actions/Manager.Reset
 and
 $ curl -s -k -u <bmc-user>:<password> -X POST -H "Content-Type: application/json" -d '{"ResetType": "PowerCycle"}' https://<bmc-ip-address>/redfish/v1/Systems/<ID>/Actions/ComputerSystem.Reset
@@ -84,6 +85,17 @@ $ curl -s -k -u <bmc-user>:<password> -X POST -H "Content-Type: application/json
 $ curl -s -k -u <bmc-user>:<password> -X PATCH -H "Content-Type: application/json" -d '{"SecureBootEnable":true}' https://<bmc-ip-address>/redfish/v1/Systems/<ID>/SecureBoot
 
 # TODO: add more examples
+```
+
+## Account management
+
+example if we using redfish:
+
+```bash
+# change default password for the first time
+$ curl -k -H "X-Auth-Token: blahblah" -X PATCH https://<bmc-ip-address>/redfish/v1/AccountService/Accounts/root -d '{"Password": "mynew@password"}'
+
+# TODO: add more examples, do we also need to add/remove accounts ?
 ```
 
 ## Debug device
