@@ -93,7 +93,7 @@ example if we using redfish:
 
 ```bash
 # change default password for the first time
-$ curl -k -H "X-Auth-Token: blahblah" -X PATCH https://<bmc-ip-address>/redfish/v1/AccountService/Accounts/root -d '{"Password": "mynew@password"}'
+$ curl -s -k -u <bmc-user>:<password> -X PATCH https://<bmc-ip-address>/redfish/v1/AccountService/Accounts/root -d '{"Password": "mynew@password"}'
 
 # list
 $ curl -s -k -u <bmc-user>:<password> -X GET https://<bmc-ip-address>/redfish/v1/AccountService/Accounts
@@ -106,7 +106,15 @@ $ curl -s -k -u <bmc-user>:<password> -X GET https://<bmc-ip-address>/redfish/v1
 example if we using redfish:
 
 ```bash
-# TODO: add examples for DHCP vs static config, also IPv4 and IPv6...
+$ curl -s -k -u <bmc-user>:<password> -X GET https://<bmc-ip-address>/redfish/v1/Managers/<ID>/Ethernetnterfaces/eth0
+
+$ curl -s -k -u <bmc-user>:<password> -X PATCH -H "Content-Type: application/json" -d '{"InterfaceEnabled": true}'  https://<bmc-ip-address>/redfish/v1/Managers/<ID>/Ethernetnterfaces/eth0
+
+$ curl -s -k -u <bmc-user>:<password> -X PATCH -H "Content-Type: application/json" -d '{"IPv6StaticAddresses": [{"Address": "fe80::966d:aeff:fe76:6e8f", "PrefixLength": 64}]}' https://<bmc-ip-address>/redfish/v1/Managers/<ID>/Ethernetnterfaces/eth0
+
+$ curl -s -k -u <bmc-user>:<password> -X PATCH -d '{"DHCPv4": {"DHCPEnabled": false}}' https://<bmc-ip-address>/redfish/v1/Managers/<ID>/Ethernetnterfaces/eth0
+
+# TODO: add mode examples
 ```
 
 ## Debug device
