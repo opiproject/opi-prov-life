@@ -108,11 +108,11 @@ example if we using redfish:
 ```bash
 $ curl -s -k -u <bmc-user>:<password> -X GET https://<bmc-ip-address>/redfish/v1/Managers/<ID>/Ethernetnterfaces/eth0
 
-$ curl -s -k -u <bmc-user>:<password> -X PATCH -H "Content-Type: application/json" -d '{"InterfaceEnabled": true}'  https://<bmc-ip-address>/redfish/v1/Managers/<ID>/Ethernetnterfaces/eth0
+$ curl -s -k -u <bmc-user>:<password> -X PATCH -H "Content-Type: application/json" -d '{"InterfaceEnabled": true}'  https://<bmc-ip-address>/redfish/v1/Managers/<ID>/EthernetInterfaces/eth0
 
-$ curl -s -k -u <bmc-user>:<password> -X PATCH -H "Content-Type: application/json" -d '{"DHCPv4": {"DHCPEnabled": false}}' https://<bmc-ip-address>/redfish/v1/Managers/<ID>/Ethernetnterfaces/eth0
+$ curl -s -k -u <bmc-user>:<password> -X PATCH -H "Content-Type: application/json" -d '{"DHCPv4": {"DHCPEnabled": false}}' https://<bmc-ip-address>/redfish/v1/Managers/<ID>/EthernetInterfaces/eth0
 
-$ curl -s -k -u <bmc-user>:<password> -X PATCH -H "Content-Type: application/json" -d '{"IPv6StaticAddresses": [{"Address": "fe80::966d:aeff:fe76:6e8f", "PrefixLength": 64}]}' https://<bmc-ip-address>/redfish/v1/Managers/<ID>/Ethernetnterfaces/eth0
+$ curl -s -k -u <bmc-user>:<password> -X PATCH -H "Content-Type: application/json" -d '{"IPv6StaticAddresses": [{"Address": "fe80::966d:aeff:fe76:6e8f", "PrefixLength": 64}]}' https://<bmc-ip-address>/redfish/v1/Managers/<ID>/EthernetInterfaces/eth0
 
 # TODO: add mode examples
 ```
