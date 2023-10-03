@@ -4,9 +4,13 @@ This page is work in progress, aggregating all the information we have so far wi
 We are iterating on this with pull requests until reaching final state.
 Once finilized, we are taking this proposal to DMTF PLDM cometee.
 
+## Terms
+
+from [here](./README.md#terms)
+
 ## Diagram
 
-from [here](boot/COORDINATION.md#diagram)
+from [here](./COORDINATION.md#diagram)
 
 ```mermaid
 sequenceDiagram
@@ -38,7 +42,7 @@ sequenceDiagram
 
 ## Exisitng PLDM State sensors
 
-from [here](boot/COORDINATION.md#pldm-state-sensors---pldm)
+from [here](./COORDINATION.md#pldm-state-sensors---pldm)
 
 Useful State definitions:
 
@@ -87,7 +91,7 @@ Useful State definitions:
 
 ## Dell NC-SI implementation
 
-from <https://github.com/opiproject/opi-prov-life/blob/main/architecture/Dell%20NC-SI%20OEM%20Commands%20for%20smartNICs.pdf>
+from [here](../architecture/Dell%20NC-SI%20OEM%20Commands%20for%20smartNICs.pdf)
 
 The following table defines the SN State values
 | Value | Name | Description |
