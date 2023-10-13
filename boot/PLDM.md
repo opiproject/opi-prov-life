@@ -44,11 +44,50 @@ sequenceDiagram
 
 from [here](./COORDINATION.md#pldm-state-sensors---pldm)
 
+Useful Entity IDs:
+
+- 31 System Firmware (for example, BIOS/EFI)
+- 32 Operating System
+- 166 PCI Express Bus
+
 Useful State definitions:
 
+- 1 Health State
+- 2 Availability
 - 129 Software Termination Status
 - 192 Boot/Restart Cause
 - 196 Boot Progress
+
+### 1 Health State
+
+| Set ID 1 Health State  | Represents the current health of the entity.                                                                           | Notes/Usage |
+| :-----                 | :-----                                                                                                                 | :-----      |
+| 1 – Normal             | The entity is at a normal state of health.                                                                             |             |
+| 2 – Non-Critical       | The entity is not at a normal state of health, but is still operational.                                               |             |
+| 3 – Critical           | The entity is at a critical state of health. The entity may have suffered permanent damage, and may not be functional. |             |
+| 4 – Fatal              | The entity is at a fatal state of health.                                                                              |             |
+| 5 ... 10 (not used)    | Not Used                                                                                                               | These states are for thermal |
+
+### 2 Availability
+
+| Set ID 2 Availability | The operational state of the entity.      | Notes/Usage |
+| :-----                | :-----                                    | :-----      |
+| 1 – Enabled           | The entity is in an enabled state.        |             |
+| 2 – Disabled          | The entity is in a disabled state.        |             |
+| 3 – Shutdown          | The entity has been shut down.            |             |
+| 4 – Offline           | The entity is in an offline test.         |             |
+| 5 – In Test           | The entity is in a test mode.             |             |
+| 6 – Deferred          | The entity has been deferred to function. |             |
+| 7 – Quiescent         | The entity is quiescent to function.      |             |
+| 8 – Rebooting         | The entity is currently rebooting.        |             |
+| 9 – Resetting         | The entity is resetting.                  |             |
+| 10 – Failed           | The entity is in a failed state.          |             |
+| 11 – Not Installed    | The entity is not installed.              |             |
+| 12 – Power Save Mode  | The entity is in a power save mode.       |             |
+| 13 – Paused           | The entity is paused.                     |             |
+| 14 – Shutting Down    | The entity is shutting down.              |             |
+| 15 – Starting         | The entity is starting or initializing.   |             |
+| 16 – Not Responding   | The entity has stopped responding.        |             |
 
 ### 129 Software Termination Status
 
@@ -112,15 +151,15 @@ The following table defines the SN State values
 
 from [here](https://opi-project.slack.com/archives/C0342L6T7EC/p1693938501126579)
 
-| Set ID 196 Boot Progress                                                   | System firmware or software booting status.                                               | Notes/Usage                          |
+| Value/Name                                                   | Description                                               | Notes/Usage                          |
 | :------------------------                                                  | :-------------                                                                            | :-------                             |
-| 0 - Reset/Boot-ROM    | The device has just been powered on or reset, and it's initializing basic hardware and loading the first firmware mutable FW components. |
-| 1 - Boot stage 1      | FMC (First Mutable Code) is running. |
-| 2 - Boot stage 2      | The device has progressed further in the boot process, executing additional instructions to load pre-OS SW. |
-| 3 - UEFI              | The device is transitioning into the Unified Extensible Firmware Interface (UEFI) environment. |
-| 4 - OS starting       | The operating system (OS) is being loaded and initialized on the device. |
-| 5 - OS is running     | The operating system has successfully started and is now running normal operations. |
-| 6 - Low-Power standby | The device has entered a low-power standby mode or is placed into idle state, conserving energy while remaining operational. |
+| 0 - Reset/Boot-ROM                   | The device has just been powered on or reset, and it's initializing basic hardware and loading the first firmware mutable FW components. |
+| 1 - Boot stage 1                     | FMC (First Mutable Code) is running. |
+| 2 - Boot stage 2                     | The device has progressed further in the boot process, executing additional instructions to load pre-OS SW. |
+| 3 - UEFI                             | The device is transitioning into the Unified Extensible Firmware Interface (UEFI) environment. |
+| 4 - OS starting                      | The operating system (OS) is being loaded and initialized on the device. |
+| 5 - OS is running                    | The operating system has successfully started and is now running normal operations. |
+| 6 - Low-Power standby                | The device has entered a low-power standby mode or is placed into idle state, conserving energy while remaining operational. |
 | 7 - Firmware update in progress      | The device's firmware is being updated with new image. |
 | 8 - OS Crash Dump in progress        | The operating system is in the process of capturing diagnostic information about an OS crash or error that has occurred. |
 | 9 - OS Crash Dump is complete        | The operating system has concluded recording a crash dump. |
@@ -132,3 +171,21 @@ For each state we want to define a "state result", which basically explains what
 Each vendor should go over the list, see how it fits into his current flow and if there are new states which are needed or states that are unnecessary.
 
 On top of the states we want to try and create a document in PLDM describing "how should a xPU be managed with PLDM".
+
+## Comparison of PLDM, Dell and Nvidia proposals
+
+| Dell           | Nvidia                          | PLDM                                                                                               | Notes                                                    |
+| :------------  | :------------                   | :------------                                                                                      | :------------                                            |
+| 0 - Reset      | 0 - Reset/Boot-ROM              |                                                                                                    | Informational                                            |
+| 1 - FW #1      | 1 - Boot stage 1                |                                                                                                    | Informational                                            |
+| 2 - FW #2      | 2 - Boot stage 2                |                                                                                                    | Informational                                            |
+| 3 - UEFI       | 3 - UEFI                        | EFI(21).Avail(2) = Enabled(1)                                                                      | Informational                                            |
+| 4 - OS Booting | 4 - OS starting                 | ?.BootPrg(196) = StartingOS(21); OS(32).Avail(2) = Starting(15)                                    | Informational                                            |
+| 5 - OS Running | 5 - OS is running               | OS(32).Health(1) = Normal(1); PCIe(166).Avail(2) = Enabled(1)                                      | Coordinated boot.  Hold PCI enumeration until this state |
+| 6 - OS Halted  | ????                            | OS(32).Avail(2) = Shutdown(3); OS(32).Term(129) = Shutdown(7)                                      | Graceful shutdown.  Safe to power off                    |
+| ????           | 6 - Low-Power standby           | ?.System(260) in {2,3,4} hibernate or sleep                                                        | Probably same as halted                                  |
+| 7 Updating     | 7 - Firmware update in progress |                                                                                                    | Informational                                            |
+| 8 OS Crashing  | 8 - OS Crash Dump in progress   | OS(32).Health(1) = Fatal(4); OS(32).Term(129) = TermDetected(2)                                    | Informational                                            |
+| 9 OS Crashed   | 9 - OS Crash Dump comple        | OS(32).Health(1) = Fatal(4); OS(32).Avail(2) = Failed(10); OS(32).Term(129) in {3,4} critical stop | Requesting cold boot on next reset                       |
+| ????           | 10 - FW Fault in progress       |                                                                                                    | ????                                                     |
+| ????           | 11 - FW Fault completete        |                                                                                                    | Probably same as crash complete                          |
