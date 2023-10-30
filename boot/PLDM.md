@@ -174,18 +174,17 @@ On top of the states we want to try and create a document in PLDM describing "ho
 
 ## Comparison of PLDM, Dell and Nvidia proposals
 
-| Dell           | Nvidia                          | PLDM                                                                                               | Notes                                                    |
-| :------------  | :------------                   | :------------                                                                                      | :------------                                            |
-| 0 - Reset      | 0 - Reset/Boot-ROM              |                                                                                                    | Informational                                            |
-| 1 - FW #1      | 1 - Boot stage 1                |                                                                                                    | Informational                                            |
-| 2 - FW #2      | 2 - Boot stage 2                |                                                                                                    | Informational                                            |
-| 3 - UEFI       | 3 - UEFI                        | EFI(21).Avail(2) = Enabled(1)                                                                      | Informational                                            |
-| 4 - OS Booting | 4 - OS starting                 | ?.BootPrg(196) = StartingOS(21); OS(32).Avail(2) = Starting(15)                                    | Informational                                            |
-| 5 - OS Running | 5 - OS is running               | OS(32).Health(1) = Normal(1); PCIe(166).Avail(2) = Enabled(1)                                      | Coordinated boot.  Hold PCI enumeration until this state |
-| 6 - OS Halted  | ????                            | OS(32).Avail(2) = Shutdown(3); OS(32).Term(129) = Shutdown(7)                                      | Graceful shutdown.  Safe to power off                    |
-| ????           | 6 - Low-Power standby           | ?.System(260) in {2,3,4} hibernate or sleep                                                        | Probably same as halted                                  |
-| 7 Updating     | 7 - Firmware update in progress |                                                                                                    | Informational                                            |
-| 8 OS Crashing  | 8 - OS Crash Dump in progress   | OS(32).Health(1) = Fatal(4); OS(32).Term(129) = TermDetected(2)                                    | Informational                                            |
-| 9 OS Crashed   | 9 - OS Crash Dump comple        | OS(32).Health(1) = Fatal(4); OS(32).Avail(2) = Failed(10); OS(32).Term(129) in {3,4} critical stop | Requesting cold boot on next reset                       |
-| ????           | 10 - FW Fault in progress       |                                                                                                    | ????                                                     |
-| ????           | 11 - FW Fault completete        |                                                                                                    | Probably same as crash complete                          |
+| Dell           | Nvidia                          | PLDM                                                                                                                 | Notes                                                  |
+| :------------  | :------------                   | :------------                                                                                                        | :------------                                          |
+| 0 - Reset      | 0 - Reset/Boot-ROM              | ?.xPUBootPrg = 0;                                                                                                    | Hold Boot. Initial state on reset                      |
+| 1 - FW #1      | 1 - Boot stage 1                | ?.xPUBootPrg = 1;                                                                                                    | Hold Boot. Informational                               |
+| 2 - FW #2      | 2 - Boot stage 2                | ?.xPUBootPrg = 2;                                                                                                    | Hold Boot. Informational                               |
+| 3 - UEFI       | 3 - UEFI                        | ?.xPUBootPrg = 3; EFI(21).Avail(2) = Enabled(1)                                                                      | Hold Boot. Informational                               |
+| 4 - OS Booting | 4 - OS starting                 | ?.xPUBootPrg = 4; ?.BootPrg(196) = StartingOS(21); OS(32).Avail(2) = Starting(15)                                    | Hold Boot. Informational                               |
+| 5 - OS Running | 5 - OS is running               | ?.xPUBootPrg = 5; OS(32).Health(1) = Normal(1); PCIe(166).Avail(2) = Enabled(1)                                      | Release hold.  Hold PCI enumeration until this state   |
+| 6 - OS Halted  | 6 - Low-Power standby           | ?.xPUBootPrg = 6; OS(32).Avail(2) = Shutdown(3); OS(32).Term(129) = Shutdown(7)                                      | Graceful shutdown.  Safe to power off                  |
+| 7 Updating     | 7 - Firmware update in progress | ?.xPUBootPrg = 7;                                                                                                    | Do not power off.  Informational                       |
+| 8 OS Crashing  | 8 - OS Crash Dump in progress   | ?.xPUBootPrg = 8; OS(32).Health(1) = Fatal(4); OS(32).Term(129) = TermDetected(2)                                    | Do not power off.  Informational                       |
+| 9 OS Crashed   | 9 - OS Crash Dump comple        | ?.xPUBootPrg = 9; OS(32).Health(1) = Fatal(4); OS(32).Avail(2) = Failed(10); OS(32).Term(129) in {3,4} critical stop | Requesting cold boot on next reset.  Safe to power off |
+| N/A            | 10 - FW Fault in progress       | ?.xPUBootPrg = 10;                                                                                                   | Do not power off.  Informational                       |
+| N/A            | 11 - FW Fault completete        | ?.xPUBootPrg = 11;                                                                                                   | Requesting cold boot on next reset.  Safe to power off |
