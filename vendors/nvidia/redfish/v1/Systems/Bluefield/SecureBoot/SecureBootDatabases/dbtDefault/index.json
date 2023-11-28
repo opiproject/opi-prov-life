@@ -1,0 +1,14 @@
+{
+    "@odata.id": "/redfish/v1/Systems/Bluefield/SecureBoot/SecureBootDatabases/dbtDefault",
+    "@odata.type": "#SecureBootDatabase.v1_0_1.SecureBootDatabase",
+    "Certificates": {
+        "@odata.id": "/redfish/v1/Systems/Bluefield/SecureBoot/SecureBootDatabases/dbtDefault/Certificates"
+    },
+    "DatabaseId": "dbtDefault",
+    "Description": "UEFI dbtDefault Secure Boot Database",
+    "Id": "dbtDefault",
+    "Name": "dbtDefault Database",
+    "Signatures": {
+        "@odata.id": "/redfish/v1/Systems/Bluefield/SecureBoot/SecureBootDatabases/dbtDefault/Signatures"
+    }
+}

@@ -1,0 +1,8 @@
+{
+    "@odata.id": "/redfish/v1/Systems/Bluefield/LogServices/SEL/Entries",
+    "@odata.type": "#LogEntryCollection.LogEntryCollection",
+    "Description": "Collection of System Event Log Entries",
+    "Members": [],
+    "Members@odata.count": 0,
+    "Name": "System Event Log Entries"
+}

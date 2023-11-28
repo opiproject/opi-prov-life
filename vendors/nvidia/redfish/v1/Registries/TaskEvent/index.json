@@ -1,0 +1,20 @@
+{
+    "@odata.id": "/redfish/v1/Registries/TaskEvent",
+    "@odata.type": "#MessageRegistryFile.v1_1_0.MessageRegistryFile",
+    "Description": "DMTF TaskEvent Message Registry File Location",
+    "Id": "TaskEvent",
+    "Languages": [
+        "en"
+    ],
+    "Languages@odata.count": 1,
+    "Location": [
+        {
+            "Language": "en",
+            "PublicationUri": "https://redfish.dmtf.org/registries/TaskEvent.1.0.3.json",
+            "Uri": "/redfish/v1/Registries/TaskEvent/TaskEvent"
+        }
+    ],
+    "Location@odata.count": 1,
+    "Name": "TaskEvent Message Registry File",
+    "Registry": "TaskEvent.1.0.3"
+}

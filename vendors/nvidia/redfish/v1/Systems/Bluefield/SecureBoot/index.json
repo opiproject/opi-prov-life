@@ -1,0 +1,10 @@
+{
+    "@odata.id": "/redfish/v1/Systems/Bluefield/SecureBoot",
+    "@odata.type": "#SecureBoot.v1_1_0.SecureBoot",
+    "Description": "The UEFI Secure Boot associated with this system.",
+    "Id": "SecureBoot",
+    "Name": "UEFI Secure Boot",
+    "SecureBootDatabases": {
+        "@odata.id": "/redfish/v1/Systems/Bluefield/SecureBoot/SecureBootDatabases"
+    }
+}

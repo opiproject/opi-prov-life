@@ -1,0 +1,7 @@
+{
+    "@odata.id": "/redfish/v1/Chassis/Bluefield_BMC/NetworkAdapters",
+    "@odata.type": "#NetworkAdapterCollection.NetworkAdapterCollection",
+    "Members": [],
+    "Members@odata.count": 0,
+    "Name": "Network Adapter Collection"
+}

@@ -1,0 +1,11 @@
+{
+    "@odata.id": "/redfish/v1/Managers/Bluefield_BMC/LogServices/Journal/Entries/1701199823147276",
+    "@odata.type": "#LogEntry.v1_9_0.LogEntry",
+    "Created": "2023-11-28T19:30:23+00:00",
+    "EntryType": "Oem",
+    "Id": "1701199823147276",
+    "Message": "kernel: [    1.273137] 3 fixed-partitions partitions found on MTD device bmc",
+    "Name": "BMC Journal Entry",
+    "OemRecordFormat": "BMC Journal Entry",
+    "Severity": "OK"
+}

@@ -1,0 +1,21 @@
+{
+    "@odata.id": "/redfish/v1/Systems/Bluefield/LogServices/Dump",
+    "@odata.type": "#LogService.v1_2_0.LogService",
+    "Actions": {
+        "#LogService.ClearLog": {
+            "target": "/redfish/v1/Systems/Bluefield/LogServices/Dump/Actions/LogService.ClearLog"
+        },
+        "#LogService.CollectDiagnosticData": {
+            "target": "/redfish/v1/Systems/Bluefield/LogServices/Dump/Actions/LogService.CollectDiagnosticData"
+        }
+    },
+    "DateTime": "2023-11-28T20:46:56+00:00",
+    "DateTimeLocalOffset": "+00:00",
+    "Description": "System Dump LogService",
+    "Entries": {
+        "@odata.id": "/redfish/v1/Systems/Bluefield/LogServices/Dump/Entries"
+    },
+    "Id": "Dump",
+    "Name": "Dump LogService",
+    "OverWritePolicy": "WrapsWhenFull"
+}

@@ -1,0 +1,13 @@
+{
+    "@odata.id": "/redfish/v1/Systems/Bluefield/Storage/1",
+    "@odata.type": "#Storage.v1_7_1.Storage",
+    "Drives": [],
+    "Drives@odata.count": 0,
+    "Id": "1",
+    "Name": "Storage",
+    "Status": {
+        "Health": "OK",
+        "HealthRollup": "OK",
+        "State": "Enabled"
+    }
+}

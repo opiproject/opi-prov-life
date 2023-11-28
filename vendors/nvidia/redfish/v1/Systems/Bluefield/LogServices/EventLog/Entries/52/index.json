@@ -1,0 +1,13 @@
+{
+    "@odata.id": "/redfish/v1/Systems/Bluefield/LogServices/EventLog/Entries/52",
+    "@odata.type": "#LogEntry.v1_9_0.LogEntry",
+    "AdditionalDataURI": "/redfish/v1/Systems/Bluefield/LogServices/EventLog/Entries/52/attachment",
+    "Created": "2023-11-27T18:25:25+00:00",
+    "EntryType": "Event",
+    "Id": "52",
+    "Message": "",
+    "Modified": "2023-11-27T18:25:25+00:00",
+    "Name": "System Event Log Entry",
+    "Resolved": false,
+    "Severity": "OK"
+}

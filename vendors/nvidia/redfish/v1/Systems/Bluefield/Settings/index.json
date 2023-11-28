@@ -1,0 +1,13 @@
+{
+    "@odata.id": "/redfish/v1/Systems/Bluefield/Settings",
+    "@odata.type": "#ComputerSystem.v1_17_0.ComputerSystem",
+    "Boot": {
+        "AutomaticRetryConfig": "Disabled",
+        "BootOrder": [],
+        "BootSourceOverrideEnabled": "Disabled",
+        "BootSourceOverrideMode": "UEFI",
+        "BootSourceOverrideTarget": "None"
+    },
+    "Id": "Settings",
+    "Name": "Bluefield Pending Settings"
+}

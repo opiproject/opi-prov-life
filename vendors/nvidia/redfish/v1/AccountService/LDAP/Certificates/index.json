@@ -1,0 +1,8 @@
+{
+    "@odata.id": "/redfish/v1/AccountService/LDAP/Certificates",
+    "@odata.type": "#CertificateCollection.CertificateCollection",
+    "Description": "A Collection of LDAP certificate instances",
+    "Members": [],
+    "Members@odata.count": 0,
+    "Name": "LDAP Certificates Collection"
+}

@@ -1,0 +1,59 @@
+{
+    "@odata.id": "/redfish/v1/Managers/Bluefield_BMC/EthernetInterfaces/eth0",
+    "@odata.type": "#EthernetInterface.v1_6_0.EthernetInterface",
+    "DHCPv4": {
+        "DHCPEnabled": true,
+        "UseDNSServers": true,
+        "UseDomainName": true,
+        "UseNTPServers": true
+    },
+    "DHCPv6": {
+        "OperatingMode": "Stateful",
+        "UseDNSServers": true,
+        "UseDomainName": true,
+        "UseNTPServers": true
+    },
+    "Description": "Management Network Interface",
+    "FQDN": "dpu-bmc",
+    "HostName": "dpu-bmc",
+    "IPv4Addresses": [
+        {
+            "Address": "10.246.87.131",
+            "AddressOrigin": "DHCP",
+            "Gateway": "10.246.87.1",
+            "SubnetMask": "255.255.255.0"
+        }
+    ],
+    "IPv4StaticAddresses": [],
+    "IPv6AddressPolicyTable": [],
+    "IPv6Addresses": [
+        {
+            "Address": "fe80::a288:c2ff:fe5f:1837",
+            "AddressOrigin": "LinkLocal",
+            "AddressState": null,
+            "PrefixLength": 64
+        }
+    ],
+    "IPv6DefaultGateway": "0:0:0:0:0:0:0:0",
+    "IPv6StaticAddresses": [],
+    "Id": "eth0",
+    "InterfaceEnabled": true,
+    "LinkStatus": "LinkUp",
+    "MACAddress": "a0:88:c2:5f:18:37",
+    "MTUSize": 1500,
+    "Name": "Manager Ethernet Interface",
+    "NameServers": [
+        "10.244.53.108",
+        "10.228.254.66"
+    ],
+    "SpeedMbps": 0,
+    "StaticNameServers": [],
+    "Status": {
+        "Health": "OK",
+        "HealthRollup": "OK",
+        "State": "Enabled"
+    },
+    "VLANs": {
+        "@odata.id": "/redfish/v1/Managers/Bluefield_BMC/EthernetInterfaces/eth0/VLANs"
+    }
+}

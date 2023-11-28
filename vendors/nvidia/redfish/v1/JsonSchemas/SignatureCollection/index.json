@@ -1,0 +1,21 @@
+{
+    "@odata.context": "/redfish/v1/$metadata#JsonSchemaFile.JsonSchemaFile",
+    "@odata.id": "/redfish/v1/JsonSchemas/SignatureCollection",
+    "@odata.type": "#JsonSchemaFile.v1_0_2.JsonSchemaFile",
+    "Description": "SignatureCollection Schema File Location",
+    "Id": "SignatureCollection",
+    "Languages": [
+        "en"
+    ],
+    "Languages@odata.count": 1,
+    "Location": [
+        {
+            "Language": "en",
+            "PublicationUri": "http://redfish.dmtf.org/schemas/v1/SignatureCollection.json",
+            "Uri": "/redfish/v1/JsonSchemas/SignatureCollection/SignatureCollection.json"
+        }
+    ],
+    "Location@odata.count": 1,
+    "Name": "SignatureCollection Schema File",
+    "Schema": "#SignatureCollection.SignatureCollection"
+}

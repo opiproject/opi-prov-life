@@ -1,0 +1,7 @@
+{
+    "@odata.id": "/redfish/v1/Chassis/Bluefield_BMC/Assembly",
+    "@odata.type": "#Assembly.v1_3_0.Assembly",
+    "Assemblies": [],
+    "Id": "Assembly",
+    "Name": "Assembly data for Bluefield_BMC"
+}

@@ -1,0 +1,7 @@
+{
+    "@odata.id": "/redfish/v1/Systems/Bluefield/SecureBoot/SecureBootDatabases/dbxDefault/Signatures",
+    "@odata.type": "#SignatureCollection.SignatureCollection",
+    "Members": [],
+    "Members@odata.count": 0,
+    "Name": "Signature Collection"
+}

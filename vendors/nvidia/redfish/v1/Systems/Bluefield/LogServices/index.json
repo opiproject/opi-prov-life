@@ -1,0 +1,24 @@
+{
+    "@odata.id": "/redfish/v1/Systems/Bluefield/LogServices",
+    "@odata.type": "#LogServiceCollection.LogServiceCollection",
+    "Description": "Collection of LogServices for this Computer System",
+    "Members": [
+        {
+            "@odata.id": "/redfish/v1/Systems/Bluefield/LogServices/EventLog"
+        },
+        {
+            "@odata.id": "/redfish/v1/Systems/Bluefield/LogServices/SEL"
+        },
+        {
+            "@odata.id": "/redfish/v1/Systems/Bluefield/LogServices/Dump"
+        },
+        {
+            "@odata.id": "/redfish/v1/Systems/Bluefield/LogServices/HostLogger"
+        },
+        {
+            "@odata.id": "/redfish/v1/Systems/Bluefield/LogServices/DebugTokenService"
+        }
+    ],
+    "Members@odata.count": 5,
+    "Name": "System Log Services Collection"
+}

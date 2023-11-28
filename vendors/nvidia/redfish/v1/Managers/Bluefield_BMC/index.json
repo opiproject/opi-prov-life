@@ -1,0 +1,102 @@
+{
+    "@odata.id": "/redfish/v1/Managers/Bluefield_BMC",
+    "@odata.type": "#Manager.v1_14_0.Manager",
+    "Actions": {
+        "#Manager.Reset": {
+            "@Redfish.ActionInfo": "/redfish/v1/Managers/Bluefield_BMC/ResetActionInfo",
+            "target": "/redfish/v1/Managers/Bluefield_BMC/Actions/Manager.Reset"
+        },
+        "#Manager.ResetToDefaults": {
+            "ResetType@Redfish.AllowableValues": [
+                "ResetAll"
+            ],
+            "target": "/redfish/v1/Managers/bmc/Actions/Manager.ResetToDefaults"
+        }
+    },
+    "CommandShell": {
+        "ConnectTypesSupported": [
+            "SSH"
+        ],
+        "MaxConcurrentSessions": 1,
+        "ServiceEnabled": true
+    },
+    "DateTime": "2023-11-28T20:45:56+00:00",
+    "DateTimeLocalOffset": "+00:00",
+    "Description": "Baseboard Management Controller",
+    "EthernetInterfaces": {
+        "@odata.id": "/redfish/v1/Managers/Bluefield_BMC/EthernetInterfaces"
+    },
+    "FirmwareVersion": "Bf-23.09-6",
+    "GraphicalConsole": {
+        "ConnectTypesSupported": [
+            "KVMIP"
+        ],
+        "MaxConcurrentSessions": 4,
+        "ServiceEnabled": true
+    },
+    "Id": "Bluefield_BMC",
+    "LastResetTime": "2023-11-28T19:31:39+00:00",
+    "Links": {
+        "ActiveSoftwareImage": {
+            "@odata.id": "/redfish/v1/UpdateService/FirmwareInventory/BMC_Firmware"
+        },
+        "ManagerForChassis": [
+            {
+                "@odata.id": "/redfish/v1/Chassis/Bluefield_BMC"
+            }
+        ],
+        "ManagerForChassis@odata.count": 1,
+        "ManagerForServers": [
+            {
+                "@odata.id": "/redfish/v1/Systems/Bluefield"
+            }
+        ],
+        "ManagerForServers@odata.count": 1,
+        "ManagerInChassis": {
+            "@odata.id": "/redfish/v1/Chassis/Bluefield_BMC"
+        },
+        "SoftwareImages": [
+            {
+                "@odata.id": "/redfish/v1/UpdateService/FirmwareInventory/BMC_Firmware"
+            }
+        ],
+        "SoftwareImages@odata.count": 1
+    },
+    "LogServices": {
+        "@odata.id": "/redfish/v1/Managers/Bluefield_BMC/LogServices"
+    },
+    "ManagerType": "BMC",
+    "Model": "OpenBmc",
+    "Name": "OpenBmc Manager",
+    "NetworkProtocol": {
+        "@odata.id": "/redfish/v1/Managers/Bluefield_BMC/NetworkProtocol"
+    },
+    "Oem": {
+        "@odata.id": "/redfish/v1/Managers/Bluefield_BMC/Oem",
+        "@odata.type": "#OemManager.Oem",
+        "OpenBmc": {
+            "@odata.id": "/redfish/v1/Managers/Bluefield_BMC/Oem/OpenBmc",
+            "@odata.type": "#OemManager.OpenBmc",
+            "Certificates": {
+                "@odata.id": "/redfish/v1/Managers/Bluefield_BMC/Truststore/Certificates"
+            }
+        }
+    },
+    "PowerState": "On",
+    "SerialConsole": {
+        "ConnectTypesSupported": [
+            "IPMI",
+            "SSH"
+        ],
+        "MaxConcurrentSessions": 15,
+        "ServiceEnabled": true
+    },
+    "ServiceEntryPointUUID": "87f2ca1b-126f-41dd-8215-bd0ff6a8dd9c",
+    "Status": {
+        "Conditions": [],
+        "Health": "OK",
+        "HealthRollup": "OK",
+        "State": "Starting"
+    },
+    "UUID": "c26aca8d-c2c6-45d6-89f8-c4cbe57177a3"
+}

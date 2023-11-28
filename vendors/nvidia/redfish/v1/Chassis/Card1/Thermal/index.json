@@ -1,0 +1,61 @@
+{
+    "@odata.id": "/redfish/v1/Chassis/Card1/Thermal",
+    "@odata.type": "#Thermal.v1_4_0.Thermal",
+    "Fans": [],
+    "Id": "Thermal",
+    "Name": "Thermal",
+    "Redundancy": [],
+    "Temperatures": [
+        {
+            "@odata.id": "/redfish/v1/Chassis/Card1/Thermal#/Temperatures/0",
+            "@odata.type": "#Thermal.v1_7_1.Temperature",
+            "LowerThresholdCritical": 0.0,
+            "LowerThresholdNonCritical": 5.0,
+            "MaxReadingRangeTemp": 255.0,
+            "MemberId": "bluefield_temp",
+            "MinReadingRangeTemp": 0.0,
+            "Name": "bluefield temp",
+            "ReadingCelsius": 39.0,
+            "Status": {
+                "Health": "OK",
+                "State": "Enabled"
+            },
+            "UpperThresholdCritical": 105.0,
+            "UpperThresholdNonCritical": 95.0
+        },
+        {
+            "@odata.id": "/redfish/v1/Chassis/Card1/Thermal#/Temperatures/1",
+            "@odata.type": "#Thermal.v1_7_1.Temperature",
+            "LowerThresholdCritical": -5.0,
+            "LowerThresholdNonCritical": 0.0,
+            "MaxReadingRangeTemp": 127.0,
+            "MemberId": "p0_temp",
+            "MinReadingRangeTemp": -128.0,
+            "Name": "p0 temp",
+            "ReadingCelsius": null,
+            "Status": {
+                "Health": "OK",
+                "State": "Enabled"
+            },
+            "UpperThresholdCritical": 75.0,
+            "UpperThresholdNonCritical": 70.0
+        },
+        {
+            "@odata.id": "/redfish/v1/Chassis/Card1/Thermal#/Temperatures/2",
+            "@odata.type": "#Thermal.v1_7_1.Temperature",
+            "LowerThresholdCritical": -5.0,
+            "LowerThresholdNonCritical": 0.0,
+            "MaxReadingRangeTemp": 127.0,
+            "MemberId": "p1_temp",
+            "MinReadingRangeTemp": -128.0,
+            "Name": "p1 temp",
+            "ReadingCelsius": null,
+            "Status": {
+                "Health": "OK",
+                "State": "Enabled"
+            },
+            "UpperThresholdCritical": 75.0,
+            "UpperThresholdNonCritical": 70.0
+        }
+    ]
+}

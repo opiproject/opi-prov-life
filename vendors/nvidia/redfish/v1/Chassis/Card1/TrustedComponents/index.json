@@ -1,0 +1,7 @@
+{
+    "@odata.id": "/redfish/v1/Chassis/Card1/TrustedComponents",
+    "@odata.type": "#TrustedComponentCollection.TrustedComponentCollection",
+    "Members": [],
+    "Members@odata.count": 0,
+    "Name": "Trusted Component Collection"
+}

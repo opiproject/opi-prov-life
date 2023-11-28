@@ -1,0 +1,7 @@
+{
+    "@odata.id": "/redfish/v1/Systems/Bluefield/BootOptions",
+    "@odata.type": "#BootOptionCollection.BootOptionCollection",
+    "Members": [],
+    "Members@odata.count": 0,
+    "Name": "Boot Option Collection"
+}

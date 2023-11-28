@@ -1,0 +1,16 @@
+{
+    "@odata.id": "/redfish/v1/Chassis/Bluefield_BMC/ResetActionInfo",
+    "@odata.type": "#ActionInfo.v1_1_2.ActionInfo",
+    "Id": "ResetActionInfo",
+    "Name": "Reset Action Info",
+    "Parameters": [
+        {
+            "AllowableValues": [
+                "PowerCycle"
+            ],
+            "DataType": "String",
+            "Name": "ResetType",
+            "Required": true
+        }
+    ]
+}

@@ -1,0 +1,11 @@
+{
+    "@odata.id": "/redfish/v1/Managers/Bluefield_BMC/LogServices/Journal/Entries/1701199829986106",
+    "@odata.type": "#LogEntry.v1_9_0.LogEntry",
+    "Created": "2023-11-28T19:30:29+00:00",
+    "EntryType": "Oem",
+    "Id": "1701199829986106",
+    "Message": "systemd-networkd: /etc/systemd/network/00-bmc-vlan4040.network:10: Unknown key name 'Broadcast' in section 'Network', ignoring.",
+    "Name": "BMC Journal Entry",
+    "OemRecordFormat": "BMC Journal Entry",
+    "Severity": "Warning"
+}

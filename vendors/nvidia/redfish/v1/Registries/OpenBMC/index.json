@@ -1,0 +1,19 @@
+{
+    "@odata.id": "/redfish/v1/Registries/OpenBMC",
+    "@odata.type": "#MessageRegistryFile.v1_1_0.MessageRegistryFile",
+    "Description": "OpenBMC Message Registry File Location",
+    "Id": "OpenBMC",
+    "Languages": [
+        "en"
+    ],
+    "Languages@odata.count": 1,
+    "Location": [
+        {
+            "Language": "en",
+            "Uri": "/redfish/v1/Registries/OpenBMC/OpenBMC"
+        }
+    ],
+    "Location@odata.count": 1,
+    "Name": "OpenBMC Message Registry File",
+    "Registry": "OpenBMC.0.4.1"
+}

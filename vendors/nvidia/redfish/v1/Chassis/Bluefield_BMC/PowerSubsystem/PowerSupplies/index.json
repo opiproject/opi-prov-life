@@ -1,0 +1,7 @@
+{
+    "@odata.id": "/redfish/v1/Chassis/Bluefield_BMC/PowerSubsystem/PowerSupplies",
+    "@odata.type": "#PowerSupplyCollection.PowerSupplyCollection",
+    "Description": "The collection of PowerSupply resource instances Bluefield_BMC",
+    "Members": [],
+    "Name": "Power Supply Collection"
+}

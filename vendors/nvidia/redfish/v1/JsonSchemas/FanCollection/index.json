@@ -1,0 +1,21 @@
+{
+    "@odata.context": "/redfish/v1/$metadata#JsonSchemaFile.JsonSchemaFile",
+    "@odata.id": "/redfish/v1/JsonSchemas/FanCollection",
+    "@odata.type": "#JsonSchemaFile.v1_0_2.JsonSchemaFile",
+    "Description": "FanCollection Schema File Location",
+    "Id": "FanCollection",
+    "Languages": [
+        "en"
+    ],
+    "Languages@odata.count": 1,
+    "Location": [
+        {
+            "Language": "en",
+            "PublicationUri": "http://redfish.dmtf.org/schemas/v1/FanCollection.json",
+            "Uri": "/redfish/v1/JsonSchemas/FanCollection/FanCollection.json"
+        }
+    ],
+    "Location@odata.count": 1,
+    "Name": "FanCollection Schema File",
+    "Schema": "#FanCollection.FanCollection"
+}

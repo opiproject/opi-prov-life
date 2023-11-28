@@ -1,0 +1,10 @@
+{
+    "@odata.id": "/redfish/v1/Cables/p1_link",
+    "@odata.type": "#Cable.v1_0_0.Cable",
+    "CableStatus": "Disabled",
+    "Id": "p1_link",
+    "Name": "Cable",
+    "Status": {
+        "State": "Warning"
+    }
+}

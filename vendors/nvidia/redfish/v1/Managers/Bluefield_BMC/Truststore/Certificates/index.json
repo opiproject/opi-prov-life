@@ -1,0 +1,8 @@
+{
+    "@odata.id": "/redfish/v1/Managers/Bluefield_BMC/Truststore/Certificates/",
+    "@odata.type": "#CertificateCollection.CertificateCollection",
+    "Description": "A Collection of TrustStore certificate instances",
+    "Members": [],
+    "Members@odata.count": 0,
+    "Name": "TrustStore Certificates Collection"
+}

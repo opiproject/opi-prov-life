@@ -1,0 +1,19 @@
+{
+    "@odata.id": "/redfish/v1/Chassis/Bluefield_BMC/Power",
+    "@odata.type": "#Power.v1_5_2.Power",
+    "Id": "Power",
+    "Name": "Power",
+    "PowerControl": [
+        {
+            "@odata.id": "/redfish/v1/Chassis/Bluefield_BMC/Power#/PowerControl/0",
+            "@odata.type": "#Power.v1_0_0.PowerControl",
+            "MemberId": "0",
+            "Name": "Chassis Power Control",
+            "PowerLimit": {
+                "LimitException": "NoAction",
+                "LimitInWatts": null
+            }
+        }
+    ],
+    "Redundancy": []
+}

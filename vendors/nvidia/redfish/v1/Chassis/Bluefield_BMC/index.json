@@ -1,0 +1,80 @@
+{
+    "@odata.id": "/redfish/v1/Chassis/Bluefield_BMC",
+    "@odata.type": "#Chassis.v1_21_0.Chassis",
+    "Actions": {
+        "#Chassis.Reset": {
+            "@Redfish.ActionInfo": "/redfish/v1/Chassis/Bluefield_BMC/ResetActionInfo",
+            "target": "/redfish/v1/Chassis/Bluefield_BMC/Actions/Chassis.Reset"
+        }
+    },
+    "Assembly": {
+        "@odata.id": "/redfish/v1/Chassis/Bluefield_BMC/Assembly"
+    },
+    "ChassisType": "Component",
+    "Controls": {
+        "@odata.id": "/redfish/v1/Chassis/Bluefield_BMC/Controls"
+    },
+    "EnvironmentMetrics": {
+        "@odata.id": "/redfish/v1/Chassis/Bluefield_BMC/EnvironmentMetrics"
+    },
+    "Id": "Bluefield_BMC",
+    "Links": {
+        "ComputerSystems": [
+            {
+                "@odata.id": "/redfish/v1/Systems/Bluefield"
+            }
+        ],
+        "ContainedBy": {
+            "@odata.id": "/redfish/v1/Chassis/Card1"
+        },
+        "ManagedBy": [
+            {
+                "@odata.id": "/redfish/v1/Managers/Bluefield_BMC"
+            }
+        ]
+    },
+    "Location": {
+        "PartLocation": {
+            "LocationType": "Embedded"
+        }
+    },
+    "Manufacturer": "Nvidia",
+    "Model": "Nvidia-BMCMezz",
+    "Name": "Bluefield_BMC",
+    "NetworkAdapters": {
+        "@odata.id": "/redfish/v1/Chassis/Bluefield_BMC/NetworkAdapters"
+    },
+    "PCIeDevices": {
+        "@odata.id": "/redfish/v1/Chassis/Bluefield_BMC/PCIeDevices"
+    },
+    "PCIeSlots": {
+        "@odata.id": "/redfish/v1/Chassis/Bluefield_BMC/PCIeSlots"
+    },
+    "PartNumber": "900-9D3C6-00CV-DA0   ",
+    "Power": {
+        "@odata.id": "/redfish/v1/Chassis/Bluefield_BMC/Power"
+    },
+    "PowerState": "On",
+    "PowerSubsystem": {
+        "@odata.id": "/redfish/v1/Chassis/Bluefield_BMC/PowerSubsystem"
+    },
+    "Sensors": {
+        "@odata.id": "/redfish/v1/Chassis/Bluefield_BMC/Sensors"
+    },
+    "SerialNumber": "MT2335XZ0C55            ",
+    "Status": {
+        "Conditions": [],
+        "Health": "OK",
+        "HealthRollup": "OK",
+        "State": "Enabled"
+    },
+    "Thermal": {
+        "@odata.id": "/redfish/v1/Chassis/Bluefield_BMC/Thermal"
+    },
+    "ThermalSubsystem": {
+        "@odata.id": "/redfish/v1/Chassis/Bluefield_BMC/ThermalSubsystem"
+    },
+    "TrustedComponents": {
+        "@odata.id": "/redfish/v1/Chassis/Bluefield_BMC/TrustedComponents"
+    }
+}

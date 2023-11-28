@@ -1,0 +1,8 @@
+{
+    "@odata.id": "/redfish/v1/Systems/Bluefield/LogServices/Dump/Entries",
+    "@odata.type": "#LogEntryCollection.LogEntryCollection",
+    "Description": "Collection of System Dump Entries",
+    "Members": [],
+    "Members@odata.count": 0,
+    "Name": "System Dump Entries"
+}

@@ -1,0 +1,23 @@
+{
+    "@odata.id": "/redfish/v1/ServiceConditions",
+    "@odata.type": "#ServiceConditions.v1_0_0.ServiceConditions",
+    "Conditions": [
+        {
+            "LogEntry": {
+                "@odata.id": "/redfish/v1/Systems/Bluefield/LogServices/EventLog/Entries/3"
+            },
+            "Message": "Transfer of image '0.0' to '' failed.",
+            "MessageArgs": [
+                "0.0",
+                ""
+            ],
+            "MessageId": "Update.1.0.TransferFailed",
+            "Severity": "Critical",
+            "Timestamp": "2023-11-13T19:07:29+00:00"
+        }
+    ],
+    "HealthRollup": "Critical",
+    "Id": "ServiceConditions",
+    "Name": "Redfish Service Conditions",
+    "Oem": {}
+}

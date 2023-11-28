@@ -1,0 +1,11 @@
+{
+    "@odata.id": "/redfish/v1/Managers/Bluefield_BMC/LogServices/Journal/Entries/1701199827729127",
+    "@odata.type": "#LogEntry.v1_9_0.LogEntry",
+    "Created": "2023-11-28T19:30:27+00:00",
+    "EntryType": "Oem",
+    "Id": "1701199827729127",
+    "Message": "kernel: [   22.184488] jffs2: notice: (349) jffs2_build_xattr_subsystem: complete building xattr subsystem, 0 of xdatum (0 unchecked, 0 orphan) and 0 of xref (0 dead, 0 orphan) found.",
+    "Name": "BMC Journal Entry",
+    "OemRecordFormat": "BMC Journal Entry",
+    "Severity": "OK"
+}

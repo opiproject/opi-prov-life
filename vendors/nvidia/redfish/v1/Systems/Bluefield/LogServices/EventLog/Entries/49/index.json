@@ -1,0 +1,13 @@
+{
+    "@odata.id": "/redfish/v1/Systems/Bluefield/LogServices/EventLog/Entries/49",
+    "@odata.type": "#LogEntry.v1_9_0.LogEntry",
+    "AdditionalDataURI": "/redfish/v1/Systems/Bluefield/LogServices/EventLog/Entries/49/attachment",
+    "Created": "2023-11-27T18:05:50+00:00",
+    "EntryType": "Event",
+    "Id": "49",
+    "Message": "xyz.openbmc_project.Common.Error.InternalFailure",
+    "Modified": "2023-11-27T18:05:50+00:00",
+    "Name": "System Event Log Entry",
+    "Resolved": false,
+    "Severity": "Critical"
+}

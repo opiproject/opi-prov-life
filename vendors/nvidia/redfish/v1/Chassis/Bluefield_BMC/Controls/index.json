@@ -1,0 +1,8 @@
+{
+    "@odata.id": "/redfish/v1/Chassis/Bluefield_BMC/Controls",
+    "@odata.type": "#ControlCollection.ControlCollection",
+    "Description": "The collection of Controlable resource instances Bluefield_BMC",
+    "Members": [],
+    "Members@odata.count": 0,
+    "Name": "Controls"
+}

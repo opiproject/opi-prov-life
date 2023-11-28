@@ -1,0 +1,11 @@
+{
+    "@odata.id": "/redfish/v1/Managers/Bluefield_BMC/LogServices/Journal/Entries/1701199823294423",
+    "@odata.type": "#LogEntry.v1_9_0.LogEntry",
+    "Created": "2023-11-28T19:30:23+00:00",
+    "EntryType": "Oem",
+    "Id": "1701199823294423",
+    "Message": "kernel: [    9.173663] overlayfs: upper fs does not support RENAME_WHITEOUT.",
+    "Name": "BMC Journal Entry",
+    "OemRecordFormat": "BMC Journal Entry",
+    "Severity": "Warning"
+}

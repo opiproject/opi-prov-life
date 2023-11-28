@@ -1,0 +1,11 @@
+{
+    "@odata.id": "/redfish/v1/Chassis/Bluefield_ERoT/Certificates/",
+    "@odata.type": "#CertificateCollection.CertificateCollection",
+    "Members": [
+        {
+            "@odata.id": "/redfish/v1/Chassis/Bluefield_ERoT/Certificates/CertChain"
+        }
+    ],
+    "Members@odata.count": 1,
+    "Name": "Certificates Collection"
+}

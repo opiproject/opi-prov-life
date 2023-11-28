@@ -1,0 +1,21 @@
+{
+    "@odata.context": "/redfish/v1/$metadata#JsonSchemaFile.JsonSchemaFile",
+    "@odata.id": "/redfish/v1/JsonSchemas/PowerSupplyCollection",
+    "@odata.type": "#JsonSchemaFile.v1_0_2.JsonSchemaFile",
+    "Description": "PowerSupplyCollection Schema File Location",
+    "Id": "PowerSupplyCollection",
+    "Languages": [
+        "en"
+    ],
+    "Languages@odata.count": 1,
+    "Location": [
+        {
+            "Language": "en",
+            "PublicationUri": "http://redfish.dmtf.org/schemas/v1/PowerSupplyCollection.json",
+            "Uri": "/redfish/v1/JsonSchemas/PowerSupplyCollection/PowerSupplyCollection.json"
+        }
+    ],
+    "Location@odata.count": 1,
+    "Name": "PowerSupplyCollection Schema File",
+    "Schema": "#PowerSupplyCollection.PowerSupplyCollection"
+}

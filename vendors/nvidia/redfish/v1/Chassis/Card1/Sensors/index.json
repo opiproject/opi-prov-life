@@ -1,0 +1,66 @@
+{
+    "@odata.id": "/redfish/v1/Chassis/Card1/Sensors",
+    "@odata.type": "#SensorCollection.SensorCollection",
+    "Description": "Collection of Sensors for this Chassis",
+    "Members": [
+        {
+            "@odata.id": "/redfish/v1/Chassis/Card1/Sensors/bluefield_temp"
+        },
+        {
+            "@odata.id": "/redfish/v1/Chassis/Card1/Sensors/p0_temp"
+        },
+        {
+            "@odata.id": "/redfish/v1/Chassis/Card1/Sensors/p1_temp"
+        },
+        {
+            "@odata.id": "/redfish/v1/Chassis/Card1/Sensors/12V_ATX"
+        },
+        {
+            "@odata.id": "/redfish/v1/Chassis/Card1/Sensors/12V_PCIe"
+        },
+        {
+            "@odata.id": "/redfish/v1/Chassis/Card1/Sensors/1V_BMC"
+        },
+        {
+            "@odata.id": "/redfish/v1/Chassis/Card1/Sensors/1_2V_BMC"
+        },
+        {
+            "@odata.id": "/redfish/v1/Chassis/Card1/Sensors/1_8V"
+        },
+        {
+            "@odata.id": "/redfish/v1/Chassis/Card1/Sensors/1_8V_BMC"
+        },
+        {
+            "@odata.id": "/redfish/v1/Chassis/Card1/Sensors/2_5V"
+        },
+        {
+            "@odata.id": "/redfish/v1/Chassis/Card1/Sensors/3_3V"
+        },
+        {
+            "@odata.id": "/redfish/v1/Chassis/Card1/Sensors/3_3V_RGM"
+        },
+        {
+            "@odata.id": "/redfish/v1/Chassis/Card1/Sensors/5V"
+        },
+        {
+            "@odata.id": "/redfish/v1/Chassis/Card1/Sensors/DVDD"
+        },
+        {
+            "@odata.id": "/redfish/v1/Chassis/Card1/Sensors/HVDD"
+        },
+        {
+            "@odata.id": "/redfish/v1/Chassis/Card1/Sensors/VDD"
+        },
+        {
+            "@odata.id": "/redfish/v1/Chassis/Card1/Sensors/VDDQ"
+        },
+        {
+            "@odata.id": "/redfish/v1/Chassis/Card1/Sensors/VDD_CPU_L"
+        },
+        {
+            "@odata.id": "/redfish/v1/Chassis/Card1/Sensors/VDD_CPU_R"
+        }
+    ],
+    "Members@odata.count": 19,
+    "Name": "Sensors"
+}

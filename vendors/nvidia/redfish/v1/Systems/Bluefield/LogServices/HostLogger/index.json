@@ -1,0 +1,10 @@
+{
+    "@odata.id": "/redfish/v1/Systems/Bluefield/LogServices/HostLogger",
+    "@odata.type": "#LogService.v1_1_0.LogService",
+    "Description": "Host Logger Service",
+    "Entries": {
+        "@odata.id": "/redfish/v1/Systems/Bluefield/LogServices/HostLogger/Entries"
+    },
+    "Id": "HostLogger",
+    "Name": "Host Logger Service"
+}

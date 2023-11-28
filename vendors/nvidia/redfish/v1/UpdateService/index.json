@@ -1,0 +1,43 @@
+{
+    "@odata.id": "/redfish/v1/UpdateService",
+    "@odata.type": "#UpdateService.v1_5_0.UpdateService",
+    "Actions": {
+        "#UpdateService.SimpleUpdate": {
+            "TransferProtocol@Redfish.AllowableValues": [
+                [
+                    "SCP"
+                ]
+            ],
+            "target": "/redfish/v1/UpdateService/Actions/UpdateService.SimpleUpdate"
+        },
+        "Oem": {
+            "Nvidia": {
+                "#NvidiaUpdateService.AddRemoteServerPublicKey": {
+                    "target": "/redfish/v1/UpdateService/Actions/Oem/NvidiaUpdateService.AddRemoteServerPublicKey"
+                },
+                "#NvidiaUpdateService.CommitImage": {
+                    "@Redfish.ActionInfo": "/redfish/v1/UpdateService/Oem/Nvidia/CommitImageActionInfo",
+                    "target": "/redfish/v1/UpdateService/Actions/Oem/NvidiaUpdateService.CommitImage"
+                }
+            }
+        }
+    },
+    "Description": "Service for Software Update",
+    "FirmwareInventory": {
+        "@odata.id": "/redfish/v1/UpdateService/FirmwareInventory"
+    },
+    "HttpPushUri": "/redfish/v1/UpdateService/update",
+    "HttpPushUriOptions": {
+        "HttpPushUriApplyTime": {
+            "ApplyTime": "OnReset"
+        }
+    },
+    "HttpPushUriTargets": [],
+    "Id": "UpdateService",
+    "MaxImageSizeBytes": 209715200,
+    "Name": "Update Service",
+    "ServiceEnabled": true,
+    "SoftwareInventory": {
+        "@odata.id": "/redfish/v1/UpdateService/SoftwareInventory"
+    }
+}

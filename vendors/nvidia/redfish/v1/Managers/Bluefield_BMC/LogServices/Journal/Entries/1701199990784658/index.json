@@ -1,0 +1,11 @@
+{
+    "@odata.id": "/redfish/v1/Managers/Bluefield_BMC/LogServices/Journal/Entries/1701199990784658",
+    "@odata.type": "#LogEntry.v1_9_0.LogEntry",
+    "Created": "2023-11-28T19:33:10+00:00",
+    "EntryType": "Oem",
+    "Id": "1701199990784658",
+    "Message": "phosphor-dump-manager: Excess dumps to be deleted, excessBmcDumps(1), excessCoreDumps(0)",
+    "Name": "BMC Journal Entry",
+    "OemRecordFormat": "BMC Journal Entry",
+    "Severity": "Warning"
+}

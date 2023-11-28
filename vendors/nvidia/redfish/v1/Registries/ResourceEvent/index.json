@@ -1,0 +1,20 @@
+{
+    "@odata.id": "/redfish/v1/Registries/ResourceEvent",
+    "@odata.type": "#MessageRegistryFile.v1_1_0.MessageRegistryFile",
+    "Description": "DMTF ResourceEvent Message Registry File Location",
+    "Id": "ResourceEvent",
+    "Languages": [
+        "en"
+    ],
+    "Languages@odata.count": 1,
+    "Location": [
+        {
+            "Language": "en",
+            "PublicationUri": "https://redfish.dmtf.org/registries/ResourceEvent.1.2.1.json",
+            "Uri": "/redfish/v1/Registries/ResourceEvent/ResourceEvent"
+        }
+    ],
+    "Location@odata.count": 1,
+    "Name": "ResourceEvent Message Registry File",
+    "Registry": "ResourceEvent.1.2.1"
+}

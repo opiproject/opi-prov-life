@@ -1,0 +1,38 @@
+{
+    "@odata.id": "/redfish/v1/Systems/Bluefield/SecureBoot/SecureBootDatabases",
+    "@odata.type": "#SecureBootDatabaseCollection.SecureBootDatabaseCollection",
+    "Members": [
+        {
+            "@odata.id": "/redfish/v1/Systems/Bluefield/SecureBoot/SecureBootDatabases/KEK"
+        },
+        {
+            "@odata.id": "/redfish/v1/Systems/Bluefield/SecureBoot/SecureBootDatabases/KEKDefault"
+        },
+        {
+            "@odata.id": "/redfish/v1/Systems/Bluefield/SecureBoot/SecureBootDatabases/PK"
+        },
+        {
+            "@odata.id": "/redfish/v1/Systems/Bluefield/SecureBoot/SecureBootDatabases/PKDefault"
+        },
+        {
+            "@odata.id": "/redfish/v1/Systems/Bluefield/SecureBoot/SecureBootDatabases/db"
+        },
+        {
+            "@odata.id": "/redfish/v1/Systems/Bluefield/SecureBoot/SecureBootDatabases/dbDefault"
+        },
+        {
+            "@odata.id": "/redfish/v1/Systems/Bluefield/SecureBoot/SecureBootDatabases/dbt"
+        },
+        {
+            "@odata.id": "/redfish/v1/Systems/Bluefield/SecureBoot/SecureBootDatabases/dbtDefault"
+        },
+        {
+            "@odata.id": "/redfish/v1/Systems/Bluefield/SecureBoot/SecureBootDatabases/dbx"
+        },
+        {
+            "@odata.id": "/redfish/v1/Systems/Bluefield/SecureBoot/SecureBootDatabases/dbxDefault"
+        }
+    ],
+    "Members@odata.count": 10,
+    "Name": "UEFI SecureBoot Database Collection"
+}

@@ -1,0 +1,11 @@
+{
+    "@odata.id": "/redfish/v1/Systems/Bluefield/SecureBoot/SecureBootDatabases/PKDefault",
+    "@odata.type": "#SecureBootDatabase.v1_0_1.SecureBootDatabase",
+    "Certificates": {
+        "@odata.id": "/redfish/v1/Systems/Bluefield/SecureBoot/SecureBootDatabases/PKDefault/Certificates"
+    },
+    "DatabaseId": "PKDefault",
+    "Description": "UEFI PKDefault Secure Boot Database",
+    "Id": "PKDefault",
+    "Name": "PKDefault Database"
+}

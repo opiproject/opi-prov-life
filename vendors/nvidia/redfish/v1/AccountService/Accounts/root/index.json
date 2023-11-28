@@ -1,0 +1,28 @@
+{
+    "@odata.id": "/redfish/v1/AccountService/Accounts/root",
+    "@odata.type": "#ManagerAccount.v1_4_0.ManagerAccount",
+    "AccountTypes": [
+        "IPMI",
+        "Redfish",
+        "WebUI",
+        "HostConsole",
+        "ManagerConsole"
+    ],
+    "Description": "User Account",
+    "Enabled": true,
+    "Id": "root",
+    "Links": {
+        "Role": {
+            "@odata.id": "/redfish/v1/AccountService/Roles/Administrator"
+        }
+    },
+    "Locked": false,
+    "Locked@Redfish.AllowableValues": [
+        "false"
+    ],
+    "Name": "User Account",
+    "Password": null,
+    "PasswordChangeRequired": false,
+    "RoleId": "Administrator",
+    "UserName": "root"
+}

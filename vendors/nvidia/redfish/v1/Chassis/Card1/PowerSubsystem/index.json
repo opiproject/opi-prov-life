@@ -1,0 +1,13 @@
+{
+    "@odata.id": "/redfish/v1/Chassis/Card1/PowerSubsystem",
+    "@odata.type": "#PowerSubsystem.v1_1_0.PowerSubsystem",
+    "Id": "PowerSubsystem",
+    "Name": "Power Subsystem",
+    "PowerSupplies": {
+        "@odata.id": "/redfish/v1/Chassis/Card1/PowerSubsystem/PowerSupplies"
+    },
+    "Status": {
+        "Health": "OK",
+        "State": "Enabled"
+    }
+}

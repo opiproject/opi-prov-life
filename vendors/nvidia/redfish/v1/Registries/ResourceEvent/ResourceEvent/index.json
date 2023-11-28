@@ -1,0 +1,298 @@
+{
+    "@Redfish.Copyright": "Copyright 2014-2021 DMTF in cooperation with the Storage Networking Industry Association (SNIA). All rights reserved.",
+    "@odata.type": "#MessageRegistry.v1_5_0.MessageRegistry",
+    "Description": "This registry defines the messages to use for resource events.",
+    "Id": "ResourceEvent.1.2.1",
+    "Language": "en",
+    "Messages": {
+        "AggregationSourceDiscovered": {
+            "Description": "Indicates that a new aggregation source has been discovered.",
+            "Message": "A aggregation source of connection method `%1` located at `%2` has been discovered.",
+            "MessageSeverity": "OK",
+            "NumberOfArgs": 2,
+            "ParamTypes": [
+                "string",
+                "string"
+            ],
+            "Resolution": "The aggregation source is available to the service and can be identified using the identified connection method.",
+            "Severity": "OK"
+        },
+        "LicenseAdded": {
+            "Description": "Indicates that a license has been added.",
+            "Message": "A license for '%1' has been added.  The following message was returned: '%2'.",
+            "MessageSeverity": "OK",
+            "NumberOfArgs": 2,
+            "ParamTypes": [
+                "string",
+                "string"
+            ],
+            "Resolution": "See vendor specific instructions for specific actions.",
+            "Severity": "OK"
+        },
+        "LicenseChanged": {
+            "Description": "Indicates that a license has changed.",
+            "Message": "A license for '%1' has changed.  The following message was returned: '%2'.",
+            "MessageSeverity": "Warning",
+            "NumberOfArgs": 2,
+            "ParamTypes": [
+                "string",
+                "string"
+            ],
+            "Resolution": "See vendor specific instructions for specific actions.",
+            "Severity": "Warning"
+        },
+        "LicenseExpired": {
+            "Description": "Indicates that a license has expired.",
+            "Message": "A license for '%1' has expired.  The following message was returned: '%2'.",
+            "MessageSeverity": "Warning",
+            "NumberOfArgs": 2,
+            "ParamTypes": [
+                "string",
+                "string"
+            ],
+            "Resolution": "See vendor specific instructions for specific actions.",
+            "Severity": "Warning"
+        },
+        "ResourceChanged": {
+            "Description": "Indicates that one or more resource properties have changed.  This is not used whenever there is another event message for that specific change, such as only the state has changed.",
+            "Message": "One or more resource properties have changed.",
+            "MessageSeverity": "OK",
+            "NumberOfArgs": 0,
+            "Resolution": "None.",
+            "Severity": "OK"
+        },
+        "ResourceCreated": {
+            "Description": "Indicates that all conditions of a successful creation operation have been met.",
+            "Message": "The resource has been created successfully.",
+            "MessageSeverity": "OK",
+            "NumberOfArgs": 0,
+            "Resolution": "None",
+            "Severity": "OK"
+        },
+        "ResourceErrorThresholdCleared": {
+            "Description": "Indicates that a specified resource property has cleared its error threshold.  Examples would be drive I/O errors, or network link errors.",
+            "Message": "The resource property %1 has cleared the error threshold of value %2.",
+            "MessageSeverity": "OK",
+            "NumberOfArgs": 2,
+            "ParamTypes": [
+                "string",
+                "number"
+            ],
+            "Resolution": "None.",
+            "Severity": "OK"
+        },
+        "ResourceErrorThresholdExceeded": {
+            "Description": "Indicates that a specified resource property has exceeded its error threshold.  Examples would be drive I/O errors, or network link errors.",
+            "Message": "The resource property %1 has exceeded error threshold of value %2.",
+            "MessageSeverity": "Critical",
+            "NumberOfArgs": 2,
+            "ParamTypes": [
+                "string",
+                "number"
+            ],
+            "Resolution": "None.",
+            "Severity": "Critical"
+        },
+        "ResourceErrorsCorrected": {
+            "Description": "Indicates that a specified resource property has corrected errors.  Examples would be drive I/O errors, or network link errors.",
+            "Message": "The resource property %1 has corrected errors of type '%2'.",
+            "MessageSeverity": "OK",
+            "NumberOfArgs": 2,
+            "ParamTypes": [
+                "string",
+                "string"
+            ],
+            "Resolution": "None.",
+            "Severity": "OK"
+        },
+        "ResourceErrorsDetected": {
+            "Description": "Indicates that a specified resource property has detected errors.  Examples would be drive I/O errors, or network link errors.",
+            "Message": "The resource property %1 has detected errors of type '%2'.",
+            "MessageSeverity": "Warning",
+            "NumberOfArgs": 2,
+            "ParamTypes": [
+                "string",
+                "string"
+            ],
+            "Resolution": "Resolution dependent upon error type.",
+            "Severity": "Warning"
+        },
+        "ResourcePaused": {
+            "Description": "Indicates that the power state of a resource has changed to paused.",
+            "Message": "The resource `%1` has been paused.",
+            "MessageSeverity": "OK",
+            "NumberOfArgs": 1,
+            "ParamTypes": [
+                "string"
+            ],
+            "Resolution": "None.",
+            "Severity": "OK"
+        },
+        "ResourcePoweredOff": {
+            "Description": "Indicates that the power state of a resource has changed to powered off.",
+            "Message": "The resource `%1` has powered off.",
+            "MessageSeverity": "OK",
+            "NumberOfArgs": 1,
+            "ParamTypes": [
+                "string"
+            ],
+            "Resolution": "None.",
+            "Severity": "OK"
+        },
+        "ResourcePoweredOn": {
+            "Description": "Indicates that the power state of a resource has changed to powered on.",
+            "Message": "The resource `%1` has powered on.",
+            "MessageSeverity": "OK",
+            "NumberOfArgs": 1,
+            "ParamTypes": [
+                "string"
+            ],
+            "Resolution": "None.",
+            "Severity": "OK"
+        },
+        "ResourcePoweringOff": {
+            "Description": "Indicates that the power state of a resource has changed to powering off.",
+            "Message": "The resource `%1` is powering off.",
+            "MessageSeverity": "OK",
+            "NumberOfArgs": 1,
+            "ParamTypes": [
+                "string"
+            ],
+            "Resolution": "None.",
+            "Severity": "OK"
+        },
+        "ResourcePoweringOn": {
+            "Description": "Indicates that the power state of a resource has changed to powering on.",
+            "Message": "The resource `%1` is powering on.",
+            "MessageSeverity": "OK",
+            "NumberOfArgs": 1,
+            "ParamTypes": [
+                "string"
+            ],
+            "Resolution": "None.",
+            "Severity": "OK"
+        },
+        "ResourceRemoved": {
+            "Description": "Indicates that all conditions of a successful remove operation have been met.",
+            "Message": "The resource has been removed successfully.",
+            "MessageSeverity": "OK",
+            "NumberOfArgs": 0,
+            "Resolution": "None",
+            "Severity": "OK"
+        },
+        "ResourceSelfTestCompleted": {
+            "Description": "Indicates that a self-test has completed.",
+            "Message": "A self-test has completed.",
+            "MessageSeverity": "OK",
+            "NumberOfArgs": 0,
+            "Resolution": "None.",
+            "Severity": "OK"
+        },
+        "ResourceSelfTestFailed": {
+            "Description": "Indicates that a self-test has failed.  Suggested resolution may be provided as OEM data.",
+            "Message": "A self-test has failed.  The following message was returned: '%1'.",
+            "MessageSeverity": "Critical",
+            "NumberOfArgs": 1,
+            "ParamTypes": [
+                "string"
+            ],
+            "Resolution": "See vendor specific instructions for specific actions.",
+            "Severity": "Critical"
+        },
+        "ResourceStateChanged": {
+            "Description": "Indicates that the state of a resource has changed.",
+            "Message": "The state of resource `%1` has changed to %2.",
+            "MessageSeverity": "OK",
+            "NumberOfArgs": 2,
+            "ParamTypes": [
+                "string",
+                "string"
+            ],
+            "Resolution": "None.",
+            "Severity": "OK"
+        },
+        "ResourceStatusChangedCritical": {
+            "Description": "Indicates that the health of a resource has changed to Critical.",
+            "Message": "The health of resource `%1` has changed to %2.",
+            "MessageSeverity": "Critical",
+            "NumberOfArgs": 2,
+            "ParamTypes": [
+                "string",
+                "string"
+            ],
+            "Resolution": "None.",
+            "Severity": "Critical"
+        },
+        "ResourceStatusChangedOK": {
+            "Description": "Indicates that the health of a resource has changed to OK.",
+            "Message": "The health of resource '%1' has changed to %2.",
+            "MessageSeverity": "OK",
+            "NumberOfArgs": 2,
+            "ParamTypes": [
+                "string",
+                "string"
+            ],
+            "Resolution": "None.",
+            "Severity": "OK"
+        },
+        "ResourceStatusChangedWarning": {
+            "Description": "Indicates that the health of a resource has changed to Warning.",
+            "Message": "The health of resource `%1` has changed to %2.",
+            "MessageSeverity": "Warning",
+            "NumberOfArgs": 2,
+            "ParamTypes": [
+                "string",
+                "string"
+            ],
+            "Resolution": "None.",
+            "Severity": "Warning"
+        },
+        "ResourceVersionIncompatible": {
+            "Description": "Indicates that an incompatible version of software has been detected.  Examples may be after a component or system level software update.",
+            "Message": "An incompatible version of software '%1' has been detected.",
+            "MessageSeverity": "Warning",
+            "NumberOfArgs": 1,
+            "ParamTypes": [
+                "string"
+            ],
+            "Resolution": "Compare the version of the resource with the compatible version of the software.",
+            "Severity": "Warning"
+        },
+        "ResourceWarningThresholdCleared": {
+            "Description": "Indicates that a specified resource property has cleared its warning threshold.  Examples would be drive I/O errors, or network link errors.  Suggested resolution may be provided as OEM data.",
+            "Message": "The resource property %1 has cleared the warning threshold of value %2.",
+            "MessageSeverity": "OK",
+            "NumberOfArgs": 2,
+            "ParamTypes": [
+                "string",
+                "number"
+            ],
+            "Resolution": "None.",
+            "Severity": "OK"
+        },
+        "ResourceWarningThresholdExceeded": {
+            "Description": "Indicates that a specified resource property has exceeded its warning threshold.  Examples would be drive I/O errors, or network link errors.  Suggested resolution may be provided as OEM data.",
+            "Message": "The resource property %1 has exceeded its warning threshold of value %2.",
+            "MessageSeverity": "Warning",
+            "NumberOfArgs": 2,
+            "ParamTypes": [
+                "string",
+                "number"
+            ],
+            "Resolution": "None.",
+            "Severity": "Warning"
+        },
+        "URIForResourceChanged": {
+            "Description": "Indicates that the URI for a resource has changed.  Examples for this would be physical component replacement or redistribution.",
+            "Message": "The URI for the resource has changed.",
+            "MessageSeverity": "OK",
+            "NumberOfArgs": 0,
+            "Resolution": "None.",
+            "Severity": "OK"
+        }
+    },
+    "Name": "Resource Event Message Registry",
+    "OwningEntity": "DMTF",
+    "RegistryPrefix": "ResourceEvent",
+    "RegistryVersion": "1.2.1"
+}

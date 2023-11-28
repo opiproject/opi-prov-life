@@ -1,0 +1,6 @@
+{
+    "@odata.id": "/redfish/v1/Chassis/Bluefield_BMC/PCIeSlots",
+    "@odata.type": "#PCIeSlots.v1_5_0.PCIeSlots",
+    "Id": "PCIeSlots",
+    "Name": "PCIeSlots for Bluefield_BMC"
+}

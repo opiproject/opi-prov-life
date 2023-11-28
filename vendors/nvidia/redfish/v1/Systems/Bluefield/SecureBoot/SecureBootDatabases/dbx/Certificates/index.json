@@ -1,0 +1,10 @@
+{
+    "@Redfish.SupportedCertificates": [
+        "PEM"
+    ],
+    "@odata.id": "/redfish/v1/Systems/Bluefield/SecureBoot/SecureBootDatabases/dbx/Certificates",
+    "@odata.type": "#CertificateCollection.CertificateCollection",
+    "Members": [],
+    "Members@odata.count": 0,
+    "Name": "Certificate Collection"
+}

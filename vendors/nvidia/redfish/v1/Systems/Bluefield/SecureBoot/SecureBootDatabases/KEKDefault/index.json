@@ -1,0 +1,11 @@
+{
+    "@odata.id": "/redfish/v1/Systems/Bluefield/SecureBoot/SecureBootDatabases/KEKDefault",
+    "@odata.type": "#SecureBootDatabase.v1_0_1.SecureBootDatabase",
+    "Certificates": {
+        "@odata.id": "/redfish/v1/Systems/Bluefield/SecureBoot/SecureBootDatabases/KEKDefault/Certificates"
+    },
+    "DatabaseId": "KEKDefault",
+    "Description": "UEFI KEKDefault Secure Boot Database",
+    "Id": "KEKDefault",
+    "Name": "KEKDefault Database"
+}

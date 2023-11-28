@@ -1,0 +1,7 @@
+{
+    "@odata.id": "/redfish/v1/Managers/Bluefield_BMC/EthernetInterfaces/vlan4040/VLANs",
+    "@odata.type": "#VLanNetworkInterfaceCollection.VLanNetworkInterfaceCollection",
+    "Members": [],
+    "Members@odata.count": 0,
+    "Name": "VLAN Network Interface Collection"
+}

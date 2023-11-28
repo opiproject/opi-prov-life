@@ -1,0 +1,18 @@
+{
+    "@odata.id": "/redfish/v1/AccountService/Accounts",
+    "@odata.type": "#ManagerAccountCollection.ManagerAccountCollection",
+    "Description": "BMC User Accounts",
+    "Members": [
+        {
+            "@odata.id": "/redfish/v1/AccountService/Accounts/NvBluefieldUefi1"
+        },
+        {
+            "@odata.id": "/redfish/v1/AccountService/Accounts/NvBluefieldUefi0"
+        },
+        {
+            "@odata.id": "/redfish/v1/AccountService/Accounts/root"
+        }
+    ],
+    "Members@odata.count": 3,
+    "Name": "Accounts Collection"
+}

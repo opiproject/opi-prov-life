@@ -1,0 +1,17 @@
+---
+version: '3.7'
+
+services:
+
+  nvidia:
+    image: dmtf/redfish-mockup-server:1.2.3
+    volumes:
+      - ./nvidia:/mockup
+    ports:
+      - "8000:8000"
+    networks:
+      - opi
+    command: ["--dir=/mockup"]
+
+networks:
+  opi:

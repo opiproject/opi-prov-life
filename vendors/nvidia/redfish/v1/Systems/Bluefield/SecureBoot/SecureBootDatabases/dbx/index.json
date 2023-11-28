@@ -1,0 +1,22 @@
+{
+    "@odata.id": "/redfish/v1/Systems/Bluefield/SecureBoot/SecureBootDatabases/dbx",
+    "@odata.type": "#SecureBootDatabase.v1_0_1.SecureBootDatabase",
+    "Actions": {
+        "#SecureBootDatabase.ResetKeys": {
+            "ResetKeysType@Redfish.AllowableValues": [
+                "DeleteAllKeys"
+            ],
+            "target": "/redfish/v1/Systems/Bluefield/SecureBoot/SecureBootDatabases/dbx/Actions/SecureBootDatabase.ResetKeys"
+        }
+    },
+    "Certificates": {
+        "@odata.id": "/redfish/v1/Systems/Bluefield/SecureBoot/SecureBootDatabases/dbx/Certificates"
+    },
+    "DatabaseId": "dbx",
+    "Description": "UEFI dbx Secure Boot Database",
+    "Id": "dbx",
+    "Name": "dbx Database",
+    "Signatures": {
+        "@odata.id": "/redfish/v1/Systems/Bluefield/SecureBoot/SecureBootDatabases/dbx/Signatures"
+    }
+}

@@ -1,0 +1,113 @@
+{
+    "@Redfish.Copyright": "Copyright 2014-2020 DMTF in cooperation with the Storage Networking Industry Association (SNIA). All rights reserved.",
+    "@odata.type": "#MessageRegistry.v1_4_1.MessageRegistry",
+    "Description": "This registry defines the messages for task related events.",
+    "Id": "TaskEvent.1.0.3",
+    "Language": "en",
+    "Messages": {
+        "TaskAborted": {
+            "Description": "A task has completed with errors.",
+            "Message": "The task with Id '%1' has completed with errors.",
+            "MessageSeverity": "Critical",
+            "NumberOfArgs": 1,
+            "ParamTypes": [
+                "string"
+            ],
+            "Resolution": "None.",
+            "Severity": "Critical"
+        },
+        "TaskCancelled": {
+            "Description": "A task has been cancelled.",
+            "Message": "Work on the task with Id '%1' has been halted prior to completion due to an explicit request.",
+            "MessageSeverity": "Warning",
+            "NumberOfArgs": 1,
+            "ParamTypes": [
+                "string"
+            ],
+            "Resolution": "None.",
+            "Severity": "Warning"
+        },
+        "TaskCompletedOK": {
+            "Description": "A task has completed.",
+            "Message": "The task with Id '%1' has completed.",
+            "MessageSeverity": "OK",
+            "NumberOfArgs": 1,
+            "ParamTypes": [
+                "string"
+            ],
+            "Resolution": "None.",
+            "Severity": "OK"
+        },
+        "TaskCompletedWarning": {
+            "Description": "A task has completed with warnings.",
+            "Message": "The task with Id '%1' has completed with warnings.",
+            "MessageSeverity": "Warning",
+            "NumberOfArgs": 1,
+            "ParamTypes": [
+                "string"
+            ],
+            "Resolution": "None.",
+            "Severity": "Warning"
+        },
+        "TaskPaused": {
+            "Description": "A task has been paused.",
+            "Message": "The task with Id '%1' has been paused.",
+            "MessageSeverity": "Warning",
+            "NumberOfArgs": 1,
+            "ParamTypes": [
+                "string"
+            ],
+            "Resolution": "None.",
+            "Severity": "Warning"
+        },
+        "TaskProgressChanged": {
+            "Description": "A task has changed progress.",
+            "Message": "The task with Id '%1' has changed to progress %2 percent complete.",
+            "MessageSeverity": "OK",
+            "NumberOfArgs": 2,
+            "ParamTypes": [
+                "string",
+                "number"
+            ],
+            "Resolution": "None.",
+            "Severity": "OK"
+        },
+        "TaskRemoved": {
+            "Description": "A task has been removed.",
+            "Message": "The task with Id '%1' has been removed.",
+            "MessageSeverity": "Warning",
+            "NumberOfArgs": 1,
+            "ParamTypes": [
+                "string"
+            ],
+            "Resolution": "None.",
+            "Severity": "Warning"
+        },
+        "TaskResumed": {
+            "Description": "A task has been resumed.",
+            "Message": "The task with Id '%1' has been resumed.",
+            "MessageSeverity": "OK",
+            "NumberOfArgs": 1,
+            "ParamTypes": [
+                "string"
+            ],
+            "Resolution": "None.",
+            "Severity": "OK"
+        },
+        "TaskStarted": {
+            "Description": "A task has started.",
+            "Message": "The task with Id '%1' has started.",
+            "MessageSeverity": "OK",
+            "NumberOfArgs": 1,
+            "ParamTypes": [
+                "string"
+            ],
+            "Resolution": "None.",
+            "Severity": "OK"
+        }
+    },
+    "Name": "Task Event Message Registry",
+    "OwningEntity": "DMTF",
+    "RegistryPrefix": "TaskEvent",
+    "RegistryVersion": "1.0.3"
+}

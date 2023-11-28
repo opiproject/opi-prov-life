@@ -1,0 +1,11 @@
+{
+    "@odata.id": "/redfish/v1/Managers/Bluefield_BMC/LogServices/Journal/Entries/1701199823115640",
+    "@odata.type": "#LogEntry.v1_9_0.LogEntry",
+    "Created": "2023-11-28T19:30:23+00:00",
+    "EntryType": "Oem",
+    "Id": "1701199823115640",
+    "Message": "kernel: [    0.000000] Linux version 5.10.36-4ec3d8a (oe-user@oe-host) (arm-openbmc-linux-gnueabi-gcc (GCC) 12.1.0, GNU ld (GNU Binutils) 2.38.20220516) #1 SMP Thu Jun 8 07:48:01 UTC 2023",
+    "Name": "BMC Journal Entry",
+    "OemRecordFormat": "BMC Journal Entry",
+    "Severity": "OK"
+}

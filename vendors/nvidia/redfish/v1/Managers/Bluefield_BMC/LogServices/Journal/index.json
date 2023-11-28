@@ -1,0 +1,13 @@
+{
+    "@odata.id": "/redfish/v1/Managers/Bluefield_BMC/LogServices/Journal",
+    "@odata.type": "#LogService.v1_1_0.LogService",
+    "DateTime": "2023-11-28T20:45:58+00:00",
+    "DateTimeLocalOffset": "+00:00",
+    "Description": "BMC Journal Log Service",
+    "Entries": {
+        "@odata.id": "/redfish/v1/Managers/Bluefield_BMC/LogServices/Journal/Entries"
+    },
+    "Id": "Journal",
+    "Name": "Open BMC Journal Log Service",
+    "OverWritePolicy": "WrapsWhenFull"
+}

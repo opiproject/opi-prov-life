@@ -1,0 +1,11 @@
+{
+    "@odata.id": "/redfish/v1/Managers/Bluefield_BMC/LogServices/Journal/Entries/14182404",
+    "@odata.type": "#LogEntry.v1_9_0.LogEntry",
+    "Created": "1970-01-01T00:00:14+00:00",
+    "EntryType": "Oem",
+    "Id": "14182404",
+    "Message": "systemd-journald: Runtime Journal (/run/log/journal/bd3f16b0305f4f8fbc58f177b2118fd1) is 8.0M, max 64.0M, 56.0M free.",
+    "Name": "BMC Journal Entry",
+    "OemRecordFormat": "BMC Journal Entry",
+    "Severity": "OK"
+}

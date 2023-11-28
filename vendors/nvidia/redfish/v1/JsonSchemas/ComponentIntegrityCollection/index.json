@@ -1,0 +1,21 @@
+{
+    "@odata.context": "/redfish/v1/$metadata#JsonSchemaFile.JsonSchemaFile",
+    "@odata.id": "/redfish/v1/JsonSchemas/ComponentIntegrityCollection",
+    "@odata.type": "#JsonSchemaFile.v1_0_2.JsonSchemaFile",
+    "Description": "ComponentIntegrityCollection Schema File Location",
+    "Id": "ComponentIntegrityCollection",
+    "Languages": [
+        "en"
+    ],
+    "Languages@odata.count": 1,
+    "Location": [
+        {
+            "Language": "en",
+            "PublicationUri": "http://redfish.dmtf.org/schemas/v1/ComponentIntegrityCollection.json",
+            "Uri": "/redfish/v1/JsonSchemas/ComponentIntegrityCollection/ComponentIntegrityCollection.json"
+        }
+    ],
+    "Location@odata.count": 1,
+    "Name": "ComponentIntegrityCollection Schema File",
+    "Schema": "#ComponentIntegrityCollection.ComponentIntegrityCollection"
+}

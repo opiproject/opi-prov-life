@@ -1,0 +1,30 @@
+{
+    "@odata.id": "/redfish/v1/Chassis/Card1/Sensors/5V",
+    "@odata.type": "#Sensor.v1_2_0.Sensor",
+    "Id": "5V",
+    "Name": "5V",
+    "Reading": 4.9801,
+    "ReadingRangeMax": 5.9800664641296875,
+    "ReadingRangeMin": 0.0,
+    "ReadingType": "Voltage",
+    "ReadingUnits": "V",
+    "RelatedItem": [
+        {
+            "@odata.id": "/redfish/v1/Systems/Bluefield"
+        }
+    ],
+    "Status": {
+        "Conditions": [],
+        "Health": "OK",
+        "HealthRollup": "OK",
+        "State": "Enabled"
+    },
+    "Thresholds": {
+        "LowerCaution": {
+            "Reading": 4.5
+        },
+        "UpperCaution": {
+            "Reading": 5.5
+        }
+    }
+}

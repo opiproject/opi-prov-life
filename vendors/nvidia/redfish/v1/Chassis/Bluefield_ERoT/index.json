@@ -1,0 +1,48 @@
+{
+    "@odata.id": "/redfish/v1/Chassis/Bluefield_ERoT",
+    "@odata.type": "#Chassis.v1_17_0.Chassis",
+    "Certificates": {
+        "@odata.id": "/redfish/v1/Chassis/Bluefield_ERoT/Certificates"
+    },
+    "ChassisType": "Component",
+    "Id": "Bluefield_ERoT",
+    "Links": {
+        "ContainedBy": {
+            "@odata.id": "/redfish/v1/Chassis/Card1"
+        },
+        "Oem": {
+            "Nvidia": {
+                "@odata.type": "#NvidiaChassis.v1_0_0.NvidiaChassis",
+                "ComponentsProtected": [
+                    {
+                        "@odata.id": "/redfish/v1/Managers/Bluefield_BMC"
+                    }
+                ]
+            }
+        }
+    },
+    "Location": {
+        "PartLocation": {
+            "LocationType": "Embedded"
+        }
+    },
+    "Manufacturer": "NVIDIA",
+    "Name": "Bluefield_ERoT",
+    "Oem": {
+        "Nvidia": {
+            "@odata.type": "#NvidiaChassis.v1_0_0.NvidiaChassis",
+            "AutomaticBackgroundCopyEnabled": true,
+            "BackgroundCopyStatus": "Completed",
+            "InbandUpdatePolicyEnabled": true
+        }
+    },
+    "SKU": "0x4B353681",
+    "SerialNumber": "",
+    "Status": {
+        "Conditions": [],
+        "Health": "OK",
+        "HealthRollup": "OK",
+        "State": "Enabled"
+    },
+    "UUID": "ad4c836b-c54c-11eb-8529-0242ac130003"
+}

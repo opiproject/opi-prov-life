@@ -1,0 +1,14 @@
+{
+    "@odata.id": "/redfish/v1/Chassis/Card1/ThermalSubsystem",
+    "@odata.type": "#ThermalSubsystem.v1_0_0.ThermalSubsystem",
+    "Id": "ThermalSubsystem",
+    "Name": "Thermal Subsystem",
+    "Status": {
+        "Health": "OK",
+        "HealthRollup": "OK",
+        "State": "Enabled"
+    },
+    "ThermalMetrics": {
+        "@odata.id": "/redfish/v1/Chassis/Card1/ThermalSubsystem/ThermalMetrics"
+    }
+}

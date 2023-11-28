@@ -1,0 +1,17 @@
+{
+    "@odata.id": "/redfish/v1/Systems/Bluefield/LogServices/EventLog/Entries/8",
+    "@odata.type": "#LogEntry.v1_9_0.LogEntry",
+    "AdditionalDataURI": "/redfish/v1/Systems/Bluefield/LogServices/EventLog/Entries/8/attachment",
+    "Created": "2023-11-13T19:20:15+00:00",
+    "EntryType": "Event",
+    "Id": "8",
+    "Message": "BMC firmware rebooted due to reason Graceful Restart.",
+    "MessageArgs": [
+        "Graceful Restart"
+    ],
+    "MessageId": "OpenBMC.0.4.BMCRebootReason",
+    "Name": "System Event Log Entry",
+    "Resolution": "",
+    "Resolved": false,
+    "Severity": "OK"
+}

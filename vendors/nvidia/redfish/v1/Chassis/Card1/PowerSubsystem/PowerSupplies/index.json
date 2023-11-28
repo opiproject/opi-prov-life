@@ -1,0 +1,7 @@
+{
+    "@odata.id": "/redfish/v1/Chassis/Card1/PowerSubsystem/PowerSupplies",
+    "@odata.type": "#PowerSupplyCollection.PowerSupplyCollection",
+    "Description": "The collection of PowerSupply resource instances Card1",
+    "Members": [],
+    "Name": "Power Supply Collection"
+}

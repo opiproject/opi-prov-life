@@ -1,0 +1,23 @@
+{
+    "@odata.id": "/redfish/v1/Systems/Bluefield/ResetActionInfo",
+    "@odata.type": "#ActionInfo.v1_1_2.ActionInfo",
+    "Id": "ResetActionInfo",
+    "Name": "Reset Action Info",
+    "Parameters": [
+        {
+            "AllowableValues": [
+                "On",
+                "ForceOff",
+                "ForceOn",
+                "ForceRestart",
+                "GracefulRestart",
+                "GracefulShutdown",
+                "PowerCycle",
+                "Nmi"
+            ],
+            "DataType": "String",
+            "Name": "ResetType",
+            "Required": true
+        }
+    ]
+}

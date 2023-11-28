@@ -1,0 +1,8 @@
+{
+    "@odata.id": "/redfish/v1/Chassis/Bluefield_BMC/PCIeDevices",
+    "@odata.type": "#PCIeDeviceCollection.PCIeDeviceCollection",
+    "Description": "Collection of PCIe Devices",
+    "Members": [],
+    "Members@odata.count": 0,
+    "Name": "PCIe Device Collection"
+}

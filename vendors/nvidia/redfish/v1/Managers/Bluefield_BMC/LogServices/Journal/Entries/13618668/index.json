@@ -1,0 +1,11 @@
+{
+    "@odata.id": "/redfish/v1/Managers/Bluefield_BMC/LogServices/Journal/Entries/13618668",
+    "@odata.type": "#LogEntry.v1_9_0.LogEntry",
+    "Created": "1970-01-01T00:00:13+00:00",
+    "EntryType": "Oem",
+    "Id": "13618668",
+    "Message": "kernel: ftgmac100 1e670000.ftgmac (unnamed net_device) (uninitialized): mdio read timed out",
+    "Name": "BMC Journal Entry",
+    "OemRecordFormat": "BMC Journal Entry",
+    "Severity": "Warning"
+}

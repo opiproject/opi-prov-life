@@ -1,0 +1,7 @@
+{
+    "@odata.id": "/redfish/v1/TelemetryService/Triggers",
+    "@odata.type": "#TriggersCollection.TriggersCollection",
+    "Members": [],
+    "Members@odata.count": 0,
+    "Name": "Triggers Collection"
+}

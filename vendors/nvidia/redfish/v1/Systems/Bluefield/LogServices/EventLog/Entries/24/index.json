@@ -1,0 +1,17 @@
+{
+    "@odata.id": "/redfish/v1/Systems/Bluefield/LogServices/EventLog/Entries/24",
+    "@odata.type": "#LogEntry.v1_9_0.LogEntry",
+    "AdditionalDataURI": "/redfish/v1/Systems/Bluefield/LogServices/EventLog/Entries/24/attachment",
+    "Created": "2023-11-15T22:08:55+00:00",
+    "EntryType": "Event",
+    "Id": "24",
+    "Message": "p0_link sensor is now in error.",
+    "MessageArgs": [
+        "p0_link"
+    ],
+    "MessageId": "OpenBMC.0.1.SensorCableStatusError",
+    "Name": "System Event Log Entry",
+    "Resolution": "",
+    "Resolved": false,
+    "Severity": "OK"
+}

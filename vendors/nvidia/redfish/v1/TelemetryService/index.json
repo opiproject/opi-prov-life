@@ -1,0 +1,20 @@
+{
+    "@odata.id": "/redfish/v1/TelemetryService",
+    "@odata.type": "#TelemetryService.v1_2_1.TelemetryService",
+    "Id": "TelemetryService",
+    "MaxReports": 10,
+    "MetricReportDefinitions": {
+        "@odata.id": "/redfish/v1/TelemetryService/MetricReportDefinitions"
+    },
+    "MetricReports": {
+        "@odata.id": "/redfish/v1/TelemetryService/MetricReports"
+    },
+    "MinCollectionInterval": "PT1.000S",
+    "Name": "Telemetry Service",
+    "Status": {
+        "State": "Enabled"
+    },
+    "Triggers": {
+        "@odata.id": "/redfish/v1/TelemetryService/Triggers"
+    }
+}

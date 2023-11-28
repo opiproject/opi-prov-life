@@ -1,0 +1,25 @@
+{
+    "@odata.id": "/redfish/v1/AccountService/Accounts/NvBluefieldUefi0",
+    "@odata.type": "#ManagerAccount.v1_4_0.ManagerAccount",
+    "AccountTypes": [
+        "Redfish",
+        "WebUI"
+    ],
+    "Description": "User Account",
+    "Enabled": true,
+    "Id": "NvBluefieldUefi0",
+    "Links": {
+        "Role": {
+            "@odata.id": "/redfish/v1/AccountService/Roles/Administrator"
+        }
+    },
+    "Locked": false,
+    "Locked@Redfish.AllowableValues": [
+        "false"
+    ],
+    "Name": "User Account",
+    "Password": null,
+    "PasswordChangeRequired": false,
+    "RoleId": "Administrator",
+    "UserName": "NvBluefieldUefi0"
+}

@@ -1,0 +1,21 @@
+{
+    "@odata.context": "/redfish/v1/$metadata#JsonSchemaFile.JsonSchemaFile",
+    "@odata.id": "/redfish/v1/JsonSchemas/CableCollection",
+    "@odata.type": "#JsonSchemaFile.v1_0_2.JsonSchemaFile",
+    "Description": "CableCollection Schema File Location",
+    "Id": "CableCollection",
+    "Languages": [
+        "en"
+    ],
+    "Languages@odata.count": 1,
+    "Location": [
+        {
+            "Language": "en",
+            "PublicationUri": "http://redfish.dmtf.org/schemas/v1/CableCollection.json",
+            "Uri": "/redfish/v1/JsonSchemas/CableCollection/CableCollection.json"
+        }
+    ],
+    "Location@odata.count": 1,
+    "Name": "CableCollection Schema File",
+    "Schema": "#CableCollection.CableCollection"
+}

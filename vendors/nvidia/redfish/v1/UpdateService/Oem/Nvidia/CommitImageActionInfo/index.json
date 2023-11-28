@@ -1,0 +1,14 @@
+{
+    "@odata.id": "/redfish/v1/UpdateService/Oem/Nvidia/CommitImageActionInfo",
+    "@odata.type": "#ActionInfo.v1_2_0.ActionInfo",
+    "Id": "CommitImageActionInfo",
+    "Name": "CommitImage Action Info",
+    "Parameters": [
+        {
+            "AllowableValues": [],
+            "DataType": "StringArray",
+            "Name": "Targets",
+            "Required": "false"
+        }
+    ]
+}

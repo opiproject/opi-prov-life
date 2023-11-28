@@ -1,0 +1,82 @@
+{
+    "@odata.id": "/redfish/v1/Chassis/Card1",
+    "@odata.type": "#Chassis.v1_21_0.Chassis",
+    "Actions": {
+        "#Chassis.Reset": {
+            "@Redfish.ActionInfo": "/redfish/v1/Chassis/Card1/ResetActionInfo",
+            "target": "/redfish/v1/Chassis/Card1/Actions/Chassis.Reset"
+        }
+    },
+    "Assembly": {
+        "@odata.id": "/redfish/v1/Chassis/Card1/Assembly"
+    },
+    "ChassisType": "Card",
+    "Controls": {
+        "@odata.id": "/redfish/v1/Chassis/Card1/Controls"
+    },
+    "EnvironmentMetrics": {
+        "@odata.id": "/redfish/v1/Chassis/Card1/EnvironmentMetrics"
+    },
+    "Id": "Card1",
+    "Links": {
+        "ComputerSystems": [
+            {
+                "@odata.id": "/redfish/v1/Systems/Bluefield"
+            }
+        ],
+        "Contains": [
+            {
+                "@odata.id": "/redfish/v1/Chassis/Bluefield_BMC"
+            },
+            {
+                "@odata.id": "/redfish/v1/Chassis/Bluefield_ERoT"
+            }
+        ],
+        "ManagedBy": [
+            {
+                "@odata.id": "/redfish/v1/Managers/Bluefield_BMC"
+            }
+        ]
+    },
+    "Manufacturer": "Nvidia",
+    "Model": "Bluefield 3 SmartNIC Main Card",
+    "Name": "Card1",
+    "NetworkAdapters": {
+        "@odata.id": "/redfish/v1/Chassis/Card1/NetworkAdapters"
+    },
+    "PCIeDevices": {
+        "@odata.id": "/redfish/v1/Chassis/Card1/PCIeDevices"
+    },
+    "PCIeSlots": {
+        "@odata.id": "/redfish/v1/Chassis/Card1/PCIeSlots"
+    },
+    "PartNumber": "900-9D3C6-00CV-DA0   ",
+    "Power": {
+        "@odata.id": "/redfish/v1/Chassis/Card1/Power"
+    },
+    "PowerState": "On",
+    "PowerSubsystem": {
+        "@odata.id": "/redfish/v1/Chassis/Card1/PowerSubsystem"
+    },
+    "SKU": "",
+    "Sensors": {
+        "@odata.id": "/redfish/v1/Chassis/Card1/Sensors"
+    },
+    "SerialNumber": "MT2335XZ0C55            ",
+    "Status": {
+        "Conditions": [],
+        "Health": "OK",
+        "HealthRollup": "OK",
+        "State": "Enabled"
+    },
+    "Thermal": {
+        "@odata.id": "/redfish/v1/Chassis/Card1/Thermal"
+    },
+    "ThermalSubsystem": {
+        "@odata.id": "/redfish/v1/Chassis/Card1/ThermalSubsystem"
+    },
+    "TrustedComponents": {
+        "@odata.id": "/redfish/v1/Chassis/Card1/TrustedComponents"
+    },
+    "UUID": ""
+}

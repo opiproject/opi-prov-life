@@ -1,0 +1,19 @@
+{
+    "@odata.id": "/redfish/v1/Systems/Bluefield/SecureBoot/SecureBootDatabases/KEK",
+    "@odata.type": "#SecureBootDatabase.v1_0_1.SecureBootDatabase",
+    "Actions": {
+        "#SecureBootDatabase.ResetKeys": {
+            "ResetKeysType@Redfish.AllowableValues": [
+                "DeleteAllKeys"
+            ],
+            "target": "/redfish/v1/Systems/Bluefield/SecureBoot/SecureBootDatabases/KEK/Actions/SecureBootDatabase.ResetKeys"
+        }
+    },
+    "Certificates": {
+        "@odata.id": "/redfish/v1/Systems/Bluefield/SecureBoot/SecureBootDatabases/KEK/Certificates"
+    },
+    "DatabaseId": "KEK",
+    "Description": "UEFI KEK Secure Boot Database",
+    "Id": "KEK",
+    "Name": "KEK Database"
+}
