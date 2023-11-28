@@ -13,5 +13,48 @@ services:
       - opi
     command: ["--dir=/mockup"]
 
+  marvell:
+    image: dmtf/redfish-mockup-server:1.2.3
+    volumes:
+      - ./marvell:/mockup
+    networks:
+      - opi
+
+  intel:
+    image: dmtf/redfish-mockup-server:1.2.3
+    volumes:
+      - ./intel:/mockup
+    networks:
+      - opi
+
+  nvidia-test:
+    image: curlimages/curl:8.4.0
+    networks:
+      - opi
+    depends_on:
+      nvidia:
+        condition: service_healthy
+    command: curl -qkL http://nvidia:8000/redfish/v1/UpdateService/FirmwareInventory/BMC_Firmware
+
+  marvell-test:
+    image: curlimages/curl:8.4.0
+    networks:
+      - opi
+    depends_on:
+      marvell:
+        condition: service_healthy
+    command: curl -qkL http://marvell:8000/redfish/v1/UpdateService/FirmwareInventory/BMC
+
+
+  intel-test:
+    image: curlimages/curl:8.4.0
+    networks:
+      - opi
+    depends_on:
+      intel:
+        condition: service_healthy
+    command: curl -qkL http://intel:8000/redfish/v1/UpdateService/FirmwareInventory/BMC
+
+
 networks:
   opi:
