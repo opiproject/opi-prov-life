@@ -28,7 +28,7 @@ services:
       - opi
 
   nvidia-test:
-    image: curlimages/curl:8.4.0
+    image: curlimages/curl:8.5.0
     networks:
       - opi
     depends_on:
@@ -37,7 +37,7 @@ services:
     command: curl -qkL http://nvidia:8000/redfish/v1/UpdateService/FirmwareInventory/BMC_Firmware
 
   marvell-test:
-    image: curlimages/curl:8.4.0
+    image: curlimages/curl:8.5.0
     networks:
       - opi
     depends_on:
@@ -47,7 +47,7 @@ services:
 
 
   intel-test:
-    image: curlimages/curl:8.4.0
+    image: curlimages/curl:8.5.0
     networks:
       - opi
     depends_on:
