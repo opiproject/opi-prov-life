@@ -1,0 +1,22 @@
+{
+    "@odata.id": "/redfish/v1/Chassis/Bluefield_BMC/NetworkAdapters/NvidiaNetworkAdapter/NetworkDeviceFunctions/eth1f0",
+    "@odata.type": "#NetworkDeviceFunction.v1_9_0.NetworkDeviceFunction",
+    "Ethernet": {
+        "MACAddress": "02:68:d9:f7:3b:48",
+        "MTUSize": 1500
+    },
+    "Id": "eth1f0",
+    "Links": {
+        "OffloadSystem": {
+            "@odata.id": "/redfish/v1/Systems/Bluefield"
+        },
+        "PhysicalPortAssignment": {
+            "@odata.id": "/redfish/v1/Chassis/Bluefield_BMC/NetworkAdapters/NvidiaNetworkAdapter/Ports/eth1"
+        }
+    },
+    "Name": "NetworkDeviceFunction",
+    "NetDevFuncCapabilities": [
+        "Ethernet"
+    ],
+    "NetDevFuncType": "Ethernet"
+}

@@ -9,6 +9,8 @@
             "@odata.type": "#Power.v1_0_0.PowerControl",
             "MemberId": "0",
             "Name": "Chassis Power Control",
+            "PowerCapacityWatts": null,
+            "PowerConsumedWatts": null,
             "PowerLimit": {
                 "LimitException": "NoAction",
                 "LimitInWatts": null

@@ -18,5 +18,5 @@
         "State": "Enabled"
     },
     "Updateable": false,
-    "Version": "MLNX_OFED_LINUX-23.07-0.5.0.0"
+    "Version": "MLNX_OFED_LINUX-5.8-1.1.2.1.104"
 }

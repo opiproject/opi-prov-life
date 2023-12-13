@@ -1,0 +1,18 @@
+{
+    "@odata.id": "/redfish/v1/Chassis/Bluefield_BMC/Controls/PowerLimit",
+    "@odata.type": "#Control.v1_0_0.Control",
+    "AllowableMax": 120,
+    "AllowableMin": 0,
+    "ControlMode": "Disabled",
+    "ControlType": "Power",
+    "Id": "PowerLimit",
+    "Name": "System Power Control",
+    "PhysicalContext": "Chassis",
+    "SetPoint": 100,
+    "SetPointType": "Single",
+    "SetPointUnits": "%",
+    "Status": {
+        "Health": "OK",
+        "State": "Enabled"
+    }
+}

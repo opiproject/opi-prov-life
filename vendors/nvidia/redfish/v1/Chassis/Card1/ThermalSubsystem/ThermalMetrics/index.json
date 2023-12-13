@@ -8,7 +8,7 @@
             "@odata.id": "/redfish/v1/Chassis/Card1/Sensors/bluefield_temp",
             "DataSourceUri": "/redfish/v1/Chassis/Card1/Sensors/bluefield_temp",
             "DeviceName": "bluefield_temp",
-            "Reading": "39.000000"
+            "Reading": "44.000000"
         },
         {
             "@odata.id": "/redfish/v1/Chassis/Card1/Sensors/p0_temp",

@@ -1,0 +1,11 @@
+{
+    "@odata.id": "/redfish/v1/Managers/Bluefield_BMC/LogServices/Journal/Entries/13658730",
+    "@odata.type": "#LogEntry.v1_9_0.LogEntry",
+    "Created": "1970-01-01T00:00:13+00:00",
+    "EntryType": "Oem",
+    "Id": "13658730",
+    "Message": "kernel: Kernel command line: console=ttyS4,115200n8 mem.devmem=y root=/dev/ram rw",
+    "Name": "BMC Journal Entry",
+    "OemRecordFormat": "BMC Journal Entry",
+    "Severity": "OK"
+}

@@ -1,6 +1,11 @@
 {
     "@odata.id": "/redfish/v1/Chassis/Bluefield_BMC/PowerSubsystem",
     "@odata.type": "#PowerSubsystem.v1_1_0.PowerSubsystem",
+    "Allocation ": {
+        "AllocatedWatts": "null",
+        "RequestedWatts": "null"
+    },
+    "CapacityWatts ": "null",
     "Id": "PowerSubsystem",
     "Name": "Power Subsystem",
     "PowerSupplies": {

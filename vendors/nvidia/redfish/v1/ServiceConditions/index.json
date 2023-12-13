@@ -4,6 +4,19 @@
     "Conditions": [
         {
             "LogEntry": {
+                "@odata.id": "/redfish/v1/Systems/Bluefield/LogServices/EventLog/Entries/106"
+            },
+            "Message": "Transfer of image '0.0' to '' failed.",
+            "MessageArgs": [
+                "0.0",
+                ""
+            ],
+            "MessageId": "Update.1.0.TransferFailed",
+            "Severity": "Critical",
+            "Timestamp": "2023-12-13T20:37:39+00:00"
+        },
+        {
+            "LogEntry": {
                 "@odata.id": "/redfish/v1/Systems/Bluefield/LogServices/EventLog/Entries/3"
             },
             "Message": "Transfer of image '0.0' to '' failed.",
@@ -13,7 +26,7 @@
             ],
             "MessageId": "Update.1.0.TransferFailed",
             "Severity": "Critical",
-            "Timestamp": "2023-11-13T19:07:29+00:00"
+            "Timestamp": "2023-08-09T16:42:32+00:00"
         }
     ],
     "HealthRollup": "Critical",

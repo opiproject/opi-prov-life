@@ -1,0 +1,19 @@
+{
+    "Actions": {
+        "#Mode.Set": {
+            "Parameters": [
+                {
+                    "AllowableValues": [
+                        "NicMode",
+                        "DpuMode"
+                    ],
+                    "DataType": "String",
+                    "Name": "Mode",
+                    "Required": true
+                }
+            ],
+            "target": "/redfish/v1/Systems/Bluefield/Oem/Nvidia/Actions/Mode.Set"
+        }
+    },
+    "Mode": ""
+}

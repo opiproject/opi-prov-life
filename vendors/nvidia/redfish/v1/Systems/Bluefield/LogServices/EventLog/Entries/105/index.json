@@ -1,0 +1,19 @@
+{
+    "@odata.id": "/redfish/v1/Systems/Bluefield/LogServices/EventLog/Entries/105",
+    "@odata.type": "#LogEntry.v1_9_0.LogEntry",
+    "AdditionalDataURI": "/redfish/v1/Systems/Bluefield/LogServices/EventLog/Entries/105/attachment",
+    "Created": "2023-11-30T21:07:47+00:00",
+    "EntryType": "Event",
+    "Id": "105",
+    "Message": "bluefield_temp sensor crossed a critical low threshold going high. Reading=44.000000 Threshold=0.000000.",
+    "MessageArgs": [
+        "bluefield_temp",
+        "44.000000",
+        "0.000000"
+    ],
+    "MessageId": "OpenBMC.0.1.SensorThresholdCriticalLowGoingHigh",
+    "Name": "System Event Log Entry",
+    "Resolution": "",
+    "Resolved": false,
+    "Severity": "OK"
+}

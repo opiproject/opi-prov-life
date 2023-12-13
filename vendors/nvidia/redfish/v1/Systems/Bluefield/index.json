@@ -71,7 +71,7 @@
         "TimeoutAction": "ResetSystem"
     },
     "Id": "Bluefield",
-    "LastResetTime": "1970-01-01T00:00:00+00:00",
+    "LastResetTime": "2023-11-27T17:57:14+00:00",
     "Links": {
         "Chassis": [
             {
@@ -99,6 +99,11 @@
         "TotalSystemMemoryGiB": 0
     },
     "Name": "Bluefield",
+    "Oem": {
+        "Nvidia": {
+            "@odata.id": "/redfish/v1/Systems/Bluefield/Oem/Nvidia"
+        }
+    },
     "PowerRestorePolicy": "AlwaysOn",
     "PowerState": "On",
     "ProcessorSummary": {
@@ -127,7 +132,7 @@
             "ServiceEnabled": true
         }
     },
-    "SerialNumber": "MT2335XZ0C55            ",
+    "SerialNumber": "MT2313XZ0L2P            ",
     "Status": {
         "Health": "OK",
         "HealthRollup": "OK",

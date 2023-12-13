@@ -1,0 +1,15 @@
+{
+    "@odata.id": "/redfish/v1/SessionService/Sessions/UkXOZdItFN",
+    "@odata.type": "#Session.v1_5_0.Session",
+    "ClientOriginIPAddress": "10.55.160.57",
+    "Description": "Manager User Session",
+    "Id": "UkXOZdItFN",
+    "Name": "User Session",
+    "Oem": {
+        "Nvidia": {
+            "PlatformID": "Bluefield",
+            "TokenID": "UYLCnwmPpt7lBBsPiNBJ"
+        }
+    },
+    "UserName": "root"
+}

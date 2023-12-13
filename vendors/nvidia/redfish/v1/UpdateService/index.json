@@ -1,6 +1,6 @@
 {
     "@odata.id": "/redfish/v1/UpdateService",
-    "@odata.type": "#UpdateService.v1_5_0.UpdateService",
+    "@odata.type": "#UpdateService.v1_8_0.UpdateService",
     "Actions": {
         "#UpdateService.SimpleUpdate": {
             "TransferProtocol@Redfish.AllowableValues": [
@@ -12,12 +12,15 @@
         },
         "Oem": {
             "Nvidia": {
-                "#NvidiaUpdateService.AddRemoteServerPublicKey": {
-                    "target": "/redfish/v1/UpdateService/Actions/Oem/NvidiaUpdateService.AddRemoteServerPublicKey"
-                },
                 "#NvidiaUpdateService.CommitImage": {
                     "@Redfish.ActionInfo": "/redfish/v1/UpdateService/Oem/Nvidia/CommitImageActionInfo",
                     "target": "/redfish/v1/UpdateService/Actions/Oem/NvidiaUpdateService.CommitImage"
+                },
+                "#NvidiaUpdateService.PublicKeyExchange": {
+                    "target": "/redfish/v1/UpdateService/Actions/Oem/NvidiaUpdateService.PublicKeyExchange"
+                },
+                "#NvidiaUpdateService.RevokeAllRemoteServerPublicKeys": {
+                    "target": "/redfish/v1/UpdateService/Actions/Oem/NvidiaUpdateService.RevokeAllRemoteServerPublicKeys"
                 }
             }
         }
@@ -35,9 +38,20 @@
     "HttpPushUriTargets": [],
     "Id": "UpdateService",
     "MaxImageSizeBytes": 209715200,
+    "MultipartHttpPushUri": "/redfish/v1/UpdateService/update-multipart",
+    "MultipartHttpPushUri@Redfish.OperationApplyTimeSupport": {
+        "@odata.type": "#Settings.v1_3_3.OperationApplyTimeSupport",
+        "SupportedValues": [
+            "Immediate"
+        ]
+    },
     "Name": "Update Service",
     "ServiceEnabled": true,
     "SoftwareInventory": {
         "@odata.id": "/redfish/v1/UpdateService/SoftwareInventory"
+    },
+    "Status": {
+        "Conditions": [],
+        "State": "Enabled"
     }
 }

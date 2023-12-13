@@ -1,0 +1,9 @@
+{
+    "@odata.id": "/redfish/v1/Chassis/Bluefield_BMC/NetworkAdapters/NvidiaNetworkAdapter/Ports/eth1",
+    "@odata.type": "#Port.v1_6_0.Port",
+    "CurrentSpeedGbps": 0,
+    "Id": "eth1",
+    "LinkNetworkTechnology": "Ethernet",
+    "LinkStatus": "LinkDown",
+    "Name": "Port"
+}

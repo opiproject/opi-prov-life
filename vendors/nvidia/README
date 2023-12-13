@@ -1,9 +1,9 @@
 Redfish service captured by the Redfish Mockup Creator, Version 1.1.9
-Created: 2023-11-28 20:44:53
-Service: https://10.246.87.131
+Created: 2023-12-13 21:14:43
+Service: https://10.246.87.233
 User: root
 Description: 
-Total response time: 206.85572838783264
-Average response time: 0.22983969820870292
-Minimum response time: 0.1444242000579834, /redfish/v1/AccountService/Roles/NoAccess
-Maximum response time: 1.534783124923706, /redfish/v1/schema/ComputerSystem_v1.xml
+Total response time: 174.33888292312622
+Average response time: 0.29300652592122056
+Minimum response time: 0.14304280281066895, /redfish/v1/SessionService/Sessions
+Maximum response time: 1.6143901348114014, /redfish/v1/schema/ComputerSystem_v1.xml

@@ -3,7 +3,7 @@
     "@odata.type": "#Sensor.v1_2_0.Sensor",
     "Id": "bluefield_temp",
     "Name": "bluefield temp",
-    "Reading": 39.0,
+    "Reading": 44.0,
     "ReadingRangeMax": 255.0,
     "ReadingRangeMin": 0.0,
     "ReadingType": "Temperature",

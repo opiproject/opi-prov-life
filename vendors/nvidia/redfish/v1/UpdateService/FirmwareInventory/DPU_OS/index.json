@@ -18,5 +18,5 @@
         "State": "Enabled"
     },
     "Updateable": true,
-    "Version": "DOCA_2.2.1_BSP_4.2.2_Ubuntu_22.04-13.23-09.prod"
+    "Version": "ion:"
 }

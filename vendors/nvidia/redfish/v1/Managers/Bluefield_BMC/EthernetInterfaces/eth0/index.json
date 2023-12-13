@@ -18,7 +18,7 @@
     "HostName": "dpu-bmc",
     "IPv4Addresses": [
         {
-            "Address": "10.246.87.131",
+            "Address": "10.246.87.233",
             "AddressOrigin": "DHCP",
             "Gateway": "10.246.87.1",
             "SubnetMask": "255.255.255.0"
@@ -28,7 +28,7 @@
     "IPv6AddressPolicyTable": [],
     "IPv6Addresses": [
         {
-            "Address": "fe80::a288:c2ff:fe5f:1837",
+            "Address": "fe80::966d:aeff:fe76:6e8f",
             "AddressOrigin": "LinkLocal",
             "AddressState": null,
             "PrefixLength": 64
@@ -39,7 +39,7 @@
     "Id": "eth0",
     "InterfaceEnabled": true,
     "LinkStatus": "LinkUp",
-    "MACAddress": "a0:88:c2:5f:18:37",
+    "MACAddress": "94:6d:ae:76:6e:8f",
     "MTUSize": 1500,
     "Name": "Manager Ethernet Interface",
     "NameServers": [

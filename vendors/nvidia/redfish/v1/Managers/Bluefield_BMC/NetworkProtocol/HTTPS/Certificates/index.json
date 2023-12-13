@@ -2,11 +2,7 @@
     "@odata.id": "/redfish/v1/Managers/Bluefield_BMC/NetworkProtocol/HTTPS/Certificates",
     "@odata.type": "#CertificateCollection.CertificateCollection",
     "Description": "A Collection of HTTPS certificate instances",
-    "Members": [
-        {
-            "@odata.id": "/redfish/v1/Managers/Bluefield_BMC/NetworkProtocol/HTTPS/Certificates/1"
-        }
-    ],
-    "Members@odata.count": 1,
+    "Members": [],
+    "Members@odata.count": 0,
     "Name": "HTTPS Certificates Collection"
 }

@@ -2,7 +2,11 @@
     "@odata.id": "/redfish/v1/Chassis/Card1/Controls",
     "@odata.type": "#ControlCollection.ControlCollection",
     "Description": "The collection of Controlable resource instances Card1",
-    "Members": [],
-    "Members@odata.count": 0,
+    "Members": [
+        {
+            "@odata.id": "/redfish/v1/Chassis/Card1/Controls/PowerLimit"
+        }
+    ],
+    "Members@odata.count": 1,
     "Name": "Controls"
 }

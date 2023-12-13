@@ -15,7 +15,7 @@
             "MemberId": "bluefield_temp",
             "MinReadingRangeTemp": 0.0,
             "Name": "bluefield temp",
-            "ReadingCelsius": 39.0,
+            "ReadingCelsius": 44.0,
             "Status": {
                 "Health": "OK",
                 "State": "Enabled"

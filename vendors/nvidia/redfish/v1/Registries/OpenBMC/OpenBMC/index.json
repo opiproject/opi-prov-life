@@ -275,6 +275,30 @@
             "Resolution": "None.",
             "Severity": "OK"
         },
+        "BMCServiceResourceInfo": {
+            "Description": "Indicates BMC resource consumtion by process interms of storage, CPU and memory or any other resource",
+            "Message": "The process consuming HIGH %1 Resource is %2",
+            "MessageSeverity": "Warning",
+            "NumberOfArgs": 2,
+            "ParamTypes": [
+                "string",
+                "string"
+            ],
+            "Resolution": "None.",
+            "Severity": "Warning"
+        },
+        "BMCSystemResourceInfo": {
+            "Description": "Indicates BMC resource consumtion by process interms of storage, CPU and memory or any other resource",
+            "Message": "Processes consuming HIGH %1 Resource are %2",
+            "MessageSeverity": "Warning",
+            "NumberOfArgs": 2,
+            "ParamTypes": [
+                "string",
+                "string"
+            ],
+            "Resolution": "None.",
+            "Severity": "Warning"
+        },
         "CPLDFirmwarePanicReason": {
             "Description": "Indicates the reason for CPLD firmware panic.",
             "Message": "CPLD firmware panic occurred due to %1.",

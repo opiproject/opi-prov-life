@@ -5,8 +5,12 @@
     "Id": "Bluefield_FW_ERoT",
     "Manufacturer": "NVIDIA",
     "Name": "Software Inventory",
-    "RelatedItem": [],
-    "RelatedItem@odata.count": 0,
+    "RelatedItem": [
+        {
+            "@odata.id": "/redfish/v1/Chassis/Bluefield_ERoT"
+        }
+    ],
+    "RelatedItem@odata.count": 1,
     "SoftwareId": "0xFF00",
     "Status": {
         "Conditions": [],
@@ -15,5 +19,5 @@
         "State": "Enabled"
     },
     "Updateable": true,
-    "Version": "00.02.0127.0000_n02"
+    "Version": "00.02.0092.0000_n02"
 }

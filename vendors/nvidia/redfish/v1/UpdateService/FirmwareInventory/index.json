@@ -34,8 +34,14 @@
         },
         {
             "@odata.id": "/redfish/v1/UpdateService/FirmwareInventory/DPU_UEFI"
+        },
+        {
+            "@odata.id": "/redfish/v1/UpdateService/FirmwareInventory/golden_image_arm"
+        },
+        {
+            "@odata.id": "/redfish/v1/UpdateService/FirmwareInventory/golden_image_nic"
         }
     ],
-    "Members@odata.count": 11,
+    "Members@odata.count": 13,
     "Name": "Software Inventory Collection"
 }

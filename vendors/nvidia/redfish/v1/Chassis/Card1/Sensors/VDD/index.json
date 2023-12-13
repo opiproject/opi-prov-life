@@ -3,7 +3,7 @@
     "@odata.type": "#Sensor.v1_2_0.Sensor",
     "Id": "VDD",
     "Name": "VDD",
-    "Reading": 0.781,
+    "Reading": 0.771,
     "ReadingRangeMax": 1.8,
     "ReadingRangeMin": 0.0,
     "ReadingType": "Voltage",

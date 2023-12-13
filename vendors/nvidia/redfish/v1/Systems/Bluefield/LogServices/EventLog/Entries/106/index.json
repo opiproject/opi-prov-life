@@ -1,0 +1,18 @@
+{
+    "@odata.id": "/redfish/v1/Systems/Bluefield/LogServices/EventLog/Entries/106",
+    "@odata.type": "#LogEntry.v1_9_0.LogEntry",
+    "AdditionalDataURI": "/redfish/v1/Systems/Bluefield/LogServices/EventLog/Entries/106/attachment",
+    "Created": "2023-12-13T20:37:39+00:00",
+    "EntryType": "Event",
+    "Id": "106",
+    "Message": "Transfer of image '0.0' to '' failed.",
+    "MessageArgs": [
+        "0.0",
+        ""
+    ],
+    "MessageId": "Update.1.0.TransferFailed",
+    "Name": "System Event Log Entry",
+    "Resolution": "Debug Token Service is not ready, retry the firmware update operation after the management controller is ready. If the issue still persists reset the baseboard.",
+    "Resolved": false,
+    "Severity": "Critical"
+}

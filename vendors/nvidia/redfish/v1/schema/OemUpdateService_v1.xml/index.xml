@@ -19,23 +19,7 @@
                 <Annotation Term="OData.LongDescription" String="This parameter is a collection of redfish firmware inventory. For empty collection the action 'Commit image' will be applied for all available inventories."/>
                 </Parameter>
             </Action>
-            <Action Name="AddRemoteServerPublicKey" IsBound="true">
-                <Annotation Term="OData.Description" String="This action adds remote server's public key to SSH known host list."/>
-                <Annotation Term="OData.LongDescription" String="This action adds remote server's public key to SSH known host list."/>
-                <Parameter Name="Server" Type="String">
-                <Annotation Term="OData.Description" String="Remote server's IP address."/>
-                <Annotation Term="OData.LongDescription" String="Remote server's IP address."/>
-                </Parameter>
-                <Parameter Name="KeyType" Type="String">
-                <Annotation Term="OData.Description" String="The type of remote server's public key, such as ssh-rsa, ssh-ed25519 etc."/>
-                <Annotation Term="OData.LongDescription" String="The type of remote server's public key, such as ssh-rsa, ssh-ed25519 etc."/>
-                </Parameter>
-                <Parameter Name="Key" Type="String">
-                <Annotation Term="OData.Description" String="The remote server's public key."/>
-                <Annotation Term="OData.LongDescription" String="The remote server's public key."/>
-                </Parameter>
-            </Action>
-
+            
         </Schema>
     </edmx:DataServices>
 </edmx:Edmx>

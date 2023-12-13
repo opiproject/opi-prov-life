@@ -4,12 +4,8 @@
     "Description": "Defines a resource that an administrator can use in order to locate all certificates installed on a given service",
     "Id": "CertificateLocations",
     "Links": {
-        "Certificates": [
-            {
-                "@odata.id": "/redfish/v1/Managers/Bluefield_BMC/NetworkProtocol/HTTPS/Certificates/1"
-            }
-        ],
-        "Certificates@odata.count": 1
+        "Certificates": [],
+        "Certificates@odata.count": 0
     },
     "Name": "Certificate Locations"
 }

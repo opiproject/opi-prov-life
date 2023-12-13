@@ -26,10 +26,10 @@
         ],
         "Contains": [
             {
-                "@odata.id": "/redfish/v1/Chassis/Bluefield_BMC"
+                "@odata.id": "/redfish/v1/Chassis/Bluefield_ERoT"
             },
             {
-                "@odata.id": "/redfish/v1/Chassis/Bluefield_ERoT"
+                "@odata.id": "/redfish/v1/Chassis/Bluefield_BMC"
             }
         ],
         "ManagedBy": [
@@ -50,7 +50,7 @@
     "PCIeSlots": {
         "@odata.id": "/redfish/v1/Chassis/Card1/PCIeSlots"
     },
-    "PartNumber": "900-9D3C6-00CV-DA0   ",
+    "PartNumber": "900-9D3B6-00CV-AA0   ",
     "Power": {
         "@odata.id": "/redfish/v1/Chassis/Card1/Power"
     },
@@ -62,7 +62,7 @@
     "Sensors": {
         "@odata.id": "/redfish/v1/Chassis/Card1/Sensors"
     },
-    "SerialNumber": "MT2335XZ0C55            ",
+    "SerialNumber": "MT2313XZ0L2P            ",
     "Status": {
         "Conditions": [],
         "Health": "OK",
