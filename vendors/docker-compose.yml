@@ -4,7 +4,7 @@ version: '3.7'
 services:
 
   nvidia:
-    image: dmtf/redfish-mockup-server:1.2.3
+    image: dmtf/redfish-mockup-server:1.2.4
     volumes:
       - ./nvidia:/mockup
     ports:
@@ -14,14 +14,14 @@ services:
     command: ["--dir=/mockup"]
 
   marvell:
-    image: dmtf/redfish-mockup-server:1.2.3
+    image: dmtf/redfish-mockup-server:1.2.4
     volumes:
       - ./marvell:/mockup
     networks:
       - opi
 
   intel:
-    image: dmtf/redfish-mockup-server:1.2.3
+    image: dmtf/redfish-mockup-server:1.2.4
     volumes:
       - ./intel:/mockup
     networks:
