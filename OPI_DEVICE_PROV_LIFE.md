@@ -19,17 +19,17 @@ For the purposes of this specification a 'device' is a PCI device that intends t
 
 ## BMC Connectivity Baseline
 
-- **PLDM Type 2 (Monitoring & Control)**: Device shall support DMTF PLDM type 2 sensors using a standard PCIe connector physical medium MCTP transport (e.g. SMBus, PCIe VDM, USB).  This includes the ability to read and monitor in addition to being able to set thresholds at which the 
-  - Temperature Sensors SHALL be supported 
+- **PLDM Type 2 (Monitoring & Control)**: Device shall support DMTF PLDM type 2 sensors using a standard PCIe connector physical medium MCTP transport (e.g. SMBus, PCIe VDM, USB).  This includes the ability to read and monitor in addition to being able to set thresholds for:
+  - Temperature Sensors SHALL be supported
   - Voltage Sensors SHALL be supported
 - **NC-SI Control and Monitoring**: Device shall support DMTF NC-SI control and monitoring capabilities.   The physical connectivity for this can be RBT, or MCTP over a supported medium(e.g. SMBus, PCIe VDM, USB)
   - Note: Passthrough is not required
 
 ## Life Cycle Management
+
 - **Provisioning**: Device shall support initial provisioning and re-provisioning using sZTP as defined by OPI here.
 - **Telemetry**: Devices shall support runtime telemetry using OTEL as defined by OPI here.
 - **System Information**: Devices shall support SMBIOS for system information from the device's operating system, as defined by OPI here.
 - **Security Keys**: SSH and TLS keys can be loaded onto the device using standard methods used by Linux, or pre-loaded during provisioning.
 - **Runtime Configuration**: Devices shall support the capability of reading and writing runtime configuration over the network using an RPC (e.g., Redfish or OpenConfig) secured using TLS. The configuration space is TBD.
-- **Software Update**: Devices shall support the capability of updating the software on the device over the network using an RPC (e.g., Redfish or OpenConfig) secured using TLS.  
-
+- **Software Update**: Devices shall support the capability of updating the software on the device over the network using an RPC (e.g., Redfish or OpenConfig) secured using TLS.
