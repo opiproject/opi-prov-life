@@ -22,8 +22,8 @@ For the purposes of this specification a 'device' is a PCI device that intends t
 - **PLDM Type 2 (Monitoring & Control)**: Device shall support DMTF PLDM type 2 sensors using a standard PCIe connector physical medium MCTP transport (e.g. SMBus, PCIe VDM, USB).  This includes the ability to read and monitor in addition to being able to set thresholds for:
   - Temperature Sensors SHALL be supported
   - Voltage Sensors SHALL be supported
-- **NC-SI Control and Monitoring**: Device shall support DMTF NC-SI control and monitoring capabilities.   The physical connectivity for this can be RBT, or MCTP over a supported medium(e.g. SMBus, PCIe VDM, USB)
-  - Note: Passthrough is not required
+- **Identification**: Devices shall identify themselves to the BMC with the equivalent of the QR code for use in sZTP.
+  
 
 ## Life Cycle Management
 
