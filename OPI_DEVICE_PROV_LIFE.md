@@ -23,7 +23,6 @@ For the purposes of this specification a 'device' is a PCI device that intends t
   - Temperature Sensors SHALL be supported
   - Voltage Sensors SHALL be supported
 - **Identification**: Devices shall identify themselves to the BMC with the equivalent of the QR code for use in sZTP.
-  
 
 ## Life Cycle Management
 
