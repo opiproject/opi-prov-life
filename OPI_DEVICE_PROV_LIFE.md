@@ -19,10 +19,10 @@ For the purposes of this specification a 'device' is a PCI device that intends t
 
 ## BMC Connectivity Baseline
 
-- **PLDM Type 2 (Monitoring & Control)**: Device shall support DMTF PLDM type 2 sensors using a standard PCIe connector physical medium MCTP transport (e.g. SMBus, PCIe VDM, USB).  This includes the ability to read and monitor in addition to being able to set thresholds for:
-  - Temperature Sensors SHALL be supported
-  - Voltage Sensors SHALL be supported
-- **Identification**: Devices shall identify themselves to the BMC with the equivalent of the QR code for use in sZTP.
+1. **PLDM**: Device shall support DMTF Platform Level Data Model (PLDM) type 2 (Monitoring & Control) using a standard PCIe connector physical medium MCTP transport (e.g. SMBus, PCIe VDM, USB). This includes the ability to read and monitor in addition to being able to set thresholds. PLDM is used to support get the following information from the device:
+  1. **Temperature**: Temperature sensors shall be supported
+  2. **Power**: Voltage sensors shall be supported
+  3. **Identification (via a File)**: The File Transfer specification is targeting ratification and release by the DMTF in the first half of 2024.  This specification provides a standards based mechanism by which the BMC may perform File I/O operations on a device. In this instance the IPU/DPU shall provide a 'file' which can be read by the BMC that has a well defined name and format.  The contents of the file will contain the necessary information to identify the IPU/DPU - the same information provided by a QR code on the physical device.
 
 ## Life Cycle Management
 
