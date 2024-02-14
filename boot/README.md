@@ -11,7 +11,7 @@ The detailed solutinos and options will have their own pages.
 
 ## Terms
 
-| Term | Description
+| Term | Description|
 |------|----------------------------------------------------------------------|
 | AMC  | Add-in Management Controller on a PCIe card                          |
 | BMC  | Baseboard Management Controller                                      |

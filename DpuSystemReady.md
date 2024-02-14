@@ -6,7 +6,7 @@ This page lists xPU base firmware and security requirements and recommendations.
 
 ## Terms
 
-| Term | Description
+| Term | Description|
 |------|----------------------------------------------------------------------|
 | ACS  | Arm Architecture Compliance test Suite                               |
 | BBR  | Arm Base Boot Requirements specification                             |

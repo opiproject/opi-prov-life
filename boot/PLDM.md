@@ -135,24 +135,24 @@ from [here](../architecture/Dell%20NC-SI%20OEM%20Commands%20for%20smartNICs.pdf)
 The following table defines the SN State values
 | Value | Name | Description |
 | :-----| :----| :-----------|
-| 0 | Reset | CPU is in reset / Boot ROM
-| 1 | Firmware #1 | CPU has passed FW checkpoint 1
-| 2 | Firmware #2 | CPU has passed FW checkpoint 2
-| 3 | UEFI | CPU has entered UEFI
-| 4 | OS Booting | CPU has entered OS
-| 5 | OS Running | OS is running
-| 6 | OS Halted/Shutdown | OS is halted or shutdown
-| 7 | Updating | Update in Progress
-| 8 | OS Crash Progressing | OS Crash Dump in progress
-| 9 | OS Crash Complete | OS Crash Dump complete
-| Other | Reserved | Reserved
+| 0 | Reset | CPU is in reset / Boot ROM|
+| 1 | Firmware #1 | CPU has passed FW checkpoint 1|
+| 2 | Firmware #2 | CPU has passed FW checkpoint 2|
+| 3 | UEFI | CPU has entered UEFI|
+| 4 | OS Booting | CPU has entered OS|
+| 5 | OS Running | OS is running|
+| 6 | OS Halted/Shutdown | OS is halted or shutdown|
+| 7 | Updating | Update in Progress|
+| 8 | OS Crash Progressing | OS Crash Dump in progress|
+| 9 | OS Crash Complete | OS Crash Dump complete|
+| Other | Reserved | Reserved|
 
 ## Nvidia proposal to extend 196 Boot Progress
 
 from [here](https://opi-project.slack.com/archives/C0342L6T7EC/p1693938501126579)
 
-| Value/Name                                                   | Description                                               | Notes/Usage                          |
-| :------------------------                                                  | :-------------                                                                            | :-------                             |
+| Value/Name                                                   | Description                                               |
+| :------------------------                                                  | :-------------                                                                            |
 | 0 - Reset/Boot-ROM                   | The device has just been powered on or reset, and it's initializing basic hardware and loading the first firmware mutable FW components. |
 | 1 - Boot stage 1                     | FMC (First Mutable Code) is running. |
 | 2 - Boot stage 2                     | The device has progressed further in the boot process, executing additional instructions to load pre-OS SW. |
