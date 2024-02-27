@@ -31,9 +31,9 @@ For the purposes of this specification a 'device' is a PCI device that intends t
 
 ## Life Cycle Management
 
-- **Provisioning**: Device shall support initial provisioning and re-provisioning using sZTP as defined by OPI here.
-- **Telemetry**: Devices shall support runtime telemetry using OTEL as defined by OPI here.
-- **System Information**: Devices shall support SMBIOS for system information from the device's operating system, as defined by OPI here.
+- **Provisioning**: Device shall support initial provisioning and re-provisioning using sZTP as defined by OPI [here](https://github.com/opiproject/sztp).
+- **Telemetry**: Devices shall support runtime telemetry using OTEL as defined by OPI [here](https://github.com/opiproject/otel).
+- **System Information**: Devices shall support SMBIOS for system information from the device's operating system, as defined by OPI [here](https://github.com/opiproject/opi-smbios-bridge).
 - **Security Keys**: SSH and TLS keys can be loaded onto the device using standard methods used by Linux, or pre-loaded during provisioning.
 - **Runtime Configuration**: Devices shall support the capability of reading and writing runtime configuration over the network using an RPC (e.g., Redfish or OpenConfig) secured using TLS. The configuration space is TBD.
 - **Software Update**: Devices shall support the capability of updating the software on the device over the network using an RPC (e.g., Redfish or OpenConfig) secured using TLS.
