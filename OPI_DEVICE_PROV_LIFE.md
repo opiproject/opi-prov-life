@@ -11,11 +11,11 @@ For the purposes of this specification a 'device' is a PCI device that intends t
 
 ## ARM Firmware & Security Baseline
 
-- DPU/IPUs with Arm-based processors are required to be compliant with the following specifications. Requirements are to be verified using SystemReady ES ACS v1.2.0 (or newer).
+- DPU/IPUs with Arm-based processors are required to be compliant with the following specifications. Requirements are to be verified using the Arm SystemReady Architecture Compliance Suite (ACS).
   - BSA ver 1.0c (or newer).
   - SBBR recipe in BBR v1.0 (or newer), which includes implementing UEFI, ACPI, and SMBIOS.
   - BBSR v1.2 (or newer).
-- DPU/IPUs with Arm-based processors are recommended to achieve Arm SystemReady ES certification with the additional Security Interface Extension (SIE) certification.
+- DPU/IPUs with Arm-based processors can further demonstrate the above compliances with an optional Arm SystemReady certification, including the Security Interface Extension (SIE).
 
 ## BMC Connectivity Baseline
 
