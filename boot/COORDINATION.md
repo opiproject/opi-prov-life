@@ -296,4 +296,4 @@ USB2 implies future products that will plug into PCIe CEM 6 which supports USB2 
 
 ## 4: Out-of-band xPU BMC
 
-tbd
+Community discussion has not focused on this as a possile path for interaction, as there is an inherent challenge in regards to cross-device credentials. The only practical approach may be as part of an implementation specific solution to meet specific solution requirements, which is out of scope.
