@@ -33,7 +33,17 @@ For the purposes of this specification a 'device' is a PCI device that intends t
 
 - **Provisioning**: Device shall support initial provisioning and re-provisioning using sZTP as defined by OPI [here](https://github.com/opiproject/sztp).
 - **Telemetry**: Devices shall support runtime telemetry using OTEL as defined by OPI [here](https://github.com/opiproject/otel).
-- **System Information**: Devices shall support SMBIOS for system information from the device's operating system, as defined by OPI [here](https://github.com/opiproject/opi-smbios-bridge).
+- **System Information**: Devices shall support the following alternatives for system information:
+  - **Local Inventory**: Devices shall support SMBIOS for local system information
+  from the device's operating system, as defined by OPI
+  [here](https://github.com/opiproject/opi-smbios-bridge).
+  See [Local Inventory](inventory/LOCAL.md) for more details.
+  - **Remote Network Inventory**: Devices shall support Redfish for remote system
+  information access by an external control plane, as defined by OPI.
+  See [Remote Network Inventory](inventory/REMOTE.md) for more details.
+  - **Remote Host/BMC Inventory**: Devices shall support Host/BMC access to system
+  information using protocols such as NC-SI, PLDM, and VPD.
+  See [Remote Host/BMC Inventory](inventory/HOST.md) for more details.
 - **Security Keys**: SSH and TLS keys can be loaded onto the device using standard methods used by Linux, or pre-loaded during provisioning.
 - **Runtime Configuration**: Devices shall support the capability of reading and writing runtime configuration over the network using an RPC (e.g., Redfish or OpenConfig) secured using TLS. The configuration space is TBD.
 - **Software Update**: Devices shall support the capability of updating the software on the device over the network using an RPC (e.g., Redfish or OpenConfig) secured using TLS.
