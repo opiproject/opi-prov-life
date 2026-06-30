@@ -39,5 +39,5 @@ Moved to [here](./HOST.md)
   - in FW we can't use TCP probably, so look into ICMP
 - Can we simplify the approach?
   - If we break this into a data collector application and a data store/query service as two separate entities:
-    - Their actual run times can be non contemporaneous (e.g. first one runs periodically, or when things change, or remotely, ...).
+    - Their actual run times can be non contemporaneous (e.g. first one runs periodically, or when things change, or remotely, ....).
     - Also a benefit exists here where the latter can be a generic OPI software, while the former is vendor-specific by nature.
