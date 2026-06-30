@@ -38,13 +38,13 @@ Adopted <https://github.com/opiproject/sztp>
 
 ## DPU HW Components
 
-| ![DPU HW Components Full](architecture/DPU-HW-Components-Full.svg)             | ![DPU HW Components no BMC](architecture/DPU-HW-Components-noBMC.png)   |
+| ![DPU HW Components Full](architecture/DPU-HW-Components-Full.png)             | ![DPU HW Components no BMC](architecture/DPU-HW-Components-noBMC.png)   |
 |--------------------------------------------------------------------------------|-------------------------------------------------------------------------|
 | ![DPU HW Components Standalone](architecture/DPU-HW-Components-Standalone.png) |![DPU HW Components embedded BMC](architecture/DPU-HW-Components-embeddedBMC.png)|
 
 ## Inventory Query or Broadcast
 
-see [Inventory](./inventory/README.md)
+see [Inventory](./inventory/README.md) . 
 
 ## Adopted solution for RFC 8572 Secure Zero Touch
 
